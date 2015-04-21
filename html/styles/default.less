@@ -1,0 +1,252 @@
+@import '/styles/grid.less';
+
+//////////
+// GRID //
+//////////
+
+// Specify the number of columns and set column and gutter widths
+@columns: 12;
+@column-width: 60;
+@gutter-width: 20;
+
+// Uncomment the definition below for a percentage-based layout
+@total-width: 100%;
+
+.container_12 {
+	width:@total-width;
+	max-width:960px;
+}
+
+.grid_4 {
+	.column(4);
+}
+
+.grid_12 {
+	.column(12);
+}
+
+.push_4 {
+	.push(4);
+}
+
+.pull_4 {
+	.pull(4);
+}
+
+
+img.fullwidth {
+	max-width:100%;
+	min-width:120px;
+}
+
+h2 {
+	font-size:22px;
+	margin-bottom:20px;
+	padding-bottom:8px;
+	border-bottom:2px dotted #AAA;
+}
+
+h4 {
+	margin-bottom:10px;
+	color:#666;
+	margin-top:20px;
+	font-size:16px;
+	font-weight:bold;
+}
+
+pre {
+	background-color:#EEE;
+	border:1px solid silver;
+	color:#333;
+	font-family:Courier;
+	font-size:12px;
+	line-height:14px;
+	margin-top:10px;
+	margin-bottom:10px;
+	padding:10px;
+	.rounded-corners(2px);
+}
+
+////////////
+// FIXES  //
+////////////
+
+// The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix {
+	*zoom:1;
+
+	&:before,
+	&:after {
+	    content:"";
+	    display:table;
+	}
+	&:after {
+	    clear:both;
+	}
+}
+
+////////////
+// LAYOUT //
+////////////
+
+.rounded-corners (@radius: 5px) {
+	border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+}
+
+body {
+	background-color:#123;
+	color:white;
+	font-size:12px;
+	font-family:Helvetica,Tahoma,sans-serif;
+	background-image:url('pattern.png');
+}
+
+a {
+	color:#eea200;
+}
+
+header {
+
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:20px;
+	margin-top:20px;
+
+	h1 {
+		margin-left:auto;
+		margin-right:auto;
+		min-width:100px;
+		cursor:pointer;
+		text-align:center;
+
+		u {
+			position:absolute;
+			top:-1000000px;
+			left:-1000000px;
+		}
+
+	}
+
+	.infos {
+		div {
+			position:relative;
+			top:40px;
+		}
+	}
+
+	.download {
+		text-align:center;
+	}
+
+}
+
+.btn {
+	cursor:pointer;
+}
+
+#baseline {
+	display:none;
+}
+
+#baseline div {
+	color:white;
+	margin-top:10px;
+	margin-bottom:10px;
+	padding:5px;
+	width:95%;
+	margin-left:10px;
+	margin-right:10px;
+
+}
+
+#container {
+
+	margin-left:auto;
+	margin-right:auto;
+
+	.box {
+		.rounded-corners(10px);
+		background-color:#123;
+		min-height:230px;
+		color:white;
+
+		ul {
+			padding:20px;
+			list-style-type: square;
+			margin-left:10px;
+
+			li {
+				line-height:14px;
+			}
+		}
+
+		p {
+
+			padding:20px;
+			margin:0px;
+
+			i {
+				font-size:24px;
+				font-weight:bold;
+				font-style:normal;
+			}
+
+		}
+	}
+}
+
+footer {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+
+	div {
+		padding:10px;
+	}
+
+}
+
+.doc {
+	margin-top:20px;
+	background-color:white;
+	color:#123;
+	padding:10px;
+	.rounded-corners();
+
+	a {
+		color:#666;
+	}
+}
+
+@media only screen
+and (max-width : 800px)
+{
+	header {
+		.push_4 {
+			left:0px;
+		}
+
+		.infos {
+			display:none;
+		}
+
+		.download {
+			position:absolute;
+			right:50px;
+		}
+	}
+	#baseline {
+		display:block;
+	}
+	#container .box, #baseline div {
+		display:block;
+		float:none;
+		margin-bottom:10px;
+		min-height:0px;
+		width:95%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+}

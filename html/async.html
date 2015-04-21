@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Asynchronous ads</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+
+
+<img src="http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/signsofspring_032112/bp1.jpg" width="200" height="130">
+
+<script id="wads_lo_script" type="text/javascript">
+<!--
+var wads = {
+	// config
+	wadsUrl : 'http://julien.dev.ads.webedia.fr/p-c-ajax',
+	wadsIncludeUrl : 'http://julien.dev.ads.webedia.fr/include/js',
+	wadsSitePage : 'les_simpsons_sont_la/rg',
+	wadsQuery : '',
+	wadsMode : 'ajax',
+	// can't touch this
+	getRandom:function() {
+		return Math.round(Math.random()*1000000000);
+	},
+	loadAsync: function(d, src) {
+		var wadsLoaderIframe = d.body.appendChild(d.createElement('iframe'));
+		wadsLoaderIframe.id='wads_loader';
+		wadsLoaderIframe.style.cssText = "position:absolute;width:0px;height:0px;left:0px;top:0px;margin:0;border:none;overflow:hidden;";
+		doc = (wadsLoaderIframe.contentWindow) ? wadsLoaderIframe.contentWindow.document : (wadsLoaderIframe.contentDocument.document) ? wadsLoaderIframe.contentDocument.document : wadsLoaderIframe.contentDocument;
+		doc.open().write('<body onload="var d = document; d.getElementsByTagName(\'head\')[0].appendChild(d.createElement(\'script\')).src=\'' + src + '\'">');
+		doc.close();
+	}
+}
+wads.loadAsync(document, wads.wadsIncludeUrl);
+-->
+</script>
+
+<img src="http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/signsofspring_032112/bp1.jpg" width="200" height="130">
+
+<div id="wads_po_header-top"></div>
+
+
+
+</body>
+</html>
