@@ -1,0 +1,6 @@
+site_name: Nofussframework Documentation
+pages:
+    - [home.md, Home]
+    - [about.md, About]
+theme_dir: '/var/www/nofussframework/mkdocs/themes/readthedocs'
+site_dir: '/var/www/nofussframework/html/docs'
