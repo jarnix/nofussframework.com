@@ -3762,7 +3762,7 @@ a:hover {
 }
 
 a:visited {
-	color: #9B59B6
+	
 }
 
 html {
@@ -4519,7 +4519,6 @@ div[class^='highlight'] pre {
 
 .wy-side-nav-search {
 	z-index: 200;
-	background-color: #2980B9;
 	text-align: center;
 	padding: 0.809em;
 	display: block;
@@ -4756,7 +4755,7 @@ footer p {
 		position: fixed;
 		min-width: 100%;
 		left: 85%;
-		top: 0;
+		top: 50;
 		height: 100%;
 		overflow: hidden
 	}
@@ -4782,8 +4781,10 @@ footer p {
 }
 
 nav.stickynav {
+	/*
 	position: fixed;
 	top: 0
+	*/
 }
 
 .rst-versions {
@@ -5285,4 +5286,28 @@ span[id*='MathJax-Span'] {
 .math {
 	text-align: center
 }
-/*# sourceMappingURL=theme.css.map */
+
+header {
+	clear:both;
+	height:3.5em;
+	background-color:#343131; 
+	color:white;
+	padding-left:1em;
+	padding-top:1em;
+}
+
+header h2 {
+	display:inline-block;
+	float:left;
+	margin:0px;
+	line-height:1;	
+}
+
+header ul li a {
+	display:inline-block;
+	float:left;
+	padding:0.5;
+	color:white;
+	padding-left:1em;
+	line-height:1.8;
+}
