@@ -1,4 +1,4 @@
-site_name: Nofussframework Documentation
+site_name: NoFussFramework Documentation
 pages:
     - [index.md, 'Documentation Home']
     - [intro/introduction.md, 'Introduction']

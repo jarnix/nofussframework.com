@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Try it now - Nofussframework Documentation</title>  
+<title>Try it now - NoFussFramework Documentation</title>  
 <link rel="shortcut icon" href="../../img/favicon.ico">
  
 <link
@@ -96,6 +96,8 @@
                         
                             <li><a class="toctree-l4" href="#start-the-vm-with-nofussframework">Start the vm with NoFussFramework:</a></li>
                         
+                            <li><a class="toctree-l4" href="#modify-the-sources-in-the-vm">Modify the sources in the VM:</a></li>
+                        
                     
                     </ul>
                 
@@ -164,10 +166,10 @@
 <p>Since we are so kind with you, we built a VM which you can play with, so you can get on board quickly.</p>
 <p>The VM contains the same code as in the github repository but also a preconfigured apache + php + mysql + memcache + apcu, and some php extensions that you can use at the beginning.</p>
 <h2 id="vagrant-setup">Vagrant setup</h2>
-<p>If you don't have Vagrant on your computer, download it from here :</p>
+<p>If you don't have Vagrant on your computer, download it from here:</p>
 <p><a href="https://www.vagrantup.com/downloads.html" title="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a></p>
 <h2 id="virtualbox-setup">Virtualbox setup</h2>
-<p>The image for Vagrant uses Virtualbox. Download it from here :</p>
+<p>The image for Vagrant uses Virtualbox. Download it from here:</p>
 <p><a href="https://www.virtualbox.org/wiki/Downloads" title="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></p>
 <h2 id="start-the-vm-with-nofussframework">Start the vm with NoFussFramework:</h2>
 <p>Download the Vagrant settings for our image. Go into your home folder for example and clone this git repository:</p>
@@ -177,15 +179,13 @@
 <pre><code>vagrant up
 </code></pre>
 <p>The first time it will take a few minutes to download the image of the VM.</p>
-<p>Then ssh to the virtual machine :</p>
+<p>Open your browser:</p>
+<pre><code>http://localhost:8888
+</code></pre>
+<h2 id="modify-the-sources-in-the-vm">Modify the sources in the VM:</h2>
 <pre><code>vagrant ssh
 </code></pre>
-<p>You can then go into the folder of the demosite and run a few cli commands like :</p>
-<ul>
-<li>elmkzermlzker</li>
-<li>aazlmzkerlmzkear</li>
-<li>zropiazer</li>
-</ul></div>
+<p>The files are located in /var/www/nofuss/demosite</p></div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
@@ -228,7 +228,7 @@
 
 	<!--
 MkDocs version  : 0.12.1
-Docs Build Date : 2015-04-23 15:05:42.396985
+Docs Build Date : 2015-04-27 17:21:31.710175
 -->
 </body>
 </html>

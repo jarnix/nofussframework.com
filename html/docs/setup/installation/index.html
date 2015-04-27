@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Installation - Nofussframework Documentation</title>  
+<title>Installation - NoFussFramework Documentation</title>  
 <link rel="shortcut icon" href="../../img/favicon.ico">
  
 <link
@@ -103,6 +103,18 @@
                     
                         <ul>
                         
+                            <li class="toctree-l3"><a href="#get-nofuss-on-your-server">Get nofuss on your server</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#setup-an-apache-virtual-site">Setup an apache virtual site</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#optional-get-smarty">Optional: get Smarty</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#set-directory-permissions-for-smarty">Set directory permissions for Smarty</a></li>
+                            
+                        
                         </ul>
                     
                 </li>
@@ -155,7 +167,58 @@
   <hr/>
 </div>
 					<div role="main">
-						<div class="section"></div>
+						<div class="section"><p>In this tutorial, we assume that your web root is /var/www and that you can create files in this folder. </p>
+<h1 id="get-nofuss-on-your-server">Get nofuss on your server</h1>
+<pre><code>cd /var/www
+git clone https://github.com/jarnix/nofuss.git
+cd nofuss
+</code></pre>
+<p>You will see 3 directories:</p>
+<ul>
+<li>demosite, which is a "hello world" that you can modify freely</li>
+<li>emptysite, which should be your skeleton when building a new application with NoFussFramework</li>
+<li>library: the folder containing the framework and where you can put different classes used by your application(s)</li>
+</ul>
+<h1 id="setup-an-apache-virtual-site">Setup an apache virtual site</h1>
+<p>We will name our virtual site "nofuss1".</p>
+<p>Beware, this configuration is really small and not so secure ("AllowOverride All").</p>
+<pre><code>cd /etc/apache2/sites-available
+nano nofuss1
+</code></pre>
+<p>Copy these lines and adjust according to your server's configuration.</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@localhost
+
+    DocumentRoot /var/www/nofuss/demosite/html
+    &lt;Directory /&gt;
+            Options FollowSymLinks
+            AllowOverride All
+    &lt;/Directory&gt;
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+
+    LogLevel warn
+
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>Write and exit (ctrl+o, ctrl+x).</p>
+<p>Enable the website :</p>
+<pre><code>a2ensite nofuss1
+</code></pre>
+<h1 id="optional-get-smarty">Optional: get Smarty</h1>
+<p>if you want to use Smarty as the template engine for your application, you have to download the latest version:</p>
+<pre><code>cd /usr/local/src
+wget http://www.smarty.net/files/Smarty-3.1.21.tar.gz
+tar -xvzf Smarty-3.1.21.tar.gz
+cd Smarty-3.1.21
+mv libs /var/www/nofuss/library/php/classes/Smarty
+</code></pre>
+<h1 id="set-directory-permissions-for-smarty">Set directory permissions for Smarty</h1>
+<p>If you are going to use Smarty, you will need to allow the apache "www-data" user to write the compiled templates in his templates_c folder:</p>
+<pre><code>chown -R www-data.www-data /var/www/nofuss/demosite/cache/templates_c
+</code></pre>
+<p>And you're good to go.</p></div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
@@ -198,7 +261,7 @@
 
 	<!--
 MkDocs version  : 0.12.1
-Docs Build Date : 2015-04-23 15:05:42.400706
+Docs Build Date : 2015-04-27 17:21:31.720143
 -->
 </body>
 </html>
