@@ -1,0 +1,14 @@
+site_name: Nofussframework Documentation
+pages:
+    - [index.md, 'Documentation Home']
+    - [intro/introduction.md, 'Introduction']
+    - [setup/try-it-now.md, 'Try it now']
+    - [setup/requirements.md, 'Getting started', 'Requirements']
+    - [setup/installation.md, 'Getting started', 'Installation']
+    - [setup/configuration.md, 'Getting started', 'Configuration']
+    - [search.md, 'Search the docs']
+theme_dir: '/var/www/nofussframework/mkdocs/themes/readthedocs-custom'
+site_dir: '/var/www/nofussframework/html/docs'
+repo_url: 'https://github.com/jarnix/nofuss'
+google_analytics: ['UA-30907299-4', 'auto']
+dev_addr: 0.0.0.0:81
