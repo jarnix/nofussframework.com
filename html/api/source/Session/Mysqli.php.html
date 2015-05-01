@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Nf\Session;
+
+use Nf\Session;
+use Nf\Db;
+use Nf\Date;
+
+class Mysqli extends Session
+{
+	protected static $_instance=null;
+
+    private $_lifeTime;
+    private $_connection;
+	private $_params;
+
+	function __construct($params, $lifetime) {
+        register_shutdown_function('session_write_close');
+     	$db = Db::getConnection($params-&gt;db_adapter);
+		$this-&gt;_params=$params;
+		$this-&gt;_connection=$db;
+        $this-&gt;_lifeTime = $lifetime;
+    }
+
+    function open($savePath, $sessionName) {
+        
+    }
+
+    function close() {
+		$this-&gt;_connection-&gt;closeConnection();
+        return true;
+    }
+
+    function read($sessionId) {
+        if ($sessionId !== '') {
+            $sql=&quot;SELECT data FROM &quot; . $this-&gt;_params-&gt;db_table . &quot; WHERE id=&quot; . $this-&gt;_connection-&gt;quote($sessionId) . &quot; LIMIT 1&quot;;
+            $res=$this-&gt;_connection-&gt;query($sql);
+            if($res-&gt;rowCount()&gt;0) {
+                $row=$res-&gt;fetch();
+                return $row['data'];
+            }
+        }
+    }
+
+    function write($sessionId, $data) {
+        // This is called upon script termination or when session_write_close() is called, which ever is first.
+		$values=array(
+			'data' =&gt; $data,
+			'id' =&gt; $sessionId,
+			'modified' =&gt; date('Y-m-d H:i:s'),
+			'lifetime' =&gt; $this-&gt;_lifeTime
+		);
+		$sql=&quot;INSERT INTO &quot; . $this-&gt;_params-&gt;db_table . &quot; (id, data, modified, lifetime) VALUES(&quot; . $this-&gt;_connection-&gt;quote($values['id']) . &quot;, &quot; . $this-&gt;_connection-&gt;quote($values['data']) . &quot;, &quot; . $this-&gt;_connection-&gt;quote($values['modified']) . &quot;, &quot; . $this-&gt;_connection-&gt;quote($values['lifetime']) . &quot;)
+				ON DUPLICATE KEY UPDATE data=&quot; . $this-&gt;_connection-&gt;quote($values['data']) . &quot;, modified=&quot; . $this-&gt;_connection-&gt;quote($values['modified']);
+    	$this-&gt;_connection-&gt;query($sql);
+		return true;
+    }
+
+    function destroy($sessionId) {
+    	$sql=&quot;DELETE FROM &quot; . $this-&gt;_params-&gt;db_table . &quot; WHERE id=&quot; . $sessionId;
+    	$this-&gt;_connection-&gt;query($sql);
+        return true;
+    }
+
+    function gc() {
+    	$sql=&quot;DELETE FROM &quot; . $this-&gt;_params-&gt;db_table . &quot; WHERE modified &lt; DATE_SUB('&quot; . date('Y-m-d H:i:s') . &quot;',INTERVAL lifetime SECOND)&quot;;
+        $this-&gt;_connection-&gt;query($sql);
+		return true;
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf;
+
+class Db
+{
+
+    const FETCH_ASSOC = 2;
+
+    const FETCH_NUM = 3;
+
+    const FETCH_OBJ = 5;
+
+    const FETCH_COLUMN = 7;
+
+    private static $_connections = array();
+
+    private static function factory($config)
+    {
+        if (! is_array($config)) {
+            // convert to an array
+            $conf = array();
+            $conf['adapter'] = $config-&gt;adapter;
+            $conf['params'] = (array) $config-&gt;params;
+        } else {
+            $conf = $config;
+        }
+        $adapterName = get_class() . '\\Adapter\\' . $conf['adapter'];
+        $dbAdapter = new $adapterName($conf['params']);
+        return $dbAdapter;
+    }
+
+    public static function getConnection($configName, $alternateHostname = null, $alternateDatabase = null, $storeInInstance = true)
+    {
+        $config = \Nf\Registry::get('config');
+        
+        $defaultHostname = $config-&gt;db-&gt;$configName-&gt;params-&gt;hostname;
+        $defaultDatabase = $config-&gt;db-&gt;$configName-&gt;params-&gt;database;
+        $hostname = ($alternateHostname !== null) ? $alternateHostname : $defaultHostname;
+        $database = ($alternateDatabase !== null) ? $alternateDatabase : $defaultDatabase;
+        
+        // if the connection has already been created and if we store the connection in memory for future use
+        if (isset(self::$_connections[$configName . '-' . $hostname . '-' . $database]) &amp;&amp; $storeInInstance) {
+            return self::$_connections[$configName . '-' . $hostname . '-' . $database];
+        } else {
+            
+            // or else we create a new connection
+            $dbConfig = array(
+                'adapter' =&gt; $config-&gt;db-&gt;$configName-&gt;adapter,
+                'params' =&gt; array(
+                    'hostname' =&gt; $hostname,
+                    'username' =&gt; $config-&gt;db-&gt;$configName-&gt;params-&gt;username,
+                    'password' =&gt; $config-&gt;db-&gt;$configName-&gt;params-&gt;password,
+                    'database' =&gt; $database,
+                    'charset' =&gt; $config-&gt;db-&gt;$configName-&gt;params-&gt;charset
+                )
+            );
+            
+            // connexion d'apr&egrave;s les infos du fichier de config
+            $dbConnection = self::factory($dbConfig);
+            if ($storeInInstance) {
+                self::$_connections[$configName . '-' . $hostname . '-' . $database] = $dbConnection;
+            }
+            return $dbConnection;
+        }
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

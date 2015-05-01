@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf;
+
+abstract class Cache
+{
+
+    static $instances = array();
+    
+    // default lifetime for any stored value
+    const DEFAULT_LIFETIME = 600;
+
+    public static function getKeyName($keyName, $keyValues = array())
+    {
+        $config = Registry::get('config');
+        if (! isset($config-&gt;cachekeys-&gt;$keyName)) {
+            throw new \Exception('Key ' . $keyName . ' is not set in the config file.');
+        } else {
+            $configKey = $config-&gt;cachekeys-&gt;$keyName;
+            if (is_array($keyValues)) {
+                // if we send an associative array
+                if (self::isAssoc($keyValues)) {
+                    $result = $configKey;
+                    foreach ($keyValues as $k =&gt; $v) {
+                        $result = str_replace('[' . $k . ']', $v, $result);
+                    }
+                }                 
+                else {
+                    // if we send an indexed array
+                    preg_match_all('/\[([^\]]*)\]/', $configKey, $vars, PREG_PATTERN_ORDER);
+                    if (count($vars[0]) != count($keyValues)) {
+                        throw new \Exception('Key ' . $keyName . ' contains a different number of values than the keyValues you gave.');
+                    } else {
+                        $result = $configKey;
+                        for ($i = 0; $i &lt; count($vars[0]); $i ++) {
+                            $result = str_replace('[' . $vars[0][$i] . ']', $keyValues[$i]);
+                        }
+                    }
+                }
+            } else {
+                // if we send only one value
+                $result = preg_replace('/\[([^\]]*)\]/', $keyValues, $configKey);
+            }
+        }
+        // if we still have [ in the key name, it means that we did not send the right parameters for keyValues
+        if (strpos($result, '[')) {
+            throw new \Exception('The cache key ' . $keyName . ' cannot be parsed with the given keyValues.');
+        } else {
+            $keyPrefix = ! empty($config-&gt;cache-&gt;keyPrefix) ? $config-&gt;cache-&gt;keyPrefix : '';
+            return $keyPrefix . $result;
+        }
+    }
+
+    public static function isCacheEnabled()
+    {
+        $config = Registry::get('config');
+        return isset($config-&gt;cache-&gt;enabled) ? (bool) $config-&gt;cache-&gt;enabled : true;
+    }
+
+    private static function isAssoc($array) {
+        return is_array($array) &amp;&amp; array_diff_key($array, array_keys(array_keys($array)));
+    }
+    
+    public static function getStorage($type)
+    {
+        if (! in_array($type, self::$instances)) {
+            $config = Registry::get('config');
+            if (isset($config-&gt;cache-&gt;$type-&gt;handler)) {
+                $handler = $config-&gt;cache-&gt;$type-&gt;handler;
+            } else {
+                throw new \Exception('The ' . $type . ' cache storage is not defined in the config file');
+            }
+            if (isset($config-&gt;cache-&gt;$type-&gt;params)) {
+                $params = $config-&gt;cache-&gt;$type-&gt;params;
+            }
+            else {
+                $params = null;
+            }
+            if (isset($config-&gt;cache-&gt;$type-&gt;lifetime)) {
+                $lifetime = $config-&gt;cache-&gt;$type-&gt;lifetime;
+            } else {
+                $lifetime = self::DEFAULT_LIFETIME;
+            }
+            $instance = self::factory($handler, $params, $lifetime);
+            self::$instances[$type]=$instance;
+        }
+        return self::$instances[$type];
+    }
+
+    public static function factory($handler, $params, $lifetime = DEFAULT_LIFETIME)
+    {
+        $className = get_class() . '\\' . ucfirst($handler);
+        return new $className($params, $lifetime);
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

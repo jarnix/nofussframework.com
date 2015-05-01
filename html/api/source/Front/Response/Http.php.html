@@ -1,0 +1,335 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf\Front\Response;
+
+class Http extends AbstractResponse
+{
+
+    const SEPARATOR = '&lt;br /&gt;';
+    const SEPARATOR_ALT = '\n';
+
+    const NEWLINE = &quot;&lt;br /&gt;&quot;;
+    const NEWLINE_ALT = &quot;\n&quot;;
+
+    const TAB = &quot; &quot;;
+    const TAB_ALT = &quot; &quot;;
+
+    protected $_headers = array();
+
+    protected $_headersRaw = array();
+
+    protected $_httpResponseCode = 200;
+
+    protected $_isRedirect = false;
+
+    protected function _normalizeHeader($name)
+    {
+        $filtered = str_replace(array(
+            '-',
+            '_'
+        ), ' ', (string) $name);
+        $filtered = ucwords(strtolower($filtered));
+        $filtered = str_replace(' ', '-', $filtered);
+        return $filtered;
+    }
+
+    public function setHeader($name, $value, $replace = false)
+    {
+        $this-&gt;canSendHeaders(true);
+        $name = $this-&gt;_normalizeHeader($name);
+        $value = (string) $value;
+
+        if ($replace) {
+            foreach ($this-&gt;_headers as $key =&gt; $header) {
+                if ($name == $header['name']) {
+                    unset($this-&gt;_headers[$key]);
+                }
+            }
+        }
+        $this-&gt;_headers[] = array(
+            'name' =&gt; $name,
+            'value' =&gt; $value,
+            'replace' =&gt; $replace
+        );
+        return $this;
+    }
+
+    public function redirect($url, $code = 302, $exit = true)
+    {
+        $this-&gt;canSendHeaders();
+        $this-&gt;setHeader('Location', $url, true)-&gt;setHttpResponseCode($code);
+        if ($exit) {
+            $front = \Nf\Front::getInstance();
+            $front-&gt;postLaunchAction();
+            $this-&gt;clearBuffer();
+            $this-&gt;clearBody();
+            $this-&gt;sendHeaders();
+            exit();
+        }
+        return $this;
+    }
+
+    public function isRedirect()
+    {
+        return $this-&gt;_isRedirect;
+    }
+
+    public function getHeaders()
+    {
+        return $this-&gt;_headers;
+    }
+
+    public function clearHeaders()
+    {
+        $this-&gt;_headers = array();
+
+        return $this;
+    }
+
+    public function clearHeader($name)
+    {
+        if (! count($this-&gt;_headers)) {
+            return $this;
+        }
+        foreach ($this-&gt;_headers as $index =&gt; $header) {
+            if ($name == $header['name']) {
+                unset($this-&gt;_headers[$index]);
+            }
+        }
+        return $this;
+    }
+
+    public function setRawHeader($value)
+    {
+        $this-&gt;canSendHeaders();
+        if ('Location' == substr($value, 0, 8)) {
+            $this-&gt;_isRedirect = true;
+        }
+        $this-&gt;_headersRaw[] = (string) $value;
+        return $this;
+    }
+
+    public function clearRawHeaders()
+    {
+        $this-&gt;_headersRaw = array();
+        return $this;
+    }
+
+    public function clearRawHeader($headerRaw)
+    {
+        if (! count($this-&gt;_headersRaw)) {
+            return $this;
+        }
+        $key = array_search($headerRaw, $this-&gt;_headersRaw);
+        unset($this-&gt;_headersRaw[$key]);
+        return $this;
+    }
+
+    public function clearAllHeaders()
+    {
+        return $this-&gt;clearHeaders()-&gt;clearRawHeaders();
+    }
+
+    public function setHttpResponseCode($code)
+    {
+        if (! is_int($code) || (100 &gt; $code) || (599 &lt; $code)) {
+            throw new \Exception('Invalid HTTP response code');
+        }
+        if ((300 &lt;= $code) &amp;&amp; (307 &gt;= $code)) {
+            $this-&gt;_isRedirect = true;
+        } else {
+            $this-&gt;_isRedirect = false;
+        }
+        $this-&gt;_httpResponseCode = $code;
+        return $this;
+    }
+
+    public function canSendHeaders()
+    {
+        $headersSent = headers_sent($file, $line);
+        if ($headersSent) {
+            trigger_error('Cannot send headers; headers already sent in ' . $file . ', line ' . $line);
+        }
+        return ! $headersSent;
+    }
+
+    public function sendHeaders()
+    {
+        // Only check if we can send headers if we have headers to send
+        if (count($this-&gt;_headersRaw) || count($this-&gt;_headers) || (200 != $this-&gt;_httpResponseCode)) {
+            $this-&gt;canSendHeaders();
+        } elseif (200 == $this-&gt;_httpResponseCode) {
+            // Haven't changed the response code, and we have no headers
+            return $this;
+        }
+
+        $httpCodeSent = false;
+
+        foreach ($this-&gt;_headersRaw as $header) {
+            if (! $httpCodeSent &amp;&amp; $this-&gt;_httpResponseCode) {
+                header($header, true, $this-&gt;_httpResponseCode);
+                $httpCodeSent = true;
+            } else {
+                header($header);
+            }
+        }
+
+        foreach ($this-&gt;_headers as $header) {
+            if (! $httpCodeSent &amp;&amp; $this-&gt;_httpResponseCode) {
+                header($header['name'] . ': ' . $header['value'], $header['replace'], $this-&gt;_httpResponseCode);
+                $httpCodeSent = true;
+            } else {
+                header($header['name'] . ': ' . $header['value'], $header['replace']);
+            }
+        }
+
+        if (! $httpCodeSent) {
+            header('HTTP/1.1 ' . $this-&gt;_httpResponseCode);
+            $httpCodeSent = true;
+        }
+
+        return $this;
+    }
+   
+    public function displayError($err, $isXhr=false)
+    {
+        if($isXhr) {
+            echo 'Error' . self::NEWLINE_ALT;
+            echo self::displayErrorHelper($err, $isXhr);
+            echo 'Error' . self::NEWLINE_ALT;
+        }
+        else {
+            echo '&lt;pre style=&quot;color:#555; line-height:16px;&quot;&gt;&lt;span style=&quot;color:red;&quot;&gt;Error&lt;/span&gt;&lt;br /&gt;';
+            echo self::displayErrorHelper($err, $isXhr);
+            echo '&lt;/pre&gt;';
+        }        
+    }
+
+    protected static function boldText($text, $alternativeSeparator)
+    {
+        if($alternativeSeparator) {
+            return $text;
+        }
+        else {
+            return '&lt;b&gt;' . $text . '&lt;/b&gt;';
+        }
+        
+    }
+
+    protected static function preFormatErrorText($beginOrEnd, $alternativeSeparator)
+    {
+        if($alternativeSeparator) {
+            return ($beginOrEnd == 0) ? '' : '';
+        }
+        else {
+            return ($beginOrEnd == 0) ? '&lt;pre&gt;' : '&lt;/pre&gt;';
+        }
+    }
+
+    // sends header to allow the browser to cache the response a given time
+    public function setCacheable($minutes)
+    {
+        $this-&gt;setHeader('Expires', gmdate('D, d M Y H:i:s', time() + $minutes * 60) . ' GMT', true);
+        $this-&gt;setHeader('Cache-Control', 'max-age=' . $minutes * 60, true);
+        $this-&gt;setHeader('Pragma', 'public', true);
+    }
+
+    public function setContentType($type = 'html')
+    {
+        switch ($type) {
+            case 'atom':
+                $this-&gt;setHeader('content-type', 'application/atom+xml');
+                break;
+            case 'css':
+                $this-&gt;setHeader('content-type', 'text/css');
+                break;
+            case 'gif':
+                $this-&gt;setHeader('content-type', 'image/gif');
+                break;
+            case 'jpeg':
+            case 'jpg':
+                $this-&gt;setHeader('content-type', 'image/jpeg');
+                break;
+            case 'png':
+                $this-&gt;setHeader('content-type', 'image/png');
+                break;
+            case 'js':
+            case 'javascript':
+                $this-&gt;setHeader('content-type', 'text/javascript');
+                break;
+            case 'json':
+                $this-&gt;setHeader('content-type', 'application/json');
+                break;
+            case 'pdf':
+                $this-&gt;setHeader('content-type', 'application/pdf');
+                break;
+            case 'rss':
+                $this-&gt;setHeader('content-type', 'application/rss+xml');
+                break;
+            case 'text':
+                $this-&gt;setHeader('content-type', 'text/plain');
+                break;
+            case 'xml':
+                $this-&gt;setHeader('content-type', 'text/xml');
+                break;
+            case 'html':
+            default:
+                $this-&gt;setHeader('content-type', 'text/html');
+                break;
+        }
+    }
+
+    public static function colorText($text, $color)
+    {
+        return $text;
+    }
+
+    protected static function escape($str)
+    {
+        return strip_tags($str);
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf\Db\Resource;
+
+class Mysqli
+{
+
+    private $_sql;
+
+    private $_res;
+
+    private $_adapter;
+
+    public function __construct($sql, $adapter)
+    {
+        $this-&gt;_sql = $sql;
+        $this-&gt;_adapter = $adapter;
+    }
+
+    public function execute()
+    {
+        $this-&gt;_res = $this-&gt;_adapter-&gt;getConnection()-&gt;query($this-&gt;_sql);
+        if ($this-&gt;_res === false) {
+            throw new \Exception('The query you tried to execute raised an exception: ' . $this-&gt;_sql . ' - ' . $this-&gt;_adapter-&gt;getConnection()-&gt;error);
+        }
+    }
+
+    public function fetch($mode = null)
+    {
+        if (! $this-&gt;_res) {
+            return false;
+        }
+        
+        switch ($mode) {
+            case \Nf\Db::FETCH_NUM:
+                return $this-&gt;_res-&gt;fetch_row();
+                break;
+            case \Nf\Db::FETCH_OBJ:
+                return $this-&gt;_res-&gt;fetch_object();
+                break;
+            default:
+                return $this-&gt;_res-&gt;fetch_assoc();
+        }
+    }
+
+    public function fetchAll()
+    {
+        $data = array();
+        while ($row = $this-&gt;fetch()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    public function fetchColumn($col = 0)
+    {
+        $data = array();
+        $col = (int) $col;
+        $row = $this-&gt;fetch(\Nf\Db::FETCH_NUM);
+        if (! is_array($row)) {
+            return false;
+        }
+        return $row[$col];
+    }
+
+    public function rowCount()
+    {
+        if (! $this-&gt;_adapter) {
+            return false;
+        }
+        $mysqli = $this-&gt;_adapter-&gt;getConnection();
+        return $mysqli-&gt;affected_rows;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

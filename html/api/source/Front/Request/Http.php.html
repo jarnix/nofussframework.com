@@ -1,0 +1,199 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Nf\Front\Request;
+
+class Http extends AbstractRequest
+{
+
+	protected $_params=array();
+	private $_put=null;
+
+	public function __construct() {
+		if(!empty($_SERVER['REDIRECT_URL'])) {
+			$uri=ltrim($_SERVER['REDIRECT_URL'], '/');
+			if(!empty($_SERVER['REDIRECT_QUERY_STRING'])) {
+				$uri.='?'.$_SERVER['REDIRECT_QUERY_STRING'];
+			}
+		}
+		else {
+			$uri=ltrim($_SERVER['REQUEST_URI'], '/');
+		}
+		$this-&gt;_uri=$uri;
+	}
+
+	public function sanitizeUri() {
+		// filter the uri according to the config of security.restrictCharactersInUrl
+		// this option only allows us to use Alpha-numeric text, Tilde: ~, Period: ., Colon: :, Underscore: _, Dash: -
+		$config=\Nf\Registry::get('config');
+		if(isset($config-&gt;security-&gt;restrictCharactersInUrl) &amp;&amp; $config-&gt;security-&gt;restrictCharactersInUrl) {
+			if (preg_match('%[\w0-9~.,/@\-=:[\]{}|&amp;?!]*%i', $this-&gt;_uri, $regs)) {
+				if($this-&gt;_uri==$regs[0]) {
+					return true;
+				}
+			}
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	public function getMethod() {
+		return $_SERVER['REQUEST_METHOD'];
+	}
+
+	public function isPost() {
+        if ('POST' == $this-&gt;getMethod()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isGet() {
+        if ('GET' == $this-&gt;getMethod()) {
+            return true;
+        }
+        return false;
+    }
+
+	public function isXhr() {
+        return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) &amp;&amp; $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest');
+    }
+
+	public function getUri() {
+		return $this-&gt;_uri;
+	}
+
+	public function getParams() {
+        $return       = $this-&gt;_params;
+        $paramSources = $this-&gt;getParamSources();
+        if (in_array('_GET', $paramSources)
+            &amp;&amp; isset($_GET)
+            &amp;&amp; is_array($_GET)
+        ) {
+            $return += $_GET;
+        }
+        if (in_array('_POST', $paramSources)
+            &amp;&amp; isset($_POST)
+            &amp;&amp; is_array($_POST)
+        ) {
+            $return += $_POST;
+        }
+        return $return;
+    }
+
+	// get the string sent as put
+	public function setPutFromRequest() {
+		if($this-&gt;_put===null) {
+			if($_SERVER['REQUEST_METHOD'] == 'PUT') {
+				$this-&gt;_put=file_get_contents(&quot;php://input&quot;);
+			}
+		}
+		else {
+			$this-&gt;_put='';
+		}
+	}
+
+	public function getPost($jsonDecode='assoc') {
+		$post = '';
+		if($_SERVER['REQUEST_METHOD'] == 'POST')
+			$post = file_get_contents(&quot;php://input&quot;);
+
+		if($jsonDecode=='assoc')
+			return json_decode($post, true);
+		else
+			return $post;
+	}
+
+	public function getPut($jsonDecode='assoc') {
+		if($jsonDecode=='assoc') {
+			return json_decode($this-&gt;_put, true);
+		}
+		else {
+			return $this-&gt;_put;
+		}
+	}
+
+    // handle the redirection according to the trailing slash configuration
+	public function redirectForTrailingSlash(){
+		$config=\Nf\Registry::get('config');
+		$redirectionUrl=false;
+		$requestParams='';
+		$requestPage='/' . $this-&gt;_uri;
+
+		// we don't redirect for the home page...
+		if($requestPage!='/' &amp;&amp; mb_strpos($requestPage, '/?')!==0) {
+			// the url without the params is :
+			if(mb_strpos($requestPage, '?')!==false) {
+				$requestParams=mb_substr($requestPage, mb_strpos($requestPage, '?'), mb_strlen($requestPage) - mb_strpos($requestPage, '?'));
+				$requestPage=mb_substr($requestPage, 0, mb_strpos($requestPage, '?'));
+			}
+
+			if($config-&gt;trailingSlash-&gt;needed==true) {
+				if(mb_substr($requestPage, -1, 1)!='/') {
+					$redirectionUrl='http://' . $_SERVER['HTTP_HOST'] . $requestPage . '/' . $requestParams;
+				}
+			}
+			else {
+				if(mb_substr($requestPage, -1, 1)=='/') {
+					$redirectionUrl='http://' . $_SERVER['HTTP_HOST'] . rtrim($requestPage, '/') . $requestParams;
+				}
+			}
+
+			if($redirectionUrl!==false) {
+				$response = new \Nf\Front\Response\Http();
+				$response-&gt;redirect($redirectionUrl, 301);
+				$response-&gt;sendHeaders();
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

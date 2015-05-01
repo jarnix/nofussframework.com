@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf\Front\Response;
+
+class Cli extends AbstractResponse
+{
+
+    const SEPARATOR = &quot;\r\n&quot;;
+
+    const NEWLINE = &quot;\r\n&quot;;
+
+    const TAB = &quot;\t&quot;;
+
+    public function setHeader($name, $value, $replace = false)
+    {
+        return true;
+    }
+
+    public function redirect($url, $code = 302)
+    {
+        throw new Exception('cannot redirect in cli version');
+    }
+
+    public function clearHeaders()
+    {
+        return false;
+    }
+
+    public function canSendHeaders()
+    {
+        return true;
+    }
+
+    public function sendHeaders()
+    {
+        return false;
+    }
+
+    public function displayError($err, $isXhr=false)
+    {
+        echo static::colorText('Error', 'red') . static::NEWLINE;
+        echo self::displayErrorHelper($err);
+    }
+
+    protected static function boldText($text) {
+        return $text;
+    }
+
+    protected static function preFormatErrorText($beginOrEnd)
+    {
+        return '';
+    }
+    
+    public static function colorText($text, $color = 'black')
+    {
+        $colors = array(
+            'black' =&gt; '0;30',
+            'dark_gray' =&gt; '1;30',
+            'red' =&gt; '0;31',
+            'bold_red' =&gt; '1;31',
+            'green' =&gt; '0;32',
+            'bold_green' =&gt; '1;32',
+            'brown' =&gt; '0;33',
+            'yellow' =&gt; '1;33',
+            'blue' =&gt; '0;34',
+            'bold_blue' =&gt; '1;34',
+            'purple' =&gt; '0;35',
+            'bold_purple' =&gt; '1;35',
+            'cyan' =&gt; '0;36',
+            'bold_cyan' =&gt; '1;36',
+            'white' =&gt; '1;37',
+            'bold_gray' =&gt; '0;37'
+        );
+        if (isset($colors[$color])) {
+            return &quot;\033[&quot; . $colors[$color] . 'm' . $text . &quot;\033[0m&quot;;
+        }
+    }
+
+    protected static function escape($str) {
+        return $str;
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

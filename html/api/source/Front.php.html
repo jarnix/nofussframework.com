@@ -1,0 +1,559 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf;
+
+class Front extends Singleton
+{
+
+    protected static $_instance;
+    
+    // les modules
+    private $_moduleDirectories = array();
+    
+    // pour le routeur
+    private $_routingPreference = array();
+
+    private $_routesDirectories = array();
+
+    private $_rootRoutesDirectories = array();
+
+    const rootRouteFilename = '_root.php';
+
+    const controllersDirectory = 'controllers';
+    
+    // pour instancier le controller, forwarder...
+    private $_moduleNamespace;
+
+    private $_moduleName;
+
+    private $_controllerName;
+
+    private $_actionName;
+    
+    // pour le controller
+    private $_request;
+
+    private $_requestType;
+
+    private $_response;
+
+    private $_session;
+
+    public static $obLevel = 0;
+    
+    // the instance of the controller that is being dispatched
+    private $_controllerInstance;
+
+    private $_applicationNamespace = 'App';
+
+    public function __get($var)
+    {
+        $varName = '_' . $var;
+        return $this-&gt;$varName;
+    }
+
+    public function getRequestType()
+    {
+        return $this-&gt;_requestType;
+    }
+
+    public function getModuleName()
+    {
+        return $this-&gt;_moduleName;
+    }
+
+    public function getControllerName()
+    {
+        return $this-&gt;_controllerName;
+    }
+
+    public function getActionName()
+    {
+        return $this-&gt;_actionName;
+    }
+
+    public function setRequest($request)
+    {
+        $this-&gt;_request = $request;
+    }
+
+    public function setResponse($response)
+    {
+        $this-&gt;_response = $response;
+    }
+
+    public function getRequest()
+    {
+        return $this-&gt;_request;
+    }
+
+    public function getResponse()
+    {
+        return $this-&gt;_response;
+    }
+
+    public function setSession($session)
+    {
+        $this-&gt;_session = $session;
+    }
+
+    public function getSession()
+    {
+        return $this-&gt;_session;
+    }
+
+    public function setApplicationNamespace($namespace)
+    {
+        $this-&gt;_applicationNamespace = $namespace;
+    }
+
+    public function getApplicationNamespace()
+    {
+        return $this-&gt;_applicationNamespace;
+    }
+
+    public function getControllerInstance()
+    {
+        return $this-&gt;_controllerInstance;
+    }
+    
+    // cache
+    public function getCache($which)
+    {
+        // do we already have the cache object in the Registry ?
+        if (Registry::isRegistered('cache_' . $which)) {
+            return Registry::get('cache_' . $which);
+        } else {
+            // get the config for our cache object
+            $config = Registry::get('config');
+            if (isset($config-&gt;cache-&gt;$which-&gt;handler)) {
+                $cache = Cache::factory($config-&gt;cache-&gt;$which-&gt;handler, (isset($config-&gt;cache-&gt;$which-&gt;params)) ? $config-&gt;cache-&gt;$which-&gt;params : array(), (isset($config-&gt;cache-&gt;$which-&gt;lifetime)) ? $config-&gt;cache-&gt;$which-&gt;lifetime : Cache::DEFAULT_LIFETIME);
+                return $cache;
+            } else {
+                throw new Exception('The cache handler &quot;' . $which . '&quot; is not set in config file');
+            }
+        }
+    }
+    
+    // modules
+    public function addModuleDirectory($namespace, $dir)
+    {
+        $this-&gt;_moduleDirectories[] = array(
+            'namespace' =&gt; $namespace,
+            'directory' =&gt; $dir
+        );
+    }
+    
+    // routes
+    public function setRoutesDirectory($path, $locale = null)
+    {
+        $this-&gt;_routingPreference[] = 'directory';
+        $this-&gt;_routesDirectories[] = $path . $locale . '/';
+        $this-&gt;_routesDirectories[] = $path;
+    }
+
+    public function setStructuredRoutes()
+    {
+        $this-&gt;_routingPreference[] = 'structured';
+    }
+
+    public function setRootRoutes($path, $locale = null)
+    {
+        $this-&gt;_routingPreference[] = 'root';
+        $this-&gt;_rootRoutesDirectories[] = $path . $locale . '/';
+        $this-&gt;_rootRoutesDirectories[] = $path;
+    }
+
+    public function findRoute()
+    {
+        $foundController = null;
+        $config = Registry::get('config');
+        $originalUri = $this-&gt;_request-&gt;getUri();
+        
+        // remove everything after a '?' which is not used in the routing system
+        $uri = preg_replace('/\?.*$/', '', $originalUri);
+        
+        // strip the trailing slash, also unused
+        $uri = rtrim((string) $uri, '/');
+        
+        foreach ($this-&gt;_routingPreference as $routingPref) {
+            
+            unset($_routes);
+            
+            if ($routingPref == 'directory') {
+                
+                $subPath = ltrim((string) $uri, '/');
+                if (strpos($subPath, '/')) {
+                    $subPath = substr($subPath, 0, strpos($subPath, '/'));
+                }
+                // on cherche le fichier subPath.php dans le r&eacute;pertoire de routes
+                if ($subPath != '') {
+                    
+                    foreach ($this-&gt;_routesDirectories as $routeDirectory) {
+                        
+                        if (! $foundController) {
+                            $filename = $routeDirectory . $subPath . '.php';
+                            
+                            if (file_exists($filename)) {
+                                require_once ($filename);
+                                
+                                if (isset($_routes)) {
+                                    
+                                    for ($i = count($_routes) - 1; $i &gt;= 0; $i --) {
+                                        if (! $foundController) {
+                                            $route = $_routes[$i];
+                                            // default type is &quot;default&quot;
+                                            $requestType = 'default';
+                                            // if a specific type is requested
+                                            if (is_array($route[0])) {
+                                                $requestType = $route[0][0];
+                                            }
+                                            
+                                            $this-&gt;_requestType = $requestType;
+                                            
+                                            switch ($requestType) {
+                                                case 'default':
+                                                    
+                                                    // tester si match, sinon on continue jusqu'&agrave; ce qu'on trouve
+                                                    if (preg_match('#^' . $route[0] . '#', $uri, $result)) {
+                                                        // on teste la pr&eacute;sence du module controller action indiqu&eacute; dans la route
+                                                        if ($foundController = $this-&gt;checkModuleControllerAction($route[1][0], $route[1][1], $route[1][2])) {
+                                                            if (isset($route[2])) {
+                                                                $this-&gt;associateParams($route[2], $result);
+                                                            }
+                                                            break;
+                                                        }
+                                                    }
+                                                    break;
+                                                case 'rest':
+                                                    if (preg_match('#^' . $route[0][1] . '#', $uri, $result)) {
+                                                        // on teste la pr&eacute;sence du module controller action indiqu&eacute; dans la route
+                                                        // action par d&eacute;faut : get
+                                                        if (isset($_SERVER['REQUEST_METHOD'])) {
+                                                            $action = strtolower($_SERVER['REQUEST_METHOD']);
+                                                        }
+                                                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                                            // overloading the method with the &quot;method&quot; parameter if the request is POST
+                                                            if (isset($_POST['method'])) {
+                                                                $action = $_POST['method'];
+                                                            }
+                                                            // overloading the method with http headers
+                                                            // X-HTTP-Method (Microsoft) or X-HTTP-Method-Override (Google/GData) or X-METHOD-OVERRIDE (IBM)
+                                                            $acceptableOverridingHeaders = array(
+                                                                'HTTP_X_HTTP_METHOD',
+                                                                'HTTP_X_HTTP_METHOD_OVERRIDE',
+                                                                'HTTP_X_METHOD_OVERRIDE'
+                                                            );
+                                                            foreach ($acceptableOverridingHeaders as $overridingHeader) {
+                                                                if (isset($_SERVER[$overridingHeader])) {
+                                                                    $action = $_SERVER[$overridingHeader];
+                                                                }
+                                                            }
+                                                        }
+                                                        if (isset($route[1][2])) {
+                                                            $action = $route[1][2];
+                                                        }
+                                                        if ($foundController = $this-&gt;checkModuleControllerAction($route[1][0], $route[1][1], $action)) {
+                                                            if (isset($route[2])) {
+                                                                $this-&gt;associateParams($route[2], $result);
+                                                            }
+                                                            break;
+                                                        }
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                    unset($_routes);
+                                }
+                            }
+                        }
+                    }
+                    unset($routeDirectory);
+                }
+            }
+            
+            if (! $foundController &amp;&amp; $routingPref == 'structured') {
+                
+                // l'url doit &ecirc;tre de la forme /m/c/a/, ou /m/c/ ou /m/
+                if (preg_match('#^(\w+)/?(\w*)/?(\w*)#', $uri, $result)) {
+                    
+                    $result[2] = ! empty($result[2]) ? $result[2] : 'index';
+                    $result[3] = ! empty($result[3]) ? $result[3] : 'index';
+                    
+                    // on regarde si on a un fichier et une action pour le m&ecirc;me chemin dans les r&eacute;pertoires des modules
+                    if ($foundController = $this-&gt;checkModuleControllerAction($result[1], $result[2], $result[3])) {
+                        
+                        // les &eacute;ventuels param&egrave;tres sont en /variable/value
+                        $paramsFromUri = ltrim(preg_replace('#^(\w+)/(\w+)/(\w+)#', '', $uri), '/');
+                        
+                        // si on envoie des variables avec des /
+                        if ($paramsFromUri != '') {
+                            if (substr_count($paramsFromUri, '/') % 2 == 1) {
+                                preg_match_all('/(\w+)\/([^\/]*)/', $paramsFromUri, $arrParams, PREG_SET_ORDER);
+                                for ($matchi = 0; $matchi &lt; count($arrParams); $matchi ++) {
+                                    $this-&gt;_request-&gt;setParam($arrParams[$matchi][1], $arrParams[$matchi][2]);
+                                }
+                            }
+                            
+                            // si on envoie des variables avec des var1=val1
+                            if (substr_count($paramsFromUri, '=') &gt;= 1) {
+                                preg_match_all('/(\w+)=([^\/&amp;]*)/', $paramsFromUri, $arrParams, PREG_SET_ORDER);
+                                for ($matchi = 0; $matchi &lt; count($arrParams); $matchi ++) {
+                                    $this-&gt;_request-&gt;setParam($arrParams[$matchi][1], $arrParams[$matchi][2]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if (! $foundController &amp;&amp; $routingPref == 'root') {
+                // on va lire le fichier root
+                
+                foreach ($this-&gt;_rootRoutesDirectories as $routeDirectory) {
+                    if (! $foundController) {
+                        
+                        $filename = $routeDirectory . self::rootRouteFilename;
+                        
+                        if (file_exists($filename)) {
+                            require_once ($filename);
+                            if (isset($_routes)) {
+                                for ($i = count($_routes) - 1; $i &gt;= 0; $i --) {
+                                    $route = $_routes[$i];
+                                    // tester si match, sinon on continue jusqu'&agrave; ce qu'on trouve
+                                    if (preg_match('#^' . $route[0] . '#', $uri, $result)) {
+                                        // on teste la pr&eacute;sence du module controller action indiqu&eacute; dans la route
+                                        if ($foundController = $this-&gt;checkModuleControllerAction($route[1][0], $route[1][1], $route[1][2])) {
+                                            if (isset($route[2])) {
+                                                $this-&gt;associateParams($route[2], $result);
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                                unset($routes);
+                            }
+                        }
+                    }
+                }
+                unset($routeDirectory);
+            }
+        }
+        
+        // si c'est la route par d&eacute;faut
+        if (! $foundController) {
+            if (empty($uri)) {
+                if ($foundController = $this-&gt;checkModuleControllerAction($config-&gt;front-&gt;default-&gt;module, $config-&gt;front-&gt;default-&gt;controller, $config-&gt;front-&gt;default-&gt;action)) {
+                    if (isset($route[2]) &amp;&amp; isset($result[1])) {
+                        $this-&gt;associateParams($route[2], $result[1]);
+                    }
+                }
+            }
+        }
+        
+        return $foundController;
+    }
+
+    private function getControllerFilename($namespace, $directory, $module, $controller)
+    {
+        $controllerFilename = ucfirst($controller . 'Controller.php');
+        return $directory . $module . '/' . self::controllersDirectory . '/' . $controllerFilename;
+    }
+
+    private function checkModuleControllerAction($inModule, $inController, $inAction)
+    {
+        $foundController = null;
+        
+        foreach ($this-&gt;_moduleDirectories as $moduleDirectory =&gt; $moduleDirectoryInfos) {
+            $controllerFilename = $this-&gt;getControllerFilename($moduleDirectoryInfos['namespace'], $moduleDirectoryInfos['directory'], $inModule, $inController);
+            
+            if (file_exists($controllerFilename)) {
+                $this-&gt;_moduleNamespace = $moduleDirectoryInfos['namespace'];
+                $this-&gt;_moduleName = $inModule;
+                $this-&gt;_controllerName = $inController;
+                $this-&gt;_actionName = $inAction;
+                $foundController = $controllerFilename;
+                break;
+            }
+        }
+        
+        unset($moduleDirectory);
+        unset($moduleDirectoryInfos);
+        if (! $foundController) {
+            return false;
+        }
+        return $foundController;
+    }
+
+    public function forward($module, $controller, $action)
+    {
+        if ($foundController = $this-&gt;checkModuleControllerAction($module, $controller, $action)) {
+            if ($this-&gt;checkMethodForAction($foundController)) {
+                $this-&gt;launchAction();
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    private function associateParams($routeParams, $refs)
+    {
+        if (! is_array($refs)) {
+            $refs = array(
+                $refs
+            );
+        }
+        for ($refi = 0; $refi &lt; count($refs); $refi ++) {
+            if (isset($routeParams[$refi]) &amp;&amp; isset($refs[$refi + 1])) {
+                $this-&gt;_request-&gt;setParam($routeParams[$refi], $refs[$refi + 1]);
+            }
+        }
+        // is another fixed input parameter given in our route ?
+        if (count($refs) - 1 &lt; count($routeParams)) {
+            foreach ($routeParams as $forcedParam =&gt; $forcedValue) {
+                if (! is_int($forcedParam)) {
+                    $this-&gt;_request-&gt;setParam($forcedParam, $forcedValue);
+                }
+            }
+        }
+    }
+
+    public function getView()
+    {
+        if (! is_null($this-&gt;_controllerInstance-&gt;_view)) {
+            return $this-&gt;_controllerInstance-&gt;_view;
+        } else {
+            $config = Registry::get('config');
+            $view = View::factory($config-&gt;view-&gt;engine);
+            $view-&gt;setResponse($this-&gt;_response);
+            return $view;
+        }
+    }
+
+    public function dispatch()
+    {
+        // on va regarder le m/c/a concern&eacute; par l'url ou les param&egrave;tres d&eacute;j&agrave; saisis
+        if ($foundController = $this-&gt;findRoute()) {
+            return $this-&gt;checkMethodForAction($foundController);
+        } else {
+            return false;
+        }
+    }
+
+    private function checkMethodForAction($foundController)
+    {
+        // on lancera dans l'ordre le init, action, postAction
+        require_once ($foundController);
+        $controllerClassName = $this-&gt;_moduleNamespace . '\\' . ucfirst($this-&gt;_moduleName) . '\\' . ucfirst($this-&gt;_controllerName) . 'Controller';
+        $this-&gt;_controllerInstance = new $controllerClassName($this);
+        
+        $reflected = new \ReflectionClass($this-&gt;_controllerInstance);
+        
+        if ($reflected-&gt;hasMethod($this-&gt;_actionName . 'Action')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    // called after dispatch
+    public function init()
+    {
+        return $this-&gt;_controllerInstance-&gt;init();
+    }
+    
+    // calls the actual action found from the routing system
+    public function launchAction()
+    {
+        self::$obLevel = ob_get_level();
+        
+        if (php_sapi_name() != 'cli') {
+            ob_start();
+        }
+        
+        if ($this-&gt;_requestType == 'rest') {
+            $this-&gt;_response-&gt;setContentType('json');
+            try {
+                call_user_func(array(
+                    $this-&gt;_controllerInstance,
+                    $this-&gt;_actionName . 'Action'
+                ), null);
+                $content = ob_get_clean();
+                $this-&gt;_response-&gt;addBodyPart($content);
+            } catch (\Nf\Error\Exception\Http $he) {
+                $this-&gt;_response-&gt;clearBody();
+                $this-&gt;_response-&gt;setHttpResponseCode($he-&gt;getHttpStatus());
+                if (method_exists($he, 'getErrors')) {
+                    $this-&gt;_response-&gt;addBodyPart(json_encode($he-&gt;getErrors()));
+                }
+            }
+        } else {
+            call_user_func(array(
+                $this-&gt;_controllerInstance,
+                $this-&gt;_actionName . 'Action'
+            ), null);
+            $content = ob_get_clean();
+            $this-&gt;_response-&gt;addBodyPart($content);
+        }
+    }
+    
+    // called after action
+    public function postLaunchAction()
+    {
+        $reflected = new \ReflectionClass($this-&gt;_controllerInstance);
+        if ($reflected-&gt;hasMethod('postLaunchAction')) {
+            call_user_func(array(
+                $this-&gt;_controllerInstance,
+                'postLaunchAction'
+            ), null);
+        }
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

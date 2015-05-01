@@ -1,0 +1,231 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Nf\View;
+
+use Nf\View;
+
+class Smarty extends View
+{
+
+	protected static $_instance;
+
+	private $_smarty=null;
+
+	const FILE_EXTENSION='.tpl';
+
+	private $_vars=array();
+
+	protected function __construct() {
+		require_once \Nf\Registry::get('libraryPath') . '/php/classes/Smarty/Smarty.class.php';
+		$this-&gt;_smarty = new \Smarty();
+		$front=\Nf\Front::getInstance();
+		$this-&gt;setBasePath($front-&gt;getModuleName());
+	}
+
+  	/**
+     * Return the template engine object, if any
+     * @return mixed
+     */
+    public function getEngine() {
+       	return $this-&gt;_smarty;
+    }
+
+    public function configLoad($filepath, $section=null) {
+		$lang=\Nf\Registry::getInstance()-&gt;get('lang');
+		$config_path=realpath(Registry::get('applicationPath') .'/configs/' . $lang . '/' . $front-&gt;getModuleName() . '/' . $filepath);
+		$this-&gt;_smarty-&gt;config_load($config_path, $section);
+	}
+
+    /**
+     * Assign a variable to the view
+     *
+     * @param string $key The variable name.
+     * @param mixed $val The variable value.
+     * @return void
+     */
+    public function __set($key, $val) {
+        if ('_' == substr($key, 0, 1)) {
+            throw new Exception(
+                'Setting private var is not allowed',
+                $this);
+        }
+        if ($this-&gt;_smarty == null) {
+            throw new Exception(
+                'Smarty is not defined',
+                $this);
+        }
+        $this-&gt;_smarty-&gt;assignByRef($key, $val);
+        return;
+    }
+
+    public function __get($key) {
+        if ('_' == substr($key, 0, 1)) {
+            throw new Exception(
+                'Setting private var is not allowed',
+                $this);
+        }
+        if ($this-&gt;_smarty == null) {
+            throw new Exception(
+                'Smarty is not defined',
+                $this);
+        }
+		return $this-&gt;_smarty-&gt;getTemplateVars($key);
+    }
+
+    /**
+     * Allows testing with empty() and
+     * isset() to work
+     *
+     * @param string $key
+     * @return boolean
+     */
+    public function __isset($key) {
+        $vars = $this-&gt;_smarty-&gt;getTemplateVars();
+        return isset($vars[$key]);
+    }
+
+    /**
+     * Allows unset() on object properties to work
+     *
+     * @param string $key
+     * @return void
+     */
+    public function __unset($key) {
+        $this-&gt;_smarty-&gt;clearAssign($key);
+    }
+
+    /**
+     * Clear all assigned variables
+     *
+     * Clears all variables assigned to
+     * Zend_View either via {@link assign()} or
+     * property overloading ({@link __get()}/{@link __set()}).
+     *
+     * @return void
+     */
+    public function clearVars() {
+        $this-&gt;_smarty-&gt;clearAllAssign();
+    }
+
+    /**
+     * Processes a view script and returns the output.
+     *
+     * @param string $name The script script name to process.
+     * @return string The script output.
+     */
+    public function render($name) {
+		$this-&gt;_response-&gt;addBodyPart($this-&gt;fetch($name));
+    }
+
+    public function fetch($name) {
+		return $this-&gt;_smarty-&gt;fetch($name . self::FILE_EXTENSION);
+	}
+
+    public function setBasePath($path){
+
+    	$config=\Nf\Registry::get('config');
+
+		// configuration de Smarty
+		$this-&gt;_smarty-&gt;setTemplateDir(array(
+			\Nf\Registry::get('applicationPath') . '/application/' . \Nf\Registry::get('version') . '/' . $path . '/views/',
+			\Nf\Registry::get('libraryPath') . '/php/application/' . \Nf\Registry::get('version') . '/' . $path . '/views/'
+		));
+
+		// r&eacute;pertoire du cache Smarty
+		$cacheDirectory = realpath(\Nf\Registry::get('applicationPath')) . '/cache/smarty/' . \Nf\Registry::get('version') . '/' . \Nf\Registry::get('locale') . '/' . $path . '/';
+		// r&eacute;pertoire des templates compil&eacute;s
+		$compileDirectory = realpath(\Nf\Registry::get('applicationPath')) . '/cache/templates_c/' . \Nf\Registry::get('version') . '/' . \Nf\Registry::get('locale') . '/' . $path . '/';
+
+		$configDirectory = realpath(\Nf\Registry::get('applicationPath')) . '/configs/' . \Nf\Registry::get('version') . '/' . \Nf\Registry::get('locale') . '/' . $path . '/';
+
+		$pluginsDirectories = array(
+						realpath(\Nf\Registry::get('applicationPath') . '/plugins/'),
+						realpath(\Nf\Registry::get('libraryPath') . '/php/plugins/'),
+						realpath(\Nf\Registry::get('libraryPath') . '/php/classes/Smarty/plugins/')
+					);
+
+		\Nf\File::mkdir($cacheDirectory, 0755, true);
+		\Nf\File::mkdir($compileDirectory, 0755, true);
+
+		$this-&gt;_smarty-&gt;setUseSubDirs(true);
+
+		// r&eacute;pertoire de cache de smarty
+		$this-&gt;_smarty-&gt;setCacheDir($cacheDirectory);
+		// r&eacute;pertoire de compilation
+		$this-&gt;_smarty-&gt;setCompileDir($compileDirectory);
+		// r&eacute;pertoire des configs smarty des applis
+		$this-&gt;_smarty-&gt;setConfigDir($configDirectory);
+		// r&eacute;pertoire des plugins
+		foreach($pluginsDirectories as $pluginsDirectory) {
+			$this-&gt;_smarty-&gt;addPluginsDir($pluginsDirectory);
+		}
+
+		$this-&gt;_smarty-&gt;left_delimiter    	= $config-&gt;view-&gt;smarty-&gt;leftDelimiter;
+		$this-&gt;_smarty-&gt;right_delimiter    	= $config-&gt;view-&gt;smarty-&gt;rightDelimiter;
+
+		// dev : we disable Smarty's caching
+		if(\Nf\Registry::get('environment')=='dev') {
+			$this-&gt;_smarty-&gt;caching=false;
+			// disabled
+			// $this-&gt;_smarty-&gt;setCompileCheck(true);
+		}
+
+		// only one file generated for each rendering
+		$this-&gt;_smarty-&gt;merge_compiled_includes = true;
+
+		// send the registry to the view
+		$this-&gt;_smarty-&gt;assign('_registry', \Nf\Registry::getInstance());
+
+		// send the label Manager to the view
+		$this-&gt;_smarty-&gt;assign('_labels', \Nf\LabelManager::getInstance());
+
+		// $this-&gt;_smarty-&gt;testInstall();
+
+    }
+
+
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

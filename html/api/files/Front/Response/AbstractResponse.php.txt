@@ -1,0 +1,145 @@
+<?php
+namespace Nf\Front\Response;
+
+abstract class AbstractResponse
+{
+
+    protected $_bodyParts = array();
+
+    public function addBodyPart($bodyPart)
+    {
+        $this->_bodyParts[] = $bodyPart;
+    }
+
+    public function clearBody()
+    {
+        $this->_bodyParts = array();
+    }
+
+    public function clearBuffer()
+    {
+        $maxObLevel = \Nf\Front::$obLevel;
+        $curObLevel = ob_get_level();
+        if ($curObLevel > $maxObLevel) {
+            do {
+                ob_end_clean();
+                $curObLevel = ob_get_level();
+            } while ($curObLevel > $maxObLevel);
+        }
+    }
+
+    public function output()
+    {
+        echo implode('', $this->_bodyParts);
+    }
+
+    public function sendResponse()
+    {
+        $this->sendHeaders();
+        $this->output();
+    }
+
+    public static function colorText($text, $color)
+    {}
+
+    public function setHttpResponseCode($code)
+    {}
+
+    public function setContentType($type = 'html')
+    {}
+
+    public function displayError($str)
+    {
+        debug_print_backtrace();
+    }
+
+    public static function displayErrorHelper($err, $alternativeSeparator = false)
+    {
+        $output = '';
+        
+        $stack = debug_backtrace();
+        
+        if ($err['type'] == 'exception') {
+            
+            $output .= static::escape($err['message']) . ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+            
+            $stackLen = count($stack);
+            for ($i = 1; $i < $stackLen; $i ++) {
+                $entry = $stack[$i];
+                
+                // on ignore les lignes remontées par le error handler lui-même
+                if ((! isset($entry['file']) || strpos($entry['file'], 'Nf/Error/Handler.php') < 0) && (isset($entry['class']) && $entry['class'] == 'Nf\Error\Handler')) {
+                    $trace = (array) $entry['args'][0];
+                    
+                    foreach ($trace as $k => $v) {
+                        if (strpos($k, 'trace') > 0) {
+                            $idx = 1;
+                            foreach ($v as $traceKey => $traceValue) {
+                                if (isset($traceValue['file']) && strpos($traceValue['file'], 'Nf/Front.php') > 0) {
+                                    $output .= static::stackTracePrintEntry($traceValue, 0, $alternativeSeparator);
+                                } else {
+                                    $output .= static::stackTracePrintEntry($traceValue, ($idx == 1) ? 2 : 1, $alternativeSeparator);
+                                }
+                                $idx ++;
+                                $output .= ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if ($err['type'] == 'fatal') {
+            $output .= $err['message'] . ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+            $output .= static::preFormatErrorText(0, $alternativeSeparator);
+            $output .= self::stackTracePrintEntry($err, 2, $alternativeSeparator);
+            $output .= static::preFormatErrorText(1, $alternativeSeparator);
+        }
+        return $output;
+    }
+
+    protected static function stackTracePrintEntry($entry, $displayArgsType, $alternativeSeparator = false)
+    {
+        $output = '';
+        
+        if (isset($entry['file'])) {
+            $output .= static::boldText($entry['file'] . ' (line ' . $entry['line'] . ')' . ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE), $alternativeSeparator);
+        }
+        if (isset($entry['class'])) {
+            if ($entry['class'] != 'Nf\Error\Handler') {
+                $output .= 'call: ' . $entry['class'] . '::';
+                if (isset($entry['function'])) {
+                    $output .= $entry['function'] . ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+                }
+            }
+        }
+        
+        if ($displayArgsType > 0 && isset($entry['args'])) {
+            if ($displayArgsType == 2) {
+                if (isset($entry['args'][4]) && count($entry['args'][4])) {
+                    $output .= static::stackTracePrintArgs($entry['args'][4], $alternativeSeparator);
+                }
+            } else {
+                if (count($entry['args'])) {
+                    $output .= static::stackTracePrintArgs($entry['args'], $alternativeSeparator);
+                }
+            }
+        }
+        $output .= ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+        return $output;
+    }
+
+    protected static function stackTracePrintArgs($args, $alternativeSeparator)
+    {
+        $output = '';
+        $output .= 'arguments: ';
+        $out = array();
+        foreach ($args as $k => $v) {
+            $out[] = $k . ' = ' . (is_array($v)) ? str_replace(array(
+                "\n",
+                "\r"
+            ), '', substr(print_r($v, true), 0, 50)) : $v;
+        }
+        $output .= static::escape($alternativeSeparator ? static::TAB_ALT : static::TAB . '[ ' . implode(', ', $out) . ' ]');
+        return $output;
+    }
+}

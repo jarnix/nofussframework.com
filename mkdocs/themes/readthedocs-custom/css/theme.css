@@ -4669,7 +4669,7 @@ div[class^='highlight'] pre {
 	color: #fff;
 	padding: 0.4045em 0.809em;
 	position: relative;
-	line-height: 50px;
+	line-height: 20px;
 	text-align: center;
 	font-size: 100%;
 	*zoom: 1
@@ -4730,6 +4730,11 @@ div[class^='highlight'] pre {
 	display: block
 }
 
+#nav-thin li {
+	display:inline-block;
+	padding-right:0.5em;
+}
+
 footer {
 	color: #999
 }
@@ -4774,6 +4779,12 @@ footer p {
 }
 
 @media screen and (max-width: 768px) {
+	#nav-wide {
+		display:none;
+	}
+	#nav-thin {
+		display:block;
+	}
 	.wy-body-for-nav {
 		background: #fcfcfc
 	}

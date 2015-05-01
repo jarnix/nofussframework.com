@@ -1,0 +1,189 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf\Front\Response;
+
+abstract class AbstractResponse
+{
+
+    protected $_bodyParts = array();
+
+    public function addBodyPart($bodyPart)
+    {
+        $this-&gt;_bodyParts[] = $bodyPart;
+    }
+
+    public function clearBody()
+    {
+        $this-&gt;_bodyParts = array();
+    }
+
+    public function clearBuffer()
+    {
+        $maxObLevel = \Nf\Front::$obLevel;
+        $curObLevel = ob_get_level();
+        if ($curObLevel &gt; $maxObLevel) {
+            do {
+                ob_end_clean();
+                $curObLevel = ob_get_level();
+            } while ($curObLevel &gt; $maxObLevel);
+        }
+    }
+
+    public function output()
+    {
+        echo implode('', $this-&gt;_bodyParts);
+    }
+
+    public function sendResponse()
+    {
+        $this-&gt;sendHeaders();
+        $this-&gt;output();
+    }
+
+    public static function colorText($text, $color)
+    {}
+
+    public function setHttpResponseCode($code)
+    {}
+
+    public function setContentType($type = 'html')
+    {}
+
+    public function displayError($str)
+    {
+        debug_print_backtrace();
+    }
+
+    public static function displayErrorHelper($err, $alternativeSeparator = false)
+    {
+        $output = '';
+        
+        $stack = debug_backtrace();
+        
+        if ($err['type'] == 'exception') {
+            
+            $output .= static::escape($err['message']) . ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+            
+            $stackLen = count($stack);
+            for ($i = 1; $i &lt; $stackLen; $i ++) {
+                $entry = $stack[$i];
+                
+                // on ignore les lignes remont&eacute;es par le error handler lui-m&ecirc;me
+                if ((! isset($entry['file']) || strpos($entry['file'], 'Nf/Error/Handler.php') &lt; 0) &amp;&amp; (isset($entry['class']) &amp;&amp; $entry['class'] == 'Nf\Error\Handler')) {
+                    $trace = (array) $entry['args'][0];
+                    
+                    foreach ($trace as $k =&gt; $v) {
+                        if (strpos($k, 'trace') &gt; 0) {
+                            $idx = 1;
+                            foreach ($v as $traceKey =&gt; $traceValue) {
+                                if (isset($traceValue['file']) &amp;&amp; strpos($traceValue['file'], 'Nf/Front.php') &gt; 0) {
+                                    $output .= static::stackTracePrintEntry($traceValue, 0, $alternativeSeparator);
+                                } else {
+                                    $output .= static::stackTracePrintEntry($traceValue, ($idx == 1) ? 2 : 1, $alternativeSeparator);
+                                }
+                                $idx ++;
+                                $output .= ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if ($err['type'] == 'fatal') {
+            $output .= $err['message'] . ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+            $output .= static::preFormatErrorText(0, $alternativeSeparator);
+            $output .= self::stackTracePrintEntry($err, 2, $alternativeSeparator);
+            $output .= static::preFormatErrorText(1, $alternativeSeparator);
+        }
+        return $output;
+    }
+
+    protected static function stackTracePrintEntry($entry, $displayArgsType, $alternativeSeparator = false)
+    {
+        $output = '';
+        
+        if (isset($entry['file'])) {
+            $output .= static::boldText($entry['file'] . ' (line ' . $entry['line'] . ')' . ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE), $alternativeSeparator);
+        }
+        if (isset($entry['class'])) {
+            if ($entry['class'] != 'Nf\Error\Handler') {
+                $output .= 'call: ' . $entry['class'] . '::';
+                if (isset($entry['function'])) {
+                    $output .= $entry['function'] . ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+                }
+            }
+        }
+        
+        if ($displayArgsType &gt; 0 &amp;&amp; isset($entry['args'])) {
+            if ($displayArgsType == 2) {
+                if (isset($entry['args'][4]) &amp;&amp; count($entry['args'][4])) {
+                    $output .= static::stackTracePrintArgs($entry['args'][4], $alternativeSeparator);
+                }
+            } else {
+                if (count($entry['args'])) {
+                    $output .= static::stackTracePrintArgs($entry['args'], $alternativeSeparator);
+                }
+            }
+        }
+        $output .= ($alternativeSeparator ? static::NEWLINE_ALT : static::NEWLINE);
+        return $output;
+    }
+
+    protected static function stackTracePrintArgs($args, $alternativeSeparator)
+    {
+        $output = '';
+        $output .= 'arguments: ';
+        $out = array();
+        foreach ($args as $k =&gt; $v) {
+            $out[] = $k . ' = ' . (is_array($v)) ? str_replace(array(
+                &quot;\n&quot;,
+                &quot;\r&quot;
+            ), '', substr(print_r($v, true), 0, 50)) : $v;
+        }
+        $output .= static::escape($alternativeSeparator ? static::TAB_ALT : static::TAB . '[ ' . implode(', ', $out) . ' ]');
+        return $output;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

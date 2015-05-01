@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Nf;
+
+abstract class Date 
+{	
+	public static function dateFromMysql($date_origine, $return_time=false) {
+		$date_output='';
+		if ($return_time) {
+			// sous la forme 2007-12-25 14:55:36 (datetime) =&gt; on renvoie tout reformat&eacute;
+			if (preg_match('/^(\\d{4})\\-(\\d{2})\\-(\\d{2})\\ (\\d{2}):(\\d{2}):(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/(\\d{4})\\-(\\d{2})\\-(\\d{2})\\ (\\d{2}):(\\d{2}):(\\d{2})/', '$3/$2/$1 $4:$5:$6', $matches[0]);
+			// sous la forme 2007-12-25 (date) =&gt; on renvoie une heure 00:00:00
+			elseif (preg_match('/^(\\d{4})\\-(\\d{2})\\-(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/(\\d{4})\\-(\\d{2})\\-(\\d{2})/', '$3/$2/$1 00:00:00', $matches[0]);
+			// sous la forme 25/12/2007 14:55:36
+			elseif (preg_match('/^(\\d{2})\/(\\d{2})\/(\\d{4}) (\\d{2}):(\\d{2}):(\\d{2})$/', $date_origine, $matches))
+				$date_output = $date_origine;
+			// sous la forme 25/12/2007 14:55 =&gt; on ajoute :00
+			elseif (preg_match('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4}) (\\d{2}):(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4}) (\\d{2}):(\\d{2})$/', '$1/$2/$3 $4:$5:00', $matches[0]);
+			// sous la forme 25/12/2007 =&gt; on ajoute 00:00:00
+			elseif (preg_match('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4})$/', $date_origine, $matches))
+				$date_output = preg_replace('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4})$/', '$1/$2/$3 00:00:00', $matches[0]);
+		}
+		else {
+			// sous la forme 2007-12-25 (qqch)?
+			if (preg_match('/(\\d{4})\\-(\\d{2})\\-(\\d{2})/', $date_origine, $matches))
+				$date_output = preg_replace('/(\\d{4})\\-(\\d{2})\\-(\\d{2})/', '$3/$2/$1', $matches[0]);
+			// sous la forme 25/12/2007 =&gt; on ajoute 00:00:00
+			elseif (preg_match('/(\\d{1,2})\/(\\d{1,2})\/(\\d{4})/', $date_origine, $matches))
+				$date_output = preg_replace('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4})$/', '$1/$2/$3', $matches[0]);
+		}
+		if ($date_output!='') {
+			return $date_output;
+		}
+		else {
+			throw new \Exception('Erreur date_from_mysql : date non reconnue ' . $date_origine);
+		}
+	}
+	
+	public static function dateRange($first, $last, $step = '+1 day') { 
+
+	    $dates = array();
+	    $current = strtotime($first);
+	    $last = strtotime($last);
+	    
+	    switch ($step){
+	    	case '+1 day':
+	    		$format = 'Y-m-d';
+	    		break;
+    		case '+1 month':
+    			$format = 'Y-m-01';
+    			break;    		
+    		case '+1 year':
+    			$format = 'Y-01-01';
+    			break;	
+	    	default:
+	    		$format = 'Y-m-d';
+	    }
+	
+	    while( $current &lt;= $last ) { 
+	
+	        $dates[] = date($format, $current);
+	        $current = strtotime($step, $current);
+	    }
+	
+	    return $dates;
+	}
+
+	public static function dateToMysql($date_origine, $return_time=false) {
+
+		$date_output='';
+		if ($return_time) {
+			// sous la forme 25/12/2007 14:55:36 =&gt; on reformate tout
+			if (preg_match('/^(\\d{2})\/(\\d{2})\/(\\d{4}) (\\d{2}):(\\d{2}):(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/^(\\d{2})\/(\\d{2})\/(\\d{4}) (\\d{2}):(\\d{2}):(\\d{2})$/', '$3-$2-$1 $4:$5:$6', $matches[0]);
+			// sous la forme 25/12/2007 14:55 =&gt; on ajoute :00
+			elseif (preg_match('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4}) (\\d{2}):(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4}) (\\d{2}):(\\d{2})$/', '$3-$2-$1 $4:$5:00', $matches[0]);
+			// sous la forme 25/12/2007 =&gt; on ajoute 00:00:00
+			elseif (preg_match('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4})$/', $date_origine, $matches))
+				$date_output = preg_replace('/^(\\d{1,2})\/(\\d{1,2})\/(\\d{4})$/', '$3-$2-$1 00:00:00', $matches[0]);
+			// sous la forme time() num&eacute;rique
+			elseif (is_numeric($date_origine)) {
+				$date_output = date(&quot;Y-m-d H:i:s&quot;,$date_origine);
+			}
+			// sous la forme mysql datetime
+			elseif (preg_match('/^(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/', '$1-$2-$3 $4:$5:$6', $matches[0]);
+			// sous la forme mysql date
+			elseif (preg_match('/^(\\d{4})-(\\d{2})-(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/(\\d{4})-(\\d{2})-(\\d{2})/', '$1-$2-$3 00:00:00', $matches[0]);
+		}
+		else {
+			if (preg_match('/(\\d{1,2})\/(\\d{1,2})\/(\\d{4})/', $date_origine, $matches))
+				$date_output = preg_replace('/(\\d{1,2})\/(\\d{1,2})\/(\\d{4})/', '$3-$2-$1', $matches[0]);
+			// sous la forme d'une timestamp num&eacute;rique
+			elseif (is_numeric($date_origine))
+				$date_output = date(&quot;Y-m-d&quot;,$date_origine);
+			// sous la forme mysql datetime
+			elseif (preg_match('/^(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/', '$1-$2-$3', $matches[0]);
+			// sous la forme mysql date
+			elseif (preg_match('/^(\\d{4})-(\\d{2})-(\\d{2})$/', $date_origine, $matches))
+				$date_output = preg_replace('/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/', '$1-$2-$3', $matches[0]);
+		}
+		if ($date_output!='') {
+			return $date_output;
+		}
+		elseif($date_output==''){
+			return NULL;
+		}
+		else {
+			throw new \Exception('Erreur date_to_mysql : date non reconnue ' . $date_origine);
+		}
+	}
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

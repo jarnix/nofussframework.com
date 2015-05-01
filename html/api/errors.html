@@ -1,0 +1,4891 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="css/template.css" rel="stylesheet" media="all">
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="js/bootstrap.js" type="text/javascript"></script><script src="js/template.js" type="text/javascript"></script><script src="js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="img/favicon.ico">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="namespaces/Nf.html"><i class="icon-th"></i> Nf</a></li>
+<li><a>Packages</a></li>
+<li><a href="packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="packages/Nf.html"><i class="icon-folder-open"></i> Nf</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">831</span></a></li>
+<li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4"><ul class="side-nav nav nav-list">
+<li class="nav-header">Filter type</li>
+<li><div class="btn-group type-filter" data-toggle="buttons-checkbox">
+<button class="btn critical">Critical</button><button class="btn error">Error</button><button class="btn notice">Notice</button>
+</div></li>
+<li class="nav-header">Navigation</li>
+<li><a href="#Input.php"><i class="icon-file"></i>Input.php</a></li>
+<li><a href="#Front/Request/Cli.php"><i class="icon-file"></i>Front/Request/Cli.php</a></li>
+<li><a href="#Session/Memcached.php"><i class="icon-file"></i>Session/Memcached.php</a></li>
+<li><a href="#Db/Adapter/Mysqli.php"><i class="icon-file"></i>Db/Adapter/Mysqli.php</a></li>
+<li><a href="#Front/Request/AbstractRequest.php"><i class="icon-file"></i>Front/Request/AbstractRequest.php</a></li>
+<li><a href="#View/Smarty.php"><i class="icon-file"></i>View/Smarty.php</a></li>
+<li><a href="#Front/Response/AbstractResponse.php"><i class="icon-file"></i>Front/Response/AbstractResponse.php</a></li>
+<li><a href="#Front/Response/Cli.php"><i class="icon-file"></i>Front/Response/Cli.php</a></li>
+<li><a href="#Bootstrap.php"><i class="icon-file"></i>Bootstrap.php</a></li>
+<li><a href="#Singleton.php"><i class="icon-file"></i>Singleton.php</a></li>
+<li><a href="#Error/Handler.php"><i class="icon-file"></i>Error/Handler.php</a></li>
+<li><a href="#View.php"><i class="icon-file"></i>View.php</a></li>
+<li><a href="#Db.php"><i class="icon-file"></i>Db.php</a></li>
+<li><a href="#Error/Exception/Http.php"><i class="icon-file"></i>Error/Exception/Http.php</a></li>
+<li><a href="#Error/Exception/ClientException.php"><i class="icon-file"></i>Error/Exception/ClientException.php</a></li>
+<li><a href="#Date.php"><i class="icon-file"></i>Date.php</a></li>
+<li><a href="#Db/Expression.php"><i class="icon-file"></i>Db/Expression.php</a></li>
+<li><a href="#Cache.php"><i class="icon-file"></i>Cache.php</a></li>
+<li><a href="#Error/Exception/Http/Unauthorized.php"><i class="icon-file"></i>Error/Exception/Http/Unauthorized.php</a></li>
+<li><a href="#Error/Exception/Http/NoContent.php"><i class="icon-file"></i>Error/Exception/Http/NoContent.php</a></li>
+<li><a href="#Cache/CacheInterface.php"><i class="icon-file"></i>Cache/CacheInterface.php</a></li>
+<li><a href="#Front/Request/Http.php"><i class="icon-file"></i>Front/Request/Http.php</a></li>
+<li><a href="#Autoloader.php"><i class="icon-file"></i>Autoloader.php</a></li>
+<li><a href="#Db/Adapter/AbstractAdapter.php"><i class="icon-file"></i>Db/Adapter/AbstractAdapter.php</a></li>
+<li><a href="#UserAgent.php"><i class="icon-file"></i>UserAgent.php</a></li>
+<li><a href="#Session.php"><i class="icon-file"></i>Session.php</a></li>
+<li><a href="#Front.php"><i class="icon-file"></i>Front.php</a></li>
+<li><a href="#Error/Logger/Gelf.php"><i class="icon-file"></i>Error/Logger/Gelf.php</a></li>
+<li><a href="#Front/Response/Http.php"><i class="icon-file"></i>Front/Response/Http.php</a></li>
+<li><a href="#File.php"><i class="icon-file"></i>File.php</a></li>
+<li><a href="#Db/Resource/Mysqli.php"><i class="icon-file"></i>Db/Resource/Mysqli.php</a></li>
+<li><a href="#Cache/Apc.php"><i class="icon-file"></i>Cache/Apc.php</a></li>
+<li><a href="#Localization.php"><i class="icon-file"></i>Localization.php</a></li>
+<li><a href="#Error/Exception/Http/NotFound.php"><i class="icon-file"></i>Error/Exception/Http/NotFound.php</a></li>
+<li><a href="#Cache/Memcached.php"><i class="icon-file"></i>Cache/Memcached.php</a></li>
+<li><a href="#Front/Controller.php"><i class="icon-file"></i>Front/Controller.php</a></li>
+<li><a href="#Ini.php"><i class="icon-file"></i>Ini.php</a></li>
+<li><a href="#Error/Exception/Http/BadRequest.php"><i class="icon-file"></i>Error/Exception/Http/BadRequest.php</a></li>
+<li><a href="#Session/Mysqli.php"><i class="icon-file"></i>Session/Mysqli.php</a></li>
+<li><a href="#View/Php.php"><i class="icon-file"></i>View/Php.php</a></li>
+<li><a href="#LabelManager.php"><i class="icon-file"></i>LabelManager.php</a></li>
+<li><a href="#Error/Exception/Http/Forbidden.php"><i class="icon-file"></i>Error/Exception/Http/Forbidden.php</a></li>
+<li><a href="#Registry.php"><i class="icon-file"></i>Registry.php</a></li>
+<li><a href="#Image.php"><i class="icon-file"></i>Image.php</a></li>
+</ul></div>
+<div class="span8">
+<ul class="breadcrumb">
+<li>
+<a href=""><i class="icon-remove-sign"></i></a><span class="divider">\</span>
+</li>
+<li>Compilation Errors</li>
+</ul>
+<div class="package-contents">
+<a name="Input.php" id="Input.php"></a><h3>
+<i class="icon-file"></i>Input.php<small style="float: right;padding-right: 10px;">110</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>83</td>
+<td>No summary for property $_params</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>85</td>
+<td>No summary for property $_filters</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>87</td>
+<td>No summary for property $_validators</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No summary for property $_fields</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>91</td>
+<td>No summary for property $_methods</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>101</td>
+<td>Argument $params is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>101</td>
+<td>Argument $filters is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>101</td>
+<td>Argument $validators is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>101</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>111</td>
+<td>No summary for method isValid()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>119</td>
+<td>No summary for method filter()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>124</td>
+<td>No summary for method validate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>129</td>
+<td>No summary for method getMessages()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>150</td>
+<td>No summary for method getFields()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>155</td>
+<td>No summary for method getFilteredFields()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>164</td>
+<td>Argument $metaAction is missing from the Docblock of metaFilterAndValidate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>164</td>
+<td>No summary for method metaFilterAndValidate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>350</td>
+<td>Argument $paramName is missing from the Docblock of setField</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>350</td>
+<td>Argument $value is missing from the Docblock of setField</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>350</td>
+<td>Argument $isValid is missing from the Docblock of setField</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>350</td>
+<td>Argument $validators is missing from the Docblock of setField</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>350</td>
+<td>No summary for method setField()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>372</td>
+<td>Argument $paramName is missing from the Docblock of __get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>372</td>
+<td>No summary for method __get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>377</td>
+<td>Argument $paramName is missing from the Docblock of __isset</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>377</td>
+<td>No summary for method __isset()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>382</td>
+<td>Argument $array is missing from the Docblock of isAssoc</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>382</td>
+<td>No summary for method isAssoc()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>392</td>
+<td>Argument $value is missing from the Docblock of filterNullIfEmptyString</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>392</td>
+<td>No summary for method filterNullIfEmptyString()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>399</td>
+<td>Argument $value is missing from the Docblock of filterInt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>399</td>
+<td>No summary for method filterInt()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>404</td>
+<td>Argument $value is missing from the Docblock of filterNatural</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>404</td>
+<td>No summary for method filterNatural()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>409</td>
+<td>Argument $value is missing from the Docblock of filterNaturalNonZero</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>409</td>
+<td>No summary for method filterNaturalNonZero()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>419</td>
+<td>Argument $value is missing from the Docblock of filterAlpha</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>419</td>
+<td>No summary for method filterAlpha()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>424</td>
+<td>Argument $value is missing from the Docblock of filterAlphaNum</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>424</td>
+<td>No summary for method filterAlphaNum()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>429</td>
+<td>Argument $value is missing from the Docblock of filterBase64</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>429</td>
+<td>No summary for method filterBase64()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>434</td>
+<td>Argument $value is missing from the Docblock of filterBoolean</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>434</td>
+<td>No summary for method filterBoolean()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>440</td>
+<td>Argument $value is missing from the Docblock of filterNumeric</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>440</td>
+<td>No summary for method filterNumeric()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>445</td>
+<td>Argument $value is missing from the Docblock of filterStripTags</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>445</td>
+<td>No summary for method filterStripTags()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>450</td>
+<td>Argument $value is missing from the Docblock of filterRegexp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>450</td>
+<td>Argument $regexp is missing from the Docblock of filterRegexp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>450</td>
+<td>No summary for method filterRegexp()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>455</td>
+<td>Argument $value is missing from the Docblock of filterString</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>455</td>
+<td>No summary for method filterString()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>460</td>
+<td>Argument $value is missing from the Docblock of filterTrim</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>460</td>
+<td>No summary for method filterTrim()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>465</td>
+<td>Argument $value is missing from the Docblock of filterUrl</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>465</td>
+<td>No summary for method filterUrl()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>473</td>
+<td>Argument $value is missing from the Docblock of validateInt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>473</td>
+<td>No summary for method validateInt()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>478</td>
+<td>Argument $value is missing from the Docblock of validateNatural</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>478</td>
+<td>No summary for method validateNatural()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>483</td>
+<td>Argument $value is missing from the Docblock of validateNaturalNonZero</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>483</td>
+<td>No summary for method validateNaturalNonZero()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>488</td>
+<td>Argument $value is missing from the Docblock of validateAlpha</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>488</td>
+<td>No summary for method validateAlpha()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>493</td>
+<td>Argument $value is missing from the Docblock of validateAlphaNum</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>493</td>
+<td>No summary for method validateAlphaNum()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>498</td>
+<td>Argument $value is missing from the Docblock of validateBase64</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>498</td>
+<td>No summary for method validateBase64()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>503</td>
+<td>Argument $value is missing from the Docblock of validateBoolean</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>503</td>
+<td>No summary for method validateBoolean()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>508</td>
+<td>Argument $value is missing from the Docblock of validateNumeric</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>508</td>
+<td>No summary for method validateNumeric()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>513</td>
+<td>Argument $value is missing from the Docblock of validateEquals</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>513</td>
+<td>Argument $check is missing from the Docblock of validateEquals</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>513</td>
+<td>No summary for method validateEquals()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>518</td>
+<td>Argument $value is missing from the Docblock of validateRegexp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>518</td>
+<td>Argument $regexp is missing from the Docblock of validateRegexp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>518</td>
+<td>No summary for method validateRegexp()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>523</td>
+<td>Argument $value is missing from the Docblock of validateRequired</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>523</td>
+<td>No summary for method validateRequired()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>528</td>
+<td>Argument $value is missing from the Docblock of validateNotEmpty</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>528</td>
+<td>No summary for method validateNotEmpty()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>533</td>
+<td>Argument $value is missing from the Docblock of validateGreaterThan</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>533</td>
+<td>Argument $compare is missing from the Docblock of validateGreaterThan</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>533</td>
+<td>No summary for method validateGreaterThan()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>538</td>
+<td>Argument $value is missing from the Docblock of validateLessThan</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>538</td>
+<td>Argument $compare is missing from the Docblock of validateLessThan</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>538</td>
+<td>No summary for method validateLessThan()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>543</td>
+<td>Argument $value is missing from the Docblock of validateMinLength</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>543</td>
+<td>Argument $compare is missing from the Docblock of validateMinLength</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>543</td>
+<td>No summary for method validateMinLength()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>548</td>
+<td>Argument $value is missing from the Docblock of validateMaxLength</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>548</td>
+<td>Argument $compare is missing from the Docblock of validateMaxLength</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>548</td>
+<td>No summary for method validateMaxLength()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>553</td>
+<td>Argument $value is missing from the Docblock of validateExactLength</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>553</td>
+<td>Argument $compare is missing from the Docblock of validateExactLength</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>553</td>
+<td>No summary for method validateExactLength()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>558</td>
+<td>Argument $value is missing from the Docblock of validateEmail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>558</td>
+<td>No summary for method validateEmail()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>564</td>
+<td>Argument $value is missing from the Docblock of validateMatches</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>564</td>
+<td>Argument $compareField is missing from the Docblock of validateMatches</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>564</td>
+<td>Argument $instance is missing from the Docblock of validateMatches</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>564</td>
+<td>No summary for method validateMatches()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>571</td>
+<td>Argument $value is missing from the Docblock of validateUrl</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>571</td>
+<td>No summary for method validateUrl()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>579</td>
+<td>Argument $value is missing from the Docblock of validateDefault</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>579</td>
+<td>Argument $defaultValue is missing from the Docblock of validateDefault</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>579</td>
+<td>No summary for method validateDefault()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Front/Request/Cli.php" id="Front/Request/Cli.php"></a><h3>
+<i class="icon-file"></i>Front/Request/Cli.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\Front\Request\Cli</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for property $_params</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>Argument $uri is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No summary for method getUri()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No summary for method isXhr()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No summary for method getParams()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Session/Memcached.php" id="Session/Memcached.php"></a><h3>
+<i class="icon-file"></i>Session/Memcached.php<small style="float: right;padding-right: 10px;">21</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for class \Nf\Session\Memcached</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No summary for property $_lifeTime</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for property $_memcache</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>Argument $params is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>Argument $lifetime is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>Argument $savePath is missing from the Docblock of open</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>Argument $sessionName is missing from the Docblock of open</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No summary for method open()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No summary for method close()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>Argument $sessionId is missing from the Docblock of read</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No summary for method read()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>Argument $sessionId is missing from the Docblock of write</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>Argument $data is missing from the Docblock of write</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No summary for method write()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>Argument $sessionId is missing from the Docblock of destroy</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No summary for method destroy()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>Argument $notUsedInMemcached is missing from the Docblock of gc</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>No summary for method gc()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Db/Adapter/Mysqli.php" id="Db/Adapter/Mysqli.php"></a><h3>
+<i class="icon-file"></i>Db/Adapter/Mysqli.php<small style="float: right;padding-right: 10px;">31</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>6</td>
+<td>No summary for class \Nf\Db\Adapter\Mysqli</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for property $_resourceClass</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No summary for method _connect()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>60</td>
+<td>No summary for method isConnected()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>No summary for method closeConnection()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>73</td>
+<td>No summary for method getQuoteIdentifierSymbol()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>Argument $value is missing from the Docblock of _quote</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No summary for method _quote()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>Argument $tableName is missing from the Docblock of lastInsertId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>Argument $primaryKey is missing from the Docblock of lastInsertId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No summary for method lastInsertId()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>95</td>
+<td>Argument $tableName is missing from the Docblock of insert</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>95</td>
+<td>Argument $bind is missing from the Docblock of insert</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>95</td>
+<td>No summary for method insert()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>110</td>
+<td>Argument $tableName is missing from the Docblock of insertIgnore</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>110</td>
+<td>Argument $bind is missing from the Docblock of insertIgnore</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>110</td>
+<td>No summary for method insertIgnore()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>125</td>
+<td>Argument $tableName is missing from the Docblock of update</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>125</td>
+<td>Argument $bind is missing from the Docblock of update</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>125</td>
+<td>Argument $where is missing from the Docblock of update</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>125</td>
+<td>No summary for method update()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>143</td>
+<td>Argument $tableName is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>143</td>
+<td>Argument $where is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>143</td>
+<td>No summary for method delete()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>157</td>
+<td>No summary for method cleanConnection()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>172</td>
+<td>Argument $queries is missing from the Docblock of multiQuery</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>172</td>
+<td>No summary for method multiQuery()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>188</td>
+<td>Argument $inShortFormatDateOrTimestamp is missing from the Docblock of formatDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>188</td>
+<td>Argument $hasMinutes is missing from the Docblock of formatDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>188</td>
+<td>No summary for method formatDate()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Front/Request/AbstractRequest.php" id="Front/Request/AbstractRequest.php"></a><h3>
+<i class="icon-file"></i>Front/Request/AbstractRequest.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\Front\Request\AbstractRequest</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for property $_paramSources</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>Argument $name is missing from the Docblock of setParam</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>Argument $value is missing from the Docblock of setParam</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for method setParam()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No summary for method getParams()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No summary for method getParamSources()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="View/Smarty.php" id="View/Smarty.php"></a><h3>
+<i class="icon-file"></i>View/Smarty.php<small style="float: right;padding-right: 10px;">15</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for class \Nf\View\Smarty</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No summary for property $_smarty</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No summary for property $_vars</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>Argument $filepath is missing from the Docblock of configLoad</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>Argument $section is missing from the Docblock of configLoad</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No summary for method configLoad()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>Argument $key is missing from the Docblock of __get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>No summary for method __get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>120</td>
+<td>Argument $name is missing from the Docblock of fetch</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>120</td>
+<td>No summary for method fetch()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>124</td>
+<td>Argument $path is missing from the Docblock of setBasePath</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>124</td>
+<td>No summary for method setBasePath()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Front/Response/AbstractResponse.php" id="Front/Response/AbstractResponse.php"></a><h3>
+<i class="icon-file"></i>Front/Response/AbstractResponse.php<small style="float: right;padding-right: 10px;">28</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Front\Response\AbstractResponse</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_bodyParts</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $bodyPart is missing from the Docblock of addBodyPart</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for method addBodyPart()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No summary for method clearBody()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No summary for method clearBuffer()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No summary for method output()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No summary for method sendResponse()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>Argument $text is missing from the Docblock of colorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>Argument $color is missing from the Docblock of colorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No summary for method colorText()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>Argument $code is missing from the Docblock of setHttpResponseCode</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No summary for method setHttpResponseCode()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>Argument $type is missing from the Docblock of setContentType</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No summary for method setContentType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>Argument $str is missing from the Docblock of displayError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No summary for method displayError()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>Argument $err is missing from the Docblock of displayErrorHelper</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>Argument $alternativeSeparator is missing from the Docblock of displayErrorHelper</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No summary for method displayErrorHelper()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>100</td>
+<td>Argument $entry is missing from the Docblock of stackTracePrintEntry</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>100</td>
+<td>Argument $displayArgsType is missing from the Docblock of stackTracePrintEntry</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>100</td>
+<td>Argument $alternativeSeparator is missing from the Docblock of stackTracePrintEntry</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>100</td>
+<td>No summary for method stackTracePrintEntry()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>131</td>
+<td>Argument $args is missing from the Docblock of stackTracePrintArgs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>131</td>
+<td>Argument $alternativeSeparator is missing from the Docblock of stackTracePrintArgs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>131</td>
+<td>No summary for method stackTracePrintArgs()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Front/Response/Cli.php" id="Front/Response/Cli.php"></a><h3>
+<i class="icon-file"></i>Front/Response/Cli.php<small style="float: right;padding-right: 10px;">24</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Front\Response\Cli</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>Argument $name is missing from the Docblock of setHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>Argument $value is missing from the Docblock of setHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>Argument $replace is missing from the Docblock of setHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for method setHeader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>Argument $url is missing from the Docblock of redirect</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>Argument $code is missing from the Docblock of redirect</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No summary for method redirect()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No summary for method clearHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No summary for method canSendHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No summary for method sendHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>Argument $err is missing from the Docblock of displayError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>Argument $isXhr is missing from the Docblock of displayError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No summary for method displayError()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>Argument $text is missing from the Docblock of boldText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No summary for method boldText()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>Argument $beginOrEnd is missing from the Docblock of preFormatErrorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No summary for method preFormatErrorText()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>Argument $text is missing from the Docblock of colorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>Argument $color is missing from the Docblock of colorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>No summary for method colorText()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>Argument $str is missing from the Docblock of escape</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No summary for method escape()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Bootstrap.php" id="Bootstrap.php"></a><h3>
+<i class="icon-file"></i>Bootstrap.php<small style="float: right;padding-right: 10px;">18</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No summary for property $_localeAndVersionFromUrlCache</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No summary for property $_applicationNamespace</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>Argument $libraryPath is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>Argument $applicationPath is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>Argument $inEnvironment is missing from the Docblock of initHttpEnvironment</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>Argument $inLocale is missing from the Docblock of initHttpEnvironment</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>Argument $inVersion is missing from the Docblock of initHttpEnvironment</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No summary for method initHttpEnvironment()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>205</td>
+<td>Argument $httpHost is missing from the Docblock of getLocaleAndVersionFromUrl</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>205</td>
+<td>Argument $urlIni is missing from the Docblock of getLocaleAndVersionFromUrl</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>205</td>
+<td>No summary for method getLocaleAndVersionFromUrl()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>302</td>
+<td>Argument $namespace is missing from the Docblock of setApplicationNamespace</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>302</td>
+<td>No summary for method setApplicationNamespace()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>308</td>
+<td>No summary for method initCliEnvironment()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>377</td>
+<td>No summary for method redirectForUserAgent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>403</td>
+<td>No summary for method go()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Singleton.php" id="Singleton.php"></a><h3>
+<i class="icon-file"></i>Singleton.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\Singleton</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No summary for method getInstance()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No summary for method __clone()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Handler.php" id="Error/Handler.php"></a><h3>
+<i class="icon-file"></i>Error/Handler.php<small style="float: right;padding-right: 10px;">27</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Error\Handler</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $lastError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No summary for method getLastError()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No summary for method disableErrorHandler()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>Argument $errno is missing from the Docblock of handleError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>Argument $errstr is missing from the Docblock of handleError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>Argument $errfile is missing from the Docblock of handleError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>Argument $errline is missing from the Docblock of handleError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No summary for method handleError()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>Argument $exception is missing from the Docblock of handleException</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No summary for method handleException()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>70</td>
+<td>No summary for method handleFatal()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>Argument $httpCode is missing from the Docblock of handleForbidden</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>Argument $friendlyMessage is missing from the Docblock of handleForbidden</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>No summary for method handleForbidden()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>91</td>
+<td>Argument $httpCode is missing from the Docblock of handleNotFound</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>91</td>
+<td>Argument $friendlyMessage is missing from the Docblock of handleNotFound</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>91</td>
+<td>No summary for method handleNotFound()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>96</td>
+<td>Argument $type is missing from the Docblock of handleHttpError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>96</td>
+<td>Argument $httpCode is missing from the Docblock of handleHttpError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>96</td>
+<td>Argument $friendlyMessage is missing from the Docblock of handleHttpError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>96</td>
+<td>No summary for method handleHttpError()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>132</td>
+<td>Argument $clearBodyAndBuffer is missing from the Docblock of displayAndLogError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>132</td>
+<td>No summary for method displayAndLogError()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>181</td>
+<td>No summary for method setErrorHandler()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>197</td>
+<td>No summary for method setErrorDisplaying()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="View.php" id="View.php"></a><h3>
+<i class="icon-file"></i>View.php<small style="float: right;padding-right: 10px;">11</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\View</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for property $_vars</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No summary for property $_templateDirectory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for property $_configDirectory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No summary for property $_response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>Argument $response is missing from the Docblock of setResponse</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No summary for method setResponse()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>Argument $name is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No summary for method factory()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Db.php" id="Db.php"></a><h3>
+<i class="icon-file"></i>Db.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Db</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No summary for property $_connections</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>Argument $config is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No summary for method factory()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>Argument $configName is missing from the Docblock of getConnection</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>Argument $alternateHostname is missing from the Docblock of getConnection</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>Argument $alternateDatabase is missing from the Docblock of getConnection</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>Argument $storeInInstance is missing from the Docblock of getConnection</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No summary for method getConnection()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Exception/Http.php" id="Error/Exception/Http.php"></a><h3>
+<i class="icon-file"></i>Error/Exception/Http.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Error\Exception\Http</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_httpStatus</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for method getHttpStatus()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Exception/ClientException.php" id="Error/Exception/ClientException.php"></a><h3>
+<i class="icon-file"></i>Error/Exception/ClientException.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Error\Exception\ClientException</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Date.php" id="Date.php"></a><h3>
+<i class="icon-file"></i>Date.php<small style="float: right;padding-right: 10px;">12</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\Date</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>Argument $date_origine is missing from the Docblock of dateFromMysql</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>Argument $return_time is missing from the Docblock of dateFromMysql</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for method dateFromMysql()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>Argument $first is missing from the Docblock of dateRange</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>Argument $last is missing from the Docblock of dateRange</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>Argument $step is missing from the Docblock of dateRange</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No summary for method dateRange()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>Argument $date_origine is missing from the Docblock of dateToMysql</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>Argument $return_time is missing from the Docblock of dateToMysql</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>No summary for method dateToMysql()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Db/Expression.php" id="Db/Expression.php"></a><h3>
+<i class="icon-file"></i>Db/Expression.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Db\Expression</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_expression</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $expression is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No summary for method __toString()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Cache.php" id="Cache.php"></a><h3>
+<i class="icon-file"></i>Cache.php<small style="float: right;padding-right: 10px;">15</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Cache</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $instances</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>Argument $keyName is missing from the Docblock of getKeyName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>Argument $keyValues is missing from the Docblock of getKeyName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No summary for method getKeyName()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>No summary for method isCacheEnabled()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>Argument $array is missing from the Docblock of isAssoc</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No summary for method isAssoc()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>Argument $type is missing from the Docblock of getStorage</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No summary for method getStorage()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>Argument $handler is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>Argument $params is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>Argument $lifetime is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No summary for method factory()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Exception/Http/Unauthorized.php" id="Error/Exception/Http/Unauthorized.php"></a><h3>
+<i class="icon-file"></i>Error/Exception/Http/Unauthorized.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>6</td>
+<td>No summary for class \Nf\Error\Exception\Http\Unauthorized</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_httpStatus</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Exception/Http/NoContent.php" id="Error/Exception/Http/NoContent.php"></a><h3>
+<i class="icon-file"></i>Error/Exception/Http/NoContent.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>6</td>
+<td>No summary for class \Nf\Error\Exception\Http\NoContent</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_httpStatus</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Cache/CacheInterface.php" id="Cache/CacheInterface.php"></a><h3>
+<i class="icon-file"></i>Cache/CacheInterface.php<small style="float: right;padding-right: 10px;">13</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for interface ""</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>Argument $keyName is missing from the Docblock of load</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>Argument $keyValues is missing from the Docblock of load</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for method load()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $keyName is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $keyValues is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $data is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $lifetime is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for method save()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>Argument $keyName is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>Argument $keyValues is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No summary for method delete()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Front/Request/Http.php" id="Front/Request/Http.php"></a><h3>
+<i class="icon-file"></i>Front/Request/Http.php<small style="float: right;padding-right: 10px;">18</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\Front\Request\Http</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for property $_params</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for property $_put</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No summary for method sanitizeUri()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No summary for method getMethod()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No summary for method isPost()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>52</td>
+<td>No summary for method isGet()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No summary for method isXhr()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No summary for method getUri()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>67</td>
+<td>No summary for method getParams()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>No summary for method setPutFromRequest()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>97</td>
+<td>Argument $jsonDecode is missing from the Docblock of getPost</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>97</td>
+<td>No summary for method getPost()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>108</td>
+<td>Argument $jsonDecode is missing from the Docblock of getPut</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>108</td>
+<td>No summary for method getPut()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>118</td>
+<td>No summary for method redirectForTrailingSlash()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Autoloader.php" id="Autoloader.php"></a><h3>
+<i class="icon-file"></i>Autoloader.php<small style="float: right;padding-right: 10px;">17</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>Only one @package tag is allowed</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No summary for class \Nf\Autoloader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No summary for property $_directories</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No summary for property $_maps</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No summary for property $_namespaceSeparator</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>Argument $className is missing from the Docblock of load</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No summary for method load()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>Argument $file is missing from the Docblock of includeClass</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>Argument $class_name is missing from the Docblock of includeClass</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No summary for method includeClass()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>Argument $namespaceRoot is missing from the Docblock of addNamespaceRoot</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>Argument $path is missing from the Docblock of addNamespaceRoot</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>Argument $suffix is missing from the Docblock of addNamespaceRoot</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>No summary for method addNamespaceRoot()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>115</td>
+<td>Argument $mapFilePath is missing from the Docblock of addMap</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>115</td>
+<td>No summary for method addMap()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>130</td>
+<td>No summary for method register()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Db/Adapter/AbstractAdapter.php" id="Db/Adapter/AbstractAdapter.php"></a><h3>
+<i class="icon-file"></i>Db/Adapter/AbstractAdapter.php<small style="float: right;padding-right: 10px;">62</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Db\Adapter\AbstractAdapter</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_config</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for property $_connection</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No summary for property $_autoQuoteIdentifiers</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for property $_cache</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>Argument $config is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No summary for method getConnection()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>Argument $sql is missing from the Docblock of query</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No summary for method query()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>Argument $sql is missing from the Docblock of fetchAll</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No summary for method fetchAll()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>Argument $sql is missing from the Docblock of fetchAssoc</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No summary for method fetchAssoc()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>Argument $sql is missing from the Docblock of fetchRow</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>No summary for method fetchRow()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>84</td>
+<td>Argument $sql is missing from the Docblock of fetchCol</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>84</td>
+<td>No summary for method fetchCol()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>97</td>
+<td>Argument $sql is missing from the Docblock of fetchOne</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>97</td>
+<td>No summary for method fetchOne()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>110</td>
+<td>Argument $sql is missing from the Docblock of fetchPairs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>110</td>
+<td>No summary for method fetchPairs()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>126</td>
+<td>No summary for method beginTransaction()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>132</td>
+<td>No summary for method commit()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>138</td>
+<td>No summary for method rollback()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>144</td>
+<td>Argument $lifetime is missing from the Docblock of enableCache</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>144</td>
+<td>Argument $cacheKey is missing from the Docblock of enableCache</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>144</td>
+<td>No summary for method enableCache()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>154</td>
+<td>No summary for method disableCache()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>160</td>
+<td>Argument $cacheKey is missing from the Docblock of _getCachedResult</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>160</td>
+<td>No summary for method _getCachedResult()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>170</td>
+<td>Argument $cacheKey is missing from the Docblock of _setCachedResult</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>170</td>
+<td>Argument $result is missing from the Docblock of _setCachedResult</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>170</td>
+<td>No summary for method _setCachedResult()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>180</td>
+<td>Argument $value is missing from the Docblock of _quote</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>180</td>
+<td>No summary for method _quote()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>193</td>
+<td>Argument $value is missing from the Docblock of quote</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>193</td>
+<td>Argument $type is missing from the Docblock of quote</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>193</td>
+<td>No summary for method quote()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>199</td>
+<td>Argument $ident is missing from the Docblock of quoteIdentifier</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>199</td>
+<td>Argument $auto is missing from the Docblock of quoteIdentifier</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>199</td>
+<td>No summary for method quoteIdentifier()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>204</td>
+<td>Argument $ident is missing from the Docblock of quoteColumnAs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>204</td>
+<td>Argument $alias is missing from the Docblock of quoteColumnAs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>204</td>
+<td>Argument $auto is missing from the Docblock of quoteColumnAs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>204</td>
+<td>No summary for method quoteColumnAs()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>209</td>
+<td>Argument $ident is missing from the Docblock of _quoteIdentifierAs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>209</td>
+<td>Argument $alias is missing from the Docblock of _quoteIdentifierAs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>209</td>
+<td>Argument $auto is missing from the Docblock of _quoteIdentifierAs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>209</td>
+<td>Argument $as is missing from the Docblock of _quoteIdentifierAs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>209</td>
+<td>No summary for method _quoteIdentifierAs()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>233</td>
+<td>Argument $value is missing from the Docblock of _quoteIdentifier</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>233</td>
+<td>Argument $auto is missing from the Docblock of _quoteIdentifier</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>233</td>
+<td>No summary for method _quoteIdentifier()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>242</td>
+<td>No summary for method getQuoteIdentifierSymbol()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>247</td>
+<td>No summary for method _connect()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>249</td>
+<td>No summary for method isConnected()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>251</td>
+<td>No summary for method closeConnection()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>253</td>
+<td>Argument $tableName is missing from the Docblock of lastInsertId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>253</td>
+<td>Argument $primaryKey is missing from the Docblock of lastInsertId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>253</td>
+<td>No summary for method lastInsertId()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="UserAgent.php" id="UserAgent.php"></a><h3>
+<i class="icon-file"></i>UserAgent.php<small style="float: right;padding-right: 10px;">13</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\UserAgent</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $httpUserAgent</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for property $lowerHttpUserAgent</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>Argument $httpUserAgent is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>Argument $class is missing from the Docblock of checkClass</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No summary for method checkClass()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No summary for method isIphone()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>No summary for method isIpad()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No summary for method isAndroidMobile()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No summary for method isAndroidTablet()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No summary for method isBlackberry()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Session.php" id="Session.php"></a><h3>
+<i class="icon-file"></i>Session.php<small style="float: right;padding-right: 10px;">22</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Session</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $namespace is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $class is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $params is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $lifetime is missing from the Docblock of factory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for method factory()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No summary for method start()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>58</td>
+<td>No summary for method getData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>Argument $key is missing from the Docblock of __get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No summary for method __get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>68</td>
+<td>Argument $key is missing from the Docblock of __set</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>68</td>
+<td>Argument $value is missing from the Docblock of __set</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>68</td>
+<td>No summary for method __set()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>73</td>
+<td>Argument $key is missing from the Docblock of get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>73</td>
+<td>No summary for method get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>82</td>
+<td>Argument $key is missing from the Docblock of set</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>82</td>
+<td>Argument $value is missing from the Docblock of set</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>82</td>
+<td>No summary for method set()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>87</td>
+<td>Argument $key is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>87</td>
+<td>No summary for method delete()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Front.php" id="Front.php"></a><h3>
+<i class="icon-file"></i>Front.php<small style="float: right;padding-right: 10px;">73</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Front</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for property $_moduleDirectories</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for property $_routingPreference</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No summary for property $_routesDirectories</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No summary for property $_rootRoutesDirectories</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No summary for property $_moduleNamespace</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No summary for property $_moduleName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No summary for property $_controllerName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No summary for property $_actionName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No summary for property $_request</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No summary for property $_requestType</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No summary for property $_response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>No summary for property $_session</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No summary for property $obLevel</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No summary for property $_controllerInstance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No summary for property $_applicationNamespace</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>Argument $var is missing from the Docblock of __get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No summary for method __get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No summary for method getRequestType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No summary for method getModuleName()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>64</td>
+<td>No summary for method getControllerName()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>69</td>
+<td>No summary for method getActionName()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>74</td>
+<td>Argument $request is missing from the Docblock of setRequest</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>74</td>
+<td>No summary for method setRequest()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>79</td>
+<td>Argument $response is missing from the Docblock of setResponse</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>79</td>
+<td>No summary for method setResponse()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>84</td>
+<td>No summary for method getRequest()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No summary for method getResponse()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>94</td>
+<td>Argument $session is missing from the Docblock of setSession</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>94</td>
+<td>No summary for method setSession()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>99</td>
+<td>No summary for method getSession()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>104</td>
+<td>Argument $namespace is missing from the Docblock of setApplicationNamespace</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>104</td>
+<td>No summary for method setApplicationNamespace()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>109</td>
+<td>No summary for method getApplicationNamespace()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>114</td>
+<td>No summary for method getControllerInstance()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>120</td>
+<td>Argument $which is missing from the Docblock of getCache</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>120</td>
+<td>No summary for method getCache()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>138</td>
+<td>Argument $namespace is missing from the Docblock of addModuleDirectory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>138</td>
+<td>Argument $dir is missing from the Docblock of addModuleDirectory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>138</td>
+<td>No summary for method addModuleDirectory()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>147</td>
+<td>Argument $path is missing from the Docblock of setRoutesDirectory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>147</td>
+<td>Argument $locale is missing from the Docblock of setRoutesDirectory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>147</td>
+<td>No summary for method setRoutesDirectory()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>154</td>
+<td>No summary for method setStructuredRoutes()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>159</td>
+<td>Argument $path is missing from the Docblock of setRootRoutes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>159</td>
+<td>Argument $locale is missing from the Docblock of setRootRoutes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>159</td>
+<td>No summary for method setRootRoutes()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>166</td>
+<td>No summary for method findRoute()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>357</td>
+<td>Argument $namespace is missing from the Docblock of getControllerFilename</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>357</td>
+<td>Argument $directory is missing from the Docblock of getControllerFilename</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>357</td>
+<td>Argument $module is missing from the Docblock of getControllerFilename</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>357</td>
+<td>Argument $controller is missing from the Docblock of getControllerFilename</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>357</td>
+<td>No summary for method getControllerFilename()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>363</td>
+<td>Argument $inModule is missing from the Docblock of checkModuleControllerAction</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>363</td>
+<td>Argument $inController is missing from the Docblock of checkModuleControllerAction</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>363</td>
+<td>Argument $inAction is missing from the Docblock of checkModuleControllerAction</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>363</td>
+<td>No summary for method checkModuleControllerAction()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>388</td>
+<td>Argument $module is missing from the Docblock of forward</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>388</td>
+<td>Argument $controller is missing from the Docblock of forward</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>388</td>
+<td>Argument $action is missing from the Docblock of forward</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>388</td>
+<td>No summary for method forward()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>402</td>
+<td>Argument $routeParams is missing from the Docblock of associateParams</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>402</td>
+<td>Argument $refs is missing from the Docblock of associateParams</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>402</td>
+<td>No summary for method associateParams()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>424</td>
+<td>No summary for method getView()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>436</td>
+<td>No summary for method dispatch()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>446</td>
+<td>Argument $foundController is missing from the Docblock of checkMethodForAction</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>446</td>
+<td>No summary for method checkMethodForAction()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>463</td>
+<td>No summary for method init()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>469</td>
+<td>No summary for method launchAction()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>504</td>
+<td>No summary for method postLaunchAction()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Logger/Gelf.php" id="Error/Logger/Gelf.php"></a><h3>
+<i class="icon-file"></i>Error/Logger/Gelf.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>6</td>
+<td>No summary for class \Nf\Error\Logger\Gelf</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>Argument $err is missing from the Docblock of log</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for method log()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Front/Response/Http.php" id="Front/Response/Http.php"></a><h3>
+<i class="icon-file"></i>Front/Response/Http.php<small style="float: right;padding-right: 10px;">49</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Front\Response\Http</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No summary for property $_headers</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No summary for property $_headersRaw</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No summary for property $_httpResponseCode</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No summary for property $_isRedirect</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>Argument $name is missing from the Docblock of _normalizeHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No summary for method _normalizeHeader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>Argument $name is missing from the Docblock of setHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>Argument $value is missing from the Docblock of setHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>Argument $replace is missing from the Docblock of setHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No summary for method setHeader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>Argument $url is missing from the Docblock of redirect</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>Argument $code is missing from the Docblock of redirect</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>Argument $exit is missing from the Docblock of redirect</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No summary for method redirect()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>No summary for method isRedirect()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>76</td>
+<td>No summary for method getHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>81</td>
+<td>No summary for method clearHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>88</td>
+<td>Argument $name is missing from the Docblock of clearHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>88</td>
+<td>No summary for method clearHeader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>101</td>
+<td>Argument $value is missing from the Docblock of setRawHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>101</td>
+<td>No summary for method setRawHeader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>111</td>
+<td>No summary for method clearRawHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>117</td>
+<td>Argument $headerRaw is missing from the Docblock of clearRawHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>117</td>
+<td>No summary for method clearRawHeader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>127</td>
+<td>No summary for method clearAllHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>132</td>
+<td>Argument $code is missing from the Docblock of setHttpResponseCode</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>132</td>
+<td>No summary for method setHttpResponseCode()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>146</td>
+<td>No summary for method canSendHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>155</td>
+<td>No summary for method sendHeaders()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>193</td>
+<td>Argument $err is missing from the Docblock of displayError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>193</td>
+<td>Argument $isXhr is missing from the Docblock of displayError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>193</td>
+<td>No summary for method displayError()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>207</td>
+<td>Argument $text is missing from the Docblock of boldText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>207</td>
+<td>Argument $alternativeSeparator is missing from the Docblock of boldText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>207</td>
+<td>No summary for method boldText()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>218</td>
+<td>Argument $beginOrEnd is missing from the Docblock of preFormatErrorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>218</td>
+<td>Argument $alternativeSeparator is missing from the Docblock of preFormatErrorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>218</td>
+<td>No summary for method preFormatErrorText()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>229</td>
+<td>Argument $minutes is missing from the Docblock of setCacheable</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>229</td>
+<td>No summary for method setCacheable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>236</td>
+<td>Argument $type is missing from the Docblock of setContentType</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>236</td>
+<td>No summary for method setContentType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>281</td>
+<td>Argument $text is missing from the Docblock of colorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>281</td>
+<td>Argument $color is missing from the Docblock of colorText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>281</td>
+<td>No summary for method colorText()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>286</td>
+<td>Argument $str is missing from the Docblock of escape</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>286</td>
+<td>No summary for method escape()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="File.php" id="File.php"></a><h3>
+<i class="icon-file"></i>File.php<small style="float: right;padding-right: 10px;">17</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\File</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>Argument $pathname is missing from the Docblock of mkdir</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>Argument $mode is missing from the Docblock of mkdir</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>Argument $recursive is missing from the Docblock of mkdir</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for method mkdir()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>Argument $old is missing from the Docblock of rename</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>Argument $new is missing from the Docblock of rename</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>Argument $mode is missing from the Docblock of rename</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No summary for method rename()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>Argument $src is missing from the Docblock of uncompress</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>Argument $dest is missing from the Docblock of uncompress</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>Argument $unlinkSrc is missing from the Docblock of uncompress</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No summary for method uncompress()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>Argument $input is missing from the Docblock of generatePath</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>Argument $hereMark is missing from the Docblock of generatePath</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No summary for method generatePath()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Db/Resource/Mysqli.php" id="Db/Resource/Mysqli.php"></a><h3>
+<i class="icon-file"></i>Db/Resource/Mysqli.php<small style="float: right;padding-right: 10px;">15</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>4</td>
+<td>No summary for class \Nf\Db\Resource\Mysqli</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_sql</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for property $_res</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No summary for property $_adapter</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>Argument $sql is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>Argument $adapter is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No summary for method execute()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>Argument $mode is missing from the Docblock of fetch</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No summary for method fetch()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No summary for method fetchAll()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>Argument $col is missing from the Docblock of fetchColumn</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No summary for method fetchColumn()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>No summary for method rowCount()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Cache/Apc.php" id="Cache/Apc.php"></a><h3>
+<i class="icon-file"></i>Cache/Apc.php<small style="float: right;padding-right: 10px;">15</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for class \Nf\Cache\Apc</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>Argument $params is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>Argument $keyName is missing from the Docblock of load</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>Argument $keyValues is missing from the Docblock of load</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No summary for method load()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>Argument $keyName is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>Argument $keyValues is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>Argument $data is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>Argument $lifetime is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No summary for method save()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>Argument $keyName is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>Argument $keyValues is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No summary for method delete()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Localization.php" id="Localization.php"></a><h3>
+<i class="icon-file"></i>Localization.php<small style="float: right;padding-right: 10px;">36</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for class \Nf\Localization</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No summary for property $_currentLocale</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>Argument $str is missing from the Docblock of normalizeLocale</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No summary for method normalizeLocale()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>Argument $locale is missing from the Docblock of setLocale</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No summary for method setLocale()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No summary for method getLocale()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>Argument $timestamp is missing from the Docblock of formatDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>Argument $formatDate is missing from the Docblock of formatDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>Argument $formatTime is missing from the Docblock of formatDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No summary for method formatDate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>Argument $timestamp is missing from the Docblock of formatOther</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>Argument $format is missing from the Docblock of formatOther</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No summary for method formatOther()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>Argument $timestamp is missing from the Docblock of formatDay</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>Argument $fullName is missing from the Docblock of formatDay</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No summary for method formatDay()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>Argument $timestamp is missing from the Docblock of formatMonth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>Argument $fullName is missing from the Docblock of formatMonth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No summary for method formatMonth()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>Argument $amount is missing from the Docblock of formatCurrency</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>Argument $currency is missing from the Docblock of formatCurrency</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No summary for method formatCurrency()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>Argument $value is missing from the Docblock of formatNumber</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>No summary for method formatNumber()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>Argument $date is missing from the Docblock of dateToTimestamp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>Argument $formatDate is missing from the Docblock of dateToTimestamp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>Argument $formatTime is missing from the Docblock of dateToTimestamp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>Argument $acceptISOFormat is missing from the Docblock of dateToTimestamp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>No summary for method dateToTimestamp()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>92</td>
+<td>Argument $date is missing from the Docblock of isISOFormat</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>92</td>
+<td>No summary for method isISOFormat()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>104</td>
+<td>Argument $timestamp is missing from the Docblock of isTimestamp</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>104</td>
+<td>No summary for method isTimestamp()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Exception/Http/NotFound.php" id="Error/Exception/Http/NotFound.php"></a><h3>
+<i class="icon-file"></i>Error/Exception/Http/NotFound.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>6</td>
+<td>No summary for class \Nf\Error\Exception\Http\NotFound</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_httpStatus</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Cache/Memcached.php" id="Cache/Memcached.php"></a><h3>
+<i class="icon-file"></i>Cache/Memcached.php<small style="float: right;padding-right: 10px;">16</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for class \Nf\Cache\Memcached</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for property $_memcache</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>Argument $params is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>Argument $keyName is missing from the Docblock of load</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>Argument $keyValues is missing from the Docblock of load</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No summary for method load()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>Argument $keyName is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>Argument $keyValues is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>Argument $data is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>Argument $lifetime is missing from the Docblock of save</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No summary for method save()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>Argument $keyName is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>Argument $keyValues is missing from the Docblock of delete</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No summary for method delete()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Front/Controller.php" id="Front/Controller.php"></a><h3>
+<i class="icon-file"></i>Front/Controller.php<small style="float: right;padding-right: 10px;">15</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\Front\Controller</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_front</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for property $_view</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>Argument $front is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No summary for method getParams()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>Argument $var is missing from the Docblock of __get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No summary for method __get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No summary for method getRequest()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No summary for method getResponse()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No summary for method init()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No summary for method postAction()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>60</td>
+<td>Argument $lbl is missing from the Docblock of getLabel</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>60</td>
+<td>No summary for method getLabel()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Ini.php" id="Ini.php"></a><h3>
+<i class="icon-file"></i>Ini.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>Argument $fallback_section_name is missing from the Docblock of parse</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>175</td>
+<td>Argument $array is missing from the Docblock of bindArrayToObject</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>175</td>
+<td>No summary for method bindArrayToObject()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>198</td>
+<td>Argument $level is missing from the Docblock of arrayMergeRecursive</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Exception/Http/BadRequest.php" id="Error/Exception/Http/BadRequest.php"></a><h3>
+<i class="icon-file"></i>Error/Exception/Http/BadRequest.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No summary for property $_httpStatus</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No summary for property $_errors</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No summary for method getErrors()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Session/Mysqli.php" id="Session/Mysqli.php"></a><h3>
+<i class="icon-file"></i>Session/Mysqli.php<small style="float: right;padding-right: 10px;">21</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for class \Nf\Session\Mysqli</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for property $_lifeTime</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No summary for property $_connection</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No summary for property $_params</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>Argument $params is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>Argument $lifetime is missing from the Docblock of __construct</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>Argument $savePath is missing from the Docblock of open</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>Argument $sessionName is missing from the Docblock of open</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No summary for method open()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No summary for method close()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>Argument $sessionId is missing from the Docblock of read</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No summary for method read()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>Argument $sessionId is missing from the Docblock of write</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>Argument $data is missing from the Docblock of write</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No summary for method write()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>Argument $sessionId is missing from the Docblock of destroy</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No summary for method destroy()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>No summary for method gc()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="View/Php.php" id="View/Php.php"></a><h3>
+<i class="icon-file"></i>View/Php.php<small style="float: right;padding-right: 10px;">17</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for class \Nf\View\Php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No summary for property $_vars</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No summary for property $_templateDirectory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No summary for property $_configDirectory</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No summary for property $_response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No summary for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>Argument $key is missing from the Docblock of __get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No summary for method __get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>92</td>
+<td>Argument $name is missing from the Docblock of fetch</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>92</td>
+<td>No summary for method fetch()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>Argument $path is missing from the Docblock of setBasePath</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>No summary for method setBasePath()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>108</td>
+<td>Argument $filepath is missing from the Docblock of configLoad</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>108</td>
+<td>Argument $section is missing from the Docblock of configLoad</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>108</td>
+<td>No summary for method configLoad()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="LabelManager.php" id="LabelManager.php"></a><h3>
+<i class="icon-file"></i>LabelManager.php<small style="float: right;padding-right: 10px;">14</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\LabelManager</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_instance</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No summary for property $_labelsLoaded</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No summary for property $_labels</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>Argument $locale is missing from the Docblock of loadLabels</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>Argument $force is missing from the Docblock of loadLabels</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No summary for method loadLabels()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>Argument $lbl is missing from the Docblock of get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No summary for method get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>Argument $section is missing from the Docblock of getAll</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No summary for method getAll()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>Argument $lbl is missing from the Docblock of __get</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No summary for method __get()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Exception/Http/Forbidden.php" id="Error/Exception/Http/Forbidden.php"></a><h3>
+<i class="icon-file"></i>Error/Exception/Http/Forbidden.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>6</td>
+<td>No summary for class \Nf\Error\Exception\Http\Forbidden</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No summary for property $_httpStatus</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Registry.php" id="Registry.php"></a><h3>
+<i class="icon-file"></i>Registry.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\Registry</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for property $_registry</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>125</td>
+<td>No summary for method offsetExists()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Image.php" id="Image.php"></a><h3>
+<i class="icon-file"></i>Image.php<small style="float: right;padding-right: 10px;">12</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No summary was found for this file</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No summary for class \Nf\Image</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>Argument $imagePath is missing from the Docblock of generateThumbnail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>Argument $thumbnailPath is missing from the Docblock of generateThumbnail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>Argument $thumbnailWidth is missing from the Docblock of generateThumbnail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>Argument $thumbnailHeight is missing from the Docblock of generateThumbnail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>Argument $cut is missing from the Docblock of generateThumbnail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No summary for method generateThumbnail()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>121</td>
+<td>Argument $image is missing from the Docblock of entropy</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>121</td>
+<td>No summary for method entropy()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>142</td>
+<td>Argument $sourceFile is missing from the Docblock of identifyImage</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>142</td>
+<td>No summary for method identifyImage()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.2</a> and<br>
+            generated on 2015-05-01T16:26:48+02:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Nf\Front;
+
+class Controller {
+
+	protected $_front;
+	protected $_view;
+
+	public function __construct($front) {
+		$this-&gt;_front=$front;
+	}
+
+	public function getParams() {
+		return $this-&gt;_front-&gt;getParams();
+	}
+
+	public function __get($var) {
+		if($var=='view') {
+			if(is_null($this-&gt;_view)) {
+				$this-&gt;_view=$this-&gt;_front-&gt;getView();
+			}
+			return $this-&gt;_view;
+		}
+		elseif($var=='front') {
+			return $this-&gt;_front;
+		}
+		elseif($var=='session') {
+			return $this-&gt;_front-&gt;getSession();
+		}
+		elseif($var=='request') {
+			return $this-&gt;_front-&gt;getRequest();
+		}
+		elseif($var=='response') {
+			return $this-&gt;_front-&gt;getResponse();
+		}
+		else {
+			return $this-&gt;$var;
+		}
+	}
+	
+	public function getRequest() {
+	    return $this-&gt;_front-&gt;getRequest();
+	}
+	
+	public function getResponse() {
+	    return $this-&gt;_front-&gt;getResponse();
+	}
+
+	// called after dispatch
+	public function init() {
+		return true;
+	}
+
+	// called after action
+	public function postAction() {
+
+	}
+
+	public function getLabel($lbl) {
+	   return \Nf\LabelManager::get($lbl);
+	}
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

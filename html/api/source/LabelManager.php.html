@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Nf;
+
+class LabelManager extends Singleton {
+
+	protected static $_instance;
+
+	private $_labelsLoaded=false;
+	private $_labels=array();
+
+	// load the labels
+	public function loadLabels($locale, $force=false) {
+		if(!$this-&gt;_labelsLoaded || $force) {
+			if(file_exists(\Nf\Registry::get('applicationPath') . '/labels/' . $locale . '.ini')) {
+				$this-&gt;_labels=parse_ini_file(\Nf\Registry::get('applicationPath') . '/labels/' . $locale . '.ini', true);
+				$this-&gt;_labelsLoaded=true;
+			}
+			else {
+				throw new \Exception('Cannot load labels for this locale (' . $locale . ')');
+			}
+		}
+	}
+
+	public static function get($lbl) {
+		$instance=self::$_instance;
+		return $instance-&gt;_labels[$lbl];
+	}
+
+	public static function getAll($section=null) {
+		$instance=self::$_instance;
+		if($section!=null) {
+			return $instance-&gt;_labels[$section];
+		}
+		else {
+			return $instance-&gt;_labels;
+		}
+	}
+
+	public function __get($lbl) {
+		return $this-&gt;_labels[$lbl];
+	}
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,299 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf\Db\Adapter;
+
+abstract class AbstractAdapter
+{
+
+    protected $_config = array();
+
+    protected $_connection = null;
+
+    protected $_autoQuoteIdentifiers = true;
+
+    protected $_cache = false;
+
+    public function __construct($config)
+    {
+        if (! is_array($config)) {
+            throw new \Exception('Adapter parameters must be in an array');
+        }
+        if (! isset($config['charset'])) {
+            $config['charset'] = null;
+        }
+        $this-&gt;_config = $config;
+    }
+
+    public function getConnection()
+    {
+        $this-&gt;_connect();
+        return $this-&gt;_connection;
+    }
+
+    public function query($sql)
+    {
+        $this-&gt;_connect();
+        $res = new $this-&gt;_resourceClass($sql, $this);
+        $res-&gt;execute();
+        
+        return $res;
+    }
+
+    public function fetchAll($sql)
+    {
+        $cacheKey = md5($sql) . 'All';
+        
+        if (($result = $this-&gt;_getCachedResult($cacheKey)) === false) {
+            $stmt = $this-&gt;query($sql);
+            $result = $stmt-&gt;fetchAll(\Nf\Db::FETCH_ASSOC);
+            $this-&gt;_setCachedResult($cacheKey, $result);
+        }
+        $this-&gt;disableCache();
+        return $result;
+    }
+
+    public function fetchAssoc($sql)
+    {
+        $cacheKey = md5($sql) . 'Assoc';
+        
+        if (($result = $this-&gt;_getCachedResult($cacheKey)) === false) {
+            $stmt = $this-&gt;query($sql);
+            $result = array();
+            while ($row = $stmt-&gt;fetch(\Nf\Db::FETCH_ASSOC)) {
+                $tmp = array_values(array_slice($row, 0, 1));
+                $result[$tmp[0]] = $row;
+            }
+            $this-&gt;_setCachedResult($cacheKey, $result);
+        }
+        $this-&gt;disableCache();
+        return $result;
+    }
+
+    public function fetchRow($sql)
+    {
+        $cacheKey = md5($sql) . 'Row';
+        
+        if (($result = $this-&gt;_getCachedResult($cacheKey)) === false) {
+            $stmt = $this-&gt;query($sql);
+            $result = $stmt-&gt;fetch();
+            $this-&gt;_setCachedResult($cacheKey, $result);
+        }
+        $this-&gt;disableCache();
+        return $result;
+    }
+
+    public function fetchCol($sql)
+    {
+        $cacheKey = md5($sql) . 'Col';
+        
+        if (($result = $this-&gt;_getCachedResult($cacheKey)) === false) {
+            $stmt = $this-&gt;query($sql);
+            $result = $stmt-&gt;fetchAll(\Nf\Db::FETCH_COLUMN, 0);
+            $this-&gt;_setCachedResult($cacheKey, $result);
+        }
+        $this-&gt;disableCache();
+        return $result;
+    }
+
+    public function fetchOne($sql)
+    {
+        $cacheKey = md5($sql) . 'One';
+        
+        if (($result = $this-&gt;_getCachedResult($cacheKey)) === false) {
+            $stmt = $this-&gt;query($sql);
+            $result = $stmt-&gt;fetchColumn(0);
+            $this-&gt;_setCachedResult($cacheKey, $result);
+        }
+        $this-&gt;disableCache();
+        return $result;
+    }
+
+    public function fetchPairs($sql)
+    {
+        $cacheKey = md5($sql) . 'Pairs';
+        
+        if (($result = $this-&gt;_getCachedResult($cacheKey)) === false) {
+            $stmt = $this-&gt;query($sql);
+            $result = array();
+            while ($row = $stmt-&gt;fetch(\Nf\Db::FETCH_NUM)) {
+                $result[$row[0]] = $row[1];
+            }
+            $this-&gt;_setCachedResult($cacheKey, $result);
+        }
+        $this-&gt;disableCache();
+        return $result;
+    }
+
+    public function beginTransaction()
+    {
+        $this-&gt;_beginTransaction();
+        return $this;
+    }
+
+    public function commit()
+    {
+        $this-&gt;_commit();
+        return $this;
+    }
+
+    public function rollback()
+    {
+        $this-&gt;_rollback();
+        return $this;
+    }
+
+    public function enableCache($lifetime = \Nf\Cache::DEFAULT_LIFETIME, $cacheKey = null)
+    {
+        $this-&gt;_cache = array(
+            'lifetime' =&gt; $lifetime
+        );
+        if ($cacheKey !== null)
+            $this-&gt;_cache['key'] = $cacheKey;
+        return $this;
+    }
+
+    public function disableCache()
+    {
+        $this-&gt;_cache = false;
+        return $this;
+    }
+
+    protected function _getCachedResult($cacheKey)
+    {
+        if ($this-&gt;_cache !== false) {
+            $cache = \Nf\Front::getInstance()-&gt;getCache('global');
+            $cacheKey = isset($this-&gt;_cache['key']) ? $this-&gt;_cache['key'] : $cacheKey;
+            return $cache-&gt;load('sql', $cacheKey);
+        }
+        return false;
+    }
+
+    protected function _setCachedResult($cacheKey, $result)
+    {
+        if ($this-&gt;_cache !== false) {
+            $cache = \Nf\Front::getInstance()-&gt;getCache('global');
+            $cacheKey = isset($this-&gt;_cache['key']) ? $this-&gt;_cache['key'] : $cacheKey;
+            return $cache-&gt;save('sql', $cacheKey, $result, $this-&gt;_cache['lifetime']);
+        }
+        return false;
+    }
+
+    protected function _quote($value)
+    {
+        if (null === $value) {
+            return 'NULL';
+        } elseif (is_int($value) || $value instanceof \Nf\Db\Expression) {
+            return $value;
+        } elseif (is_float($value)) {
+            return sprintf('%F', $value);
+        } else {
+            return &quot;'&quot; . addcslashes($value, &quot;\000\n\r\\'\&quot;\032&quot;) . &quot;'&quot;;
+        }
+    }
+
+    public function quote($value, $type = null)
+    {
+        $this-&gt;_connect();
+        return $this-&gt;_quote($value);
+    }
+
+    public function quoteIdentifier($ident, $auto = false)
+    {
+        return $this-&gt;_quoteIdentifierAs($ident, null, $auto);
+    }
+
+    public function quoteColumnAs($ident, $alias, $auto = false)
+    {
+        return $this-&gt;_quoteIdentifierAs($ident, $alias, $auto);
+    }
+
+    protected function _quoteIdentifierAs($ident, $alias = null, $auto = false, $as = ' AS ')
+    {
+        if (is_string($ident)) {
+            $ident = explode('.', $ident);
+        }
+        if (is_array($ident)) {
+            $segments = array();
+            foreach ($ident as $segment) {
+                $segments[] = $this-&gt;_quoteIdentifier($segment, $auto);
+            }
+            if ($alias !== null &amp;&amp; end($ident) == $alias) {
+                $alias = null;
+            }
+            $quoted = implode('.', $segments);
+        } else {
+            $quoted = $this-&gt;_quoteIdentifier($ident, $auto);
+        }
+        
+        if ($alias !== null) {
+            $quoted .= $as . $this-&gt;_quoteIdentifier($alias, $auto);
+        }
+        return $quoted;
+    }
+
+    protected function _quoteIdentifier($value, $auto = false)
+    {
+        if ($auto === false || $this-&gt;_autoQuoteIdentifiers === true) {
+            $q = $this-&gt;getQuoteIdentifierSymbol();
+            return ($q . str_replace(&quot;$q&quot;, &quot;$q$q&quot;, $value) . $q);
+        }
+        return $value;
+    }
+
+    public function getQuoteIdentifierSymbol()
+    {
+        return '&quot;';
+    }
+
+    abstract protected function _connect();
+
+    abstract public function isConnected();
+
+    abstract public function closeConnection();
+
+    abstract public function lastInsertId($tableName = null, $primaryKey = null);
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,3379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Nf.html">\Nf</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">721</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1502667068"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1502667068" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1454216917"></a>
+                                <a href="../namespaces/Nf.html" style="margin-left: 30px; padding-left: 0">Nf</a>
+            </div>
+            <div id="namespace-1454216917" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-917139493"></a>
+                                <a href="../namespaces/Nf.Cache.html" style="margin-left: 30px; padding-left: 0">Cache</a>
+            </div>
+            <div id="namespace-917139493" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Nf.Cache.CacheInterface.html">CacheInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Nf.Cache.Apc.html">Apc</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Cache.Memcached.html">Memcached</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-512015797"></a>
+                                <a href="../namespaces/Nf.Db.html" style="margin-left: 30px; padding-left: 0">Db</a>
+            </div>
+            <div id="namespace-512015797" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-127758789"></a>
+                                <a href="../namespaces/Nf.Db.Adapter.html" style="margin-left: 30px; padding-left: 0">Adapter</a>
+            </div>
+            <div id="namespace-127758789" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Db.Adapter.AbstractAdapter.html">AbstractAdapter</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Db.Adapter.Mysqli.html">Mysqli</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-660333418"></a>
+                                <a href="../namespaces/Nf.Db.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-660333418" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Db.Resource.Mysqli.html">Mysqli</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Db.Expression.html">Expression</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1285737237"></a>
+                                <a href="../namespaces/Nf.Error.html" style="margin-left: 30px; padding-left: 0">Error</a>
+            </div>
+            <div id="namespace-1285737237" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-712829241"></a>
+                                <a href="../namespaces/Nf.Error.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-712829241" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-246622787"></a>
+                                <a href="../namespaces/Nf.Error.Exception.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-246622787" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Error.Exception.Http.BadRequest.html">BadRequest</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Error.Exception.Http.Forbidden.html">Forbidden</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Error.Exception.Http.NoContent.html">NoContent</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Error.Exception.Http.NotFound.html">NotFound</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Error.Exception.Http.Unauthorized.html">Unauthorized</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Error.Exception.ClientException.html">ClientException</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Error.Exception.Http.html">Http</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1106576662"></a>
+                                <a href="../namespaces/Nf.Error.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+            </div>
+            <div id="namespace-1106576662" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Error.Logger.Gelf.html">Gelf</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Error.Handler.html">Handler</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1554449606"></a>
+                                <a href="../namespaces/Nf.Front.html" style="margin-left: 30px; padding-left: 0">Front</a>
+            </div>
+            <div id="namespace-1554449606" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1700906566"></a>
+                                <a href="../namespaces/Nf.Front.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-1700906566" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Front.Request.AbstractRequest.html">AbstractRequest</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Front.Request.Cli.html">Cli</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Front.Request.Http.html">Http</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1987138270"></a>
+                                <a href="../namespaces/Nf.Front.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-1987138270" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Front.Response.AbstractResponse.html">AbstractResponse</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Front.Response.Cli.html">Cli</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Front.Response.Http.html">Http</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Front.Controller.html">Controller</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-134720587"></a>
+                                <a href="../namespaces/Nf.Session.html" style="margin-left: 30px; padding-left: 0">Session</a>
+            </div>
+            <div id="namespace-134720587" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Session.Memcached.html">Memcached</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Session.Mysqli.html">Mysqli</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1549827754"></a>
+                                <a href="../namespaces/Nf.View.html" style="margin-left: 30px; padding-left: 0">View</a>
+            </div>
+            <div id="namespace-1549827754" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.View.Php.html">Php</a></li>
+                                                    <li class="class"><a href="../classes/Nf.View.Smarty.html">Smarty</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Nf.Autoloader.html">Autoloader</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Bootstrap.html">Bootstrap</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Cache.html">Cache</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Date.html">Date</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Db.html">Db</a></li>
+                                                    <li class="class"><a href="../classes/Nf.File.html">File</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Front.html">Front</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Ini.html">Ini</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Input.html">Input</a></li>
+                                                    <li class="class"><a href="../classes/Nf.LabelManager.html">LabelManager</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Localization.html">Localization</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Registry.html">Registry</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Session.html">Session</a></li>
+                                                    <li class="class"><a href="../classes/Nf.Singleton.html">Singleton</a></li>
+                                                    <li class="class"><a href="../classes/Nf.UserAgent.html">UserAgent</a></li>
+                                                    <li class="class"><a href="../classes/Nf.View.html">View</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Nf.html">\Nf</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Nf</small>Input</h1>
+                    <p><em>Filtering and validating for forms, input parameters, etc</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Nf.Input.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_isValid" class="">isValid()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filter" class="">filter()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validate" class="">validate()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_getMessages" class="">getMessages()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_getFields" class="">getFields()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_getFilteredFields" class="">getFilteredFields()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method___isset" class="">__isset()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterNullIfEmptyString" class="">filterNullIfEmptyString()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterInt" class="">filterInt()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterNatural" class="">filterNatural()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterNaturalNonZero" class="">filterNaturalNonZero()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterAlpha" class="">filterAlpha()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterAlphaNum" class="">filterAlphaNum()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterBase64" class="">filterBase64()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterBoolean" class="">filterBoolean()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterNumeric" class="">filterNumeric()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterStripTags" class="">filterStripTags()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterRegexp" class="">filterRegexp()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterString" class="">filterString()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterTrim" class="">filterTrim()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_filterUrl" class="">filterUrl()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateInt" class="">validateInt()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateNatural" class="">validateNatural()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateNaturalNonZero" class="">validateNaturalNonZero()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateAlpha" class="">validateAlpha()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateAlphaNum" class="">validateAlphaNum()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateBase64" class="">validateBase64()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateBoolean" class="">validateBoolean()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateNumeric" class="">validateNumeric()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateEquals" class="">validateEquals()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateRegexp" class="">validateRegexp()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateRequired" class="">validateRequired()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateNotEmpty" class="">validateNotEmpty()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateGreaterThan" class="">validateGreaterThan()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateLessThan" class="">validateLessThan()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateMinLength" class="">validateMinLength()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateMaxLength" class="">validateMaxLength()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateExactLength" class="">validateExactLength()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateEmail" class="">validateEmail()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateMatches" class="">validateMatches()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateUrl" class="">validateUrl()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_validateDefault" class="">validateDefault()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Nf.Input.html#constant_F_INTEGER" class="">F_INTEGER</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_NATURAL" class="">F_NATURAL</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_NATURALNONZERO" class="">F_NATURALNONZERO</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_ALPHA" class="">F_ALPHA</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_ALPHANUM" class="">F_ALPHANUM</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_NUMERIC" class="">F_NUMERIC</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_BASE64" class="">F_BASE64</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_REGEXP" class="">F_REGEXP</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_STRING" class="">F_STRING</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_TRIM" class="">F_TRIM</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_URL" class="">F_URL</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_STRIPTAGS" class="">F_STRIPTAGS</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_NULL" class="">F_NULL</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_F_BOOLEAN" class="">F_BOOLEAN</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_INTEGER" class="">V_INTEGER</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_NATURAL" class="">V_NATURAL</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_NATURALNONZERO" class="">V_NATURALNONZERO</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_ALPHA" class="">V_ALPHA</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_ALPHANUM" class="">V_ALPHANUM</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_NUMERIC" class="">V_NUMERIC</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_BASE64" class="">V_BASE64</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_EQUALS" class="">V_EQUALS</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_REGEXP" class="">V_REGEXP</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_REQUIRED" class="">V_REQUIRED</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_NOTEMPTY" class="">V_NOTEMPTY</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_GREATERTHAN" class="">V_GREATERTHAN</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_LESSTHAN" class="">V_LESSTHAN</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_MINLENGTH" class="">V_MINLENGTH</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_MAXLENGTH" class="">V_MAXLENGTH</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_EXACTLENGTH" class="">V_EXACTLENGTH</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_EMAIL" class="">V_EMAIL</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_MATCHES" class="">V_MATCHES</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_URL" class="">V_URL</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_DEFAULT" class="">V_DEFAULT</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_V_BOOLEAN" class="">V_BOOLEAN</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_REGEXP_ALPHA" class="">REGEXP_ALPHA</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_REGEXP_ALPHANUM" class="">REGEXP_ALPHANUM</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_REGEXP_BASE64" class="">REGEXP_BASE64</a><br />
+                                                                    <a href="../classes/Nf.Input.html#constant_REGEXP_INT" class="">REGEXP_INT</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Nf.Input.html#method_metaFilterAndValidate" class="">metaFilterAndValidate()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_setField" class="">setField()</a><br />
+                                                                    <a href="../classes/Nf.Input.html#method_isAssoc" class="">isAssoc()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Nf.Input.html#property__params" class="">$_params</a><br />
+                                                                    <a href="../classes/Nf.Input.html#property__filters" class="">$_filters</a><br />
+                                                                    <a href="../classes/Nf.Input.html#property__validators" class="">$_validators</a><br />
+                                                                    <a href="../classes/Nf.Input.html#property__fields" class="">$_fields</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Input.html"><div class="path-wrapper">Input.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Nf</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Nf\Input</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Julien Ricard</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_INTEGER" name="constant_F_INTEGER" class="anchor"></a>
+            <article id="constant_F_INTEGER" class="constant">
+                <h3 class="">F_INTEGER</h3>
+                <pre class="signature">F_INTEGER</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_NATURAL" name="constant_F_NATURAL" class="anchor"></a>
+            <article id="constant_F_NATURAL" class="constant">
+                <h3 class="">F_NATURAL</h3>
+                <pre class="signature">F_NATURAL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_NATURALNONZERO" name="constant_F_NATURALNONZERO" class="anchor"></a>
+            <article id="constant_F_NATURALNONZERO" class="constant">
+                <h3 class="">F_NATURALNONZERO</h3>
+                <pre class="signature">F_NATURALNONZERO</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_ALPHA" name="constant_F_ALPHA" class="anchor"></a>
+            <article id="constant_F_ALPHA" class="constant">
+                <h3 class="">F_ALPHA</h3>
+                <pre class="signature">F_ALPHA</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_ALPHANUM" name="constant_F_ALPHANUM" class="anchor"></a>
+            <article id="constant_F_ALPHANUM" class="constant">
+                <h3 class="">F_ALPHANUM</h3>
+                <pre class="signature">F_ALPHANUM</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_NUMERIC" name="constant_F_NUMERIC" class="anchor"></a>
+            <article id="constant_F_NUMERIC" class="constant">
+                <h3 class="">F_NUMERIC</h3>
+                <pre class="signature">F_NUMERIC</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_BASE64" name="constant_F_BASE64" class="anchor"></a>
+            <article id="constant_F_BASE64" class="constant">
+                <h3 class="">F_BASE64</h3>
+                <pre class="signature">F_BASE64</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_REGEXP" name="constant_F_REGEXP" class="anchor"></a>
+            <article id="constant_F_REGEXP" class="constant">
+                <h3 class="">F_REGEXP</h3>
+                <pre class="signature">F_REGEXP</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_STRING" name="constant_F_STRING" class="anchor"></a>
+            <article id="constant_F_STRING" class="constant">
+                <h3 class="">F_STRING</h3>
+                <pre class="signature">F_STRING</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_TRIM" name="constant_F_TRIM" class="anchor"></a>
+            <article id="constant_F_TRIM" class="constant">
+                <h3 class="">F_TRIM</h3>
+                <pre class="signature">F_TRIM</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_URL" name="constant_F_URL" class="anchor"></a>
+            <article id="constant_F_URL" class="constant">
+                <h3 class="">F_URL</h3>
+                <pre class="signature">F_URL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_STRIPTAGS" name="constant_F_STRIPTAGS" class="anchor"></a>
+            <article id="constant_F_STRIPTAGS" class="constant">
+                <h3 class="">F_STRIPTAGS</h3>
+                <pre class="signature">F_STRIPTAGS</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_NULL" name="constant_F_NULL" class="anchor"></a>
+            <article id="constant_F_NULL" class="constant">
+                <h3 class="">F_NULL</h3>
+                <pre class="signature">F_NULL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_F_BOOLEAN" name="constant_F_BOOLEAN" class="anchor"></a>
+            <article id="constant_F_BOOLEAN" class="constant">
+                <h3 class="">F_BOOLEAN</h3>
+                <pre class="signature">F_BOOLEAN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_INTEGER" name="constant_V_INTEGER" class="anchor"></a>
+            <article id="constant_V_INTEGER" class="constant">
+                <h3 class="">V_INTEGER</h3>
+                <pre class="signature">V_INTEGER</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_NATURAL" name="constant_V_NATURAL" class="anchor"></a>
+            <article id="constant_V_NATURAL" class="constant">
+                <h3 class="">V_NATURAL</h3>
+                <pre class="signature">V_NATURAL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_NATURALNONZERO" name="constant_V_NATURALNONZERO" class="anchor"></a>
+            <article id="constant_V_NATURALNONZERO" class="constant">
+                <h3 class="">V_NATURALNONZERO</h3>
+                <pre class="signature">V_NATURALNONZERO</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_ALPHA" name="constant_V_ALPHA" class="anchor"></a>
+            <article id="constant_V_ALPHA" class="constant">
+                <h3 class="">V_ALPHA</h3>
+                <pre class="signature">V_ALPHA</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_ALPHANUM" name="constant_V_ALPHANUM" class="anchor"></a>
+            <article id="constant_V_ALPHANUM" class="constant">
+                <h3 class="">V_ALPHANUM</h3>
+                <pre class="signature">V_ALPHANUM</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_NUMERIC" name="constant_V_NUMERIC" class="anchor"></a>
+            <article id="constant_V_NUMERIC" class="constant">
+                <h3 class="">V_NUMERIC</h3>
+                <pre class="signature">V_NUMERIC</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_BASE64" name="constant_V_BASE64" class="anchor"></a>
+            <article id="constant_V_BASE64" class="constant">
+                <h3 class="">V_BASE64</h3>
+                <pre class="signature">V_BASE64</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_EQUALS" name="constant_V_EQUALS" class="anchor"></a>
+            <article id="constant_V_EQUALS" class="constant">
+                <h3 class="">V_EQUALS</h3>
+                <pre class="signature">V_EQUALS</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_REGEXP" name="constant_V_REGEXP" class="anchor"></a>
+            <article id="constant_V_REGEXP" class="constant">
+                <h3 class="">V_REGEXP</h3>
+                <pre class="signature">V_REGEXP</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_REQUIRED" name="constant_V_REQUIRED" class="anchor"></a>
+            <article id="constant_V_REQUIRED" class="constant">
+                <h3 class="">V_REQUIRED</h3>
+                <pre class="signature">V_REQUIRED</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_NOTEMPTY" name="constant_V_NOTEMPTY" class="anchor"></a>
+            <article id="constant_V_NOTEMPTY" class="constant">
+                <h3 class="">V_NOTEMPTY</h3>
+                <pre class="signature">V_NOTEMPTY</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_GREATERTHAN" name="constant_V_GREATERTHAN" class="anchor"></a>
+            <article id="constant_V_GREATERTHAN" class="constant">
+                <h3 class="">V_GREATERTHAN</h3>
+                <pre class="signature">V_GREATERTHAN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_LESSTHAN" name="constant_V_LESSTHAN" class="anchor"></a>
+            <article id="constant_V_LESSTHAN" class="constant">
+                <h3 class="">V_LESSTHAN</h3>
+                <pre class="signature">V_LESSTHAN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_MINLENGTH" name="constant_V_MINLENGTH" class="anchor"></a>
+            <article id="constant_V_MINLENGTH" class="constant">
+                <h3 class="">V_MINLENGTH</h3>
+                <pre class="signature">V_MINLENGTH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_MAXLENGTH" name="constant_V_MAXLENGTH" class="anchor"></a>
+            <article id="constant_V_MAXLENGTH" class="constant">
+                <h3 class="">V_MAXLENGTH</h3>
+                <pre class="signature">V_MAXLENGTH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_EXACTLENGTH" name="constant_V_EXACTLENGTH" class="anchor"></a>
+            <article id="constant_V_EXACTLENGTH" class="constant">
+                <h3 class="">V_EXACTLENGTH</h3>
+                <pre class="signature">V_EXACTLENGTH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_EMAIL" name="constant_V_EMAIL" class="anchor"></a>
+            <article id="constant_V_EMAIL" class="constant">
+                <h3 class="">V_EMAIL</h3>
+                <pre class="signature">V_EMAIL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_MATCHES" name="constant_V_MATCHES" class="anchor"></a>
+            <article id="constant_V_MATCHES" class="constant">
+                <h3 class="">V_MATCHES</h3>
+                <pre class="signature">V_MATCHES</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_URL" name="constant_V_URL" class="anchor"></a>
+            <article id="constant_V_URL" class="constant">
+                <h3 class="">V_URL</h3>
+                <pre class="signature">V_URL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_DEFAULT" name="constant_V_DEFAULT" class="anchor"></a>
+            <article id="constant_V_DEFAULT" class="constant">
+                <h3 class="">V_DEFAULT</h3>
+                <pre class="signature">V_DEFAULT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_V_BOOLEAN" name="constant_V_BOOLEAN" class="anchor"></a>
+            <article id="constant_V_BOOLEAN" class="constant">
+                <h3 class="">V_BOOLEAN</h3>
+                <pre class="signature">V_BOOLEAN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGEXP_ALPHA" name="constant_REGEXP_ALPHA" class="anchor"></a>
+            <article id="constant_REGEXP_ALPHA" class="constant">
+                <h3 class="">REGEXP_ALPHA</h3>
+                <pre class="signature">REGEXP_ALPHA</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGEXP_ALPHANUM" name="constant_REGEXP_ALPHANUM" class="anchor"></a>
+            <article id="constant_REGEXP_ALPHANUM" class="constant">
+                <h3 class="">REGEXP_ALPHANUM</h3>
+                <pre class="signature">REGEXP_ALPHANUM</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGEXP_BASE64" name="constant_REGEXP_BASE64" class="anchor"></a>
+            <article id="constant_REGEXP_BASE64" class="constant">
+                <h3 class="">REGEXP_BASE64</h3>
+                <pre class="signature">REGEXP_BASE64</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGEXP_INT" name="constant_REGEXP_INT" class="anchor"></a>
+            <article id="constant_REGEXP_INT" class="constant">
+                <h3 class="">REGEXP_INT</h3>
+                <pre class="signature">REGEXP_INT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__params" name="property__params" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$_params</h3>
+                <pre class="signature">$_params : </pre>
+                <p><em>An array of every input parameter</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__filters" name="property__filters" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$_filters</h3>
+                <pre class="signature">$_filters : </pre>
+                <p><em>An array of every filter instantiated for every input parameter</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__validators" name="property__validators" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$_validators</h3>
+                <pre class="signature">$_validators : </pre>
+                <p><em>An array of every validator instantiated for every input parameter</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__fields" name="property__fields" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$_fields</h3>
+                <pre class="signature">$_fields : </pre>
+                <p><em>An array of every parameter after filtering and validating</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$params</span>, array  <span class="argument">$filters</span>, array  <span class="argument">$validators</span>) : \Nf\Input</pre>
+                <p><em>The constructor to use while filtering/validating input</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$params </td>
+                                <td><p>the input paramters to filter and validate</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$filters </td>
+                                <td><p>the list of filters for each parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$validators </td>
+                                <td><p>the list of validators for each parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Nf.Input.html">\Nf\Input</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isValid" name="method_isValid" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isValid()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isValid() : boolean</pre>
+                <p><em>This method has to be called after specifying the parameters, filters and validators</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>returns true if every validator is validating, or false if any validator is not
+This method always filters before validating</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filter" name="method_filter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filter() : void</pre>
+                <p><em>Filters every input parameter</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validate" name="method_validate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validate() : void</pre>
+                <p><em>Validates every input parameter</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMessages" name="method_getMessages" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMessages()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMessages() : array</pre>
+                <p><em>Returns every incorrect field and the corresponding validator</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFields" name="method_getFields" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFields()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFields() : array</pre>
+                <p><em>Returns the original input parameters</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFilteredFields" name="method_getFilteredFields" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFilteredFields()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFilteredFields() : array</pre>
+                <p><em>Returns every input parameter after content filtering</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(mixed  <span class="argument">$paramName</span>) : mixed</pre>
+                <p><em>Returns the filtered value for any field given in the params</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$paramName </td>
+                                <td><p>the name of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___isset" name="method___isset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__isset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__isset(mixed  <span class="argument">$paramName</span>) : boolean</pre>
+                <p><em>Returns true or false if the input parameter was specified within the instanciation</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$paramName </td>
+                                <td><p>the name of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterNullIfEmptyString" name="method_filterNullIfEmptyString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterNullIfEmptyString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterNullIfEmptyString(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Used for filtering integer as string in json data</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterInt" name="method_filterInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterInt(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as an integer</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterNatural" name="method_filterNatural" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterNatural()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterNatural(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as a natural (positive integer)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterNaturalNonZero" name="method_filterNaturalNonZero" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterNaturalNonZero()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterNaturalNonZero(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as a strict natural (strictly positive integer)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterAlpha" name="method_filterAlpha" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterAlpha()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterAlpha(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as alpha (letters only, no digit)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterAlphaNum" name="method_filterAlphaNum" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterAlphaNum()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterAlphaNum(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as an alphanumeric</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterBase64" name="method_filterBase64" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterBase64()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterBase64(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as a base64 string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterBoolean" name="method_filterBoolean" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterBoolean()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterBoolean(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as a boolean</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterNumeric" name="method_filterNumeric" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterNumeric()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterNumeric(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as a float</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterStripTags" name="method_filterStripTags" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterStripTags()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterStripTags(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Removes the html tags from input</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterRegexp" name="method_filterRegexp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterRegexp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterRegexp(mixed  <span class="argument">$value</span>, string  <span class="argument">$regexp</span>) : mixed</pre>
+                <p><em>Parses the value along a regexp</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$regexp </td>
+                                <td><p>the regular expression to filter the input parameter to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterString" name="method_filterString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterString(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Parses the value as a string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterTrim" name="method_filterTrim" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterTrim()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterTrim(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Trims the string (default php behaviour)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterUrl" name="method_filterUrl" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterUrl()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterUrl(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Filters the input string along the php&#039;s internal regexp for a url</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateInt" name="method_validateInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateInt(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is an integer</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateNatural" name="method_validateNatural" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateNatural()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateNatural(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is a natural</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateNaturalNonZero" name="method_validateNaturalNonZero" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateNaturalNonZero()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateNaturalNonZero(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is a positive integer greater than zero</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateAlpha" name="method_validateAlpha" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateAlpha()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateAlpha(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is alpha (letters only)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateAlphaNum" name="method_validateAlphaNum" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateAlphaNum()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateAlphaNum(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is an alphanumeric string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateBase64" name="method_validateBase64" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateBase64()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateBase64(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is a base64 string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateBoolean" name="method_validateBoolean" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateBoolean()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateBoolean(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is a boolean</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateNumeric" name="method_validateNumeric" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateNumeric()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateNumeric(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is a number (float)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateEquals" name="method_validateEquals" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateEquals()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateEquals(mixed  <span class="argument">$value</span>, mixed  <span class="argument">$check</span>) : mixed</pre>
+                <p><em>Validates that the input value equals the second parameter (no type checking)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$check </td>
+                                <td><p>the value of the second parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateRegexp" name="method_validateRegexp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateRegexp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateRegexp(mixed  <span class="argument">$value</span>, string  <span class="argument">$regexp</span>) : mixed</pre>
+                <p><em>Validates that the input value along a regular expression given as second parameter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$regexp </td>
+                                <td><p>the regular expression to validate to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateRequired" name="method_validateRequired" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateRequired()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateRequired(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>This method actually does not exist :) and should not be called directly</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateNotEmpty" name="method_validateNotEmpty" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateNotEmpty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateNotEmpty(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is not an empty string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateGreaterThan" name="method_validateGreaterThan" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateGreaterThan()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateGreaterThan(mixed  <span class="argument">$value</span>, mixed  <span class="argument">$compare</span>) : mixed</pre>
+                <p><em>Validates that the input value is greater than the given parameter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$compare </td>
+                                <td><p>the value to compare to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateLessThan" name="method_validateLessThan" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateLessThan()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateLessThan(mixed  <span class="argument">$value</span>, mixed  <span class="argument">$compare</span>) : mixed</pre>
+                <p><em>Validates that the input value is lesser than the given parameter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$compare </td>
+                                <td><p>the value to compare to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateMinLength" name="method_validateMinLength" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateMinLength()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateMinLength(mixed  <span class="argument">$value</span>, mixed  <span class="argument">$compare</span>) : mixed</pre>
+                <p><em>Validates that the input value has a minimum length of the given parameter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$compare </td>
+                                <td><p>the value to compare to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateMaxLength" name="method_validateMaxLength" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateMaxLength()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateMaxLength(mixed  <span class="argument">$value</span>, mixed  <span class="argument">$compare</span>) : mixed</pre>
+                <p><em>Validates that the input value has a maximum length of the given parameter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$compare </td>
+                                <td><p>the value to compare to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateExactLength" name="method_validateExactLength" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateExactLength()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateExactLength(mixed  <span class="argument">$value</span>, mixed  <span class="argument">$compare</span>) : mixed</pre>
+                <p><em>Validates that the input value has the exact length of the given parameter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$compare </td>
+                                <td><p>the value to compare to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateEmail" name="method_validateEmail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateEmail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateEmail(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is an e-mail address</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateMatches" name="method_validateMatches" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateMatches()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateMatches(mixed  <span class="argument">$value</span>, mixed  <span class="argument">$compareField</span>, mixed  <span class="argument">$instance</span>) : mixed</pre>
+                <p><em>Validates that the input value matches another input parameter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$compareField </td>
+                                <td><p>the name of the input parameter to compare to</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$instance </td>
+                                <td><p>the instance of the Input object</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateUrl" name="method_validateUrl" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateUrl()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateUrl(mixed  <span class="argument">$value</span>) : mixed</pre>
+                <p><em>Validates that the input value is an url</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateDefault" name="method_validateDefault" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validateDefault()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateDefault(mixed  <span class="argument">$value</span>, mixed  <span class="argument">$defaultValue</span>) : mixed</pre>
+                <p><em>Sets the field to a default value if the input value is empty</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$defaultValue </td>
+                                <td><p>the default value to assign if the input value is empty</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_metaFilterAndValidate" name="method_metaFilterAndValidate" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">metaFilterAndValidate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">metaFilterAndValidate(string  <span class="argument">$metaAction</span>) : mixed</pre>
+                <p><em>Does all the work needed to filter and validate the input parameters</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$metaAction </td>
+                                <td><p>(&quot;filter&quot; or &quot;validate&quot;)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setField" name="method_setField" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setField()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setField(mixed  <span class="argument">$paramName</span>, mixed  <span class="argument">$value = false</span>, boolean  <span class="argument">$isValid = null</span>, array  <span class="argument">$validators = null</span>) : mixed</pre>
+                <p><em>After filtering or validating, updates the field with additional data</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$paramName </td>
+                                <td><p>the name of the input parameter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value after filtering</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$isValid </td>
+                                <td><p>is the field valid</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$validators </td>
+                                <td><p>sets the given validators for this parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isAssoc" name="method_isAssoc" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">isAssoc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isAssoc(  <span class="argument">$array</span>) : boolean</pre>
+                <p><em>Indicates if the array is an associative one or not</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$array </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Input.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Input.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Nf.html">\Nf</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 2nd, 2015 at 00:11.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

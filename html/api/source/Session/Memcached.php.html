@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Nf\Session;
+
+use Nf\Session;
+use Nf\Cache;
+
+class Memcached extends Session
+{
+	protected static $_instance=null;
+
+    private $_lifeTime;
+    private $_memcache;
+
+	function __construct($params, $lifetime) {
+        register_shutdown_function('session_write_close');
+        $this-&gt;_memcache = new \Memcache;
+        $this-&gt;_lifeTime = $lifetime;
+        if(strpos($params-&gt;hosts, ',')&gt;0) {
+        	$hosts=explode(',', $params-&gt;hosts);
+        	foreach($hosts as $host) {
+				$this-&gt;_memcache-&gt;addServer($host, $params-&gt;port);
+			}
+			unset($host);
+        }
+        else {
+			$this-&gt;_memcache-&gt;addServer($params-&gt;hosts, $params-&gt;port);
+		}
+    }
+
+    function open($savePath, $sessionName) {
+        
+    }
+
+    function close() {
+        $this-&gt;_memcache = null;
+		return true;
+    }
+
+    function read($sessionId) {
+    	$sessionId = session_id();
+        $cacheKey = Cache::getKeyName('session', $sessionId);
+        if ($sessionId !== &quot;&quot;) {
+        	return $this-&gt;_memcache-&gt;get($cacheKey);
+        }
+    }
+
+    function write($sessionId, $data) {
+        // This is called upon script termination or when session_write_close() is called, which ever is first.
+        $cacheKey = Cache::getKeyName('session', $sessionId);
+		$result = $this-&gt;_memcache-&gt;set($cacheKey, $data, false, $this-&gt;_lifeTime);
+		return $result;
+    }
+
+    function destroy($sessionId) {
+    	$cacheKey=Cache::getKeyName('session', $sessionId);
+        $this-&gt;_memcache-&gt;delete($cacheKey, 0);
+        return true;
+    }
+
+    function gc($notUsedInMemcached) {
+        return true;
+    }
+
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

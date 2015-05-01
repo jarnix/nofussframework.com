@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Nf\Error\Logger;
+
+use \Nf\Registry;
+
+class Gelf
+{
+
+    public function log($err)
+    {
+        $config = Registry::get('config');
+        
+        // We need a transport - UDP via port 12201 is standard.
+        $transport = new \Gelf\Transport\UdpTransport($config-&gt;error-&gt;logger-&gt;gelf-&gt;ip, $config-&gt;error-&gt;logger-&gt;gelf-&gt;port, \Gelf\Transport\UdpTransport::CHUNK_SIZE_LAN);
+        
+        // While the UDP transport is itself a publisher, we wrap it in a real Publisher for convenience
+        // A publisher allows for message validation before transmission, and it calso supports to send messages
+        // to multiple backends at once
+        $publisher = new \Gelf\Publisher();
+        $publisher-&gt;addTransport($transport);
+        
+        $fullMessage = \Nf\Front\Response\Cli::displayErrorHelper($err);
+        
+        
+        // Now we can create custom messages and publish them
+        $message = new \Gelf\Message();
+        $message-&gt;setShortMessage($err['message'])
+            -&gt;setLevel(\Psr\Log\LogLevel::ERROR)
+            -&gt;setFile($err['file'])
+            -&gt;setLine($err['line'])
+            -&gt;setFullMessage($fullMessage);
+        
+        if (php_sapi_name() == 'cli') {
+            global $argv;
+            $message-&gt;setAdditional('url', 'su ' . $_SERVER['LOGNAME'] . ' -c &quot;php ' . Registry::get('applicationPath') . '/html/' . implode(' ', $argv) . '&quot;');
+        } else {
+            $message-&gt;setAdditional('url', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+        }
+        
+        if (isset($config-&gt;error-&gt;logger-&gt;additionals)) {
+            foreach ($config-&gt;error-&gt;logger-&gt;additionals as $additionalName =&gt; $additionalValue) {
+                $message-&gt;setAdditional($additionalName, $additionalValue);
+            }
+        }
+        
+        if ($publisher-&gt;publish($message)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

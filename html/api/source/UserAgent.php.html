@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Nf;
+
+class UserAgent {
+
+	public $httpUserAgent;
+	public $lowerHttpUserAgent;
+
+	public function __construct($httpUserAgent) {
+		$this-&gt;httpUserAgent=$httpUserAgent;
+		$this-&gt;lowerHttpUserAgent=strtolower($httpUserAgent);
+	}
+
+	public function checkClass($class) {
+		switch($class){
+			case 'iphone':
+				return $this-&gt;isIphone();
+				break;
+			case 'ipad':
+				return $this-&gt;isIpad();
+				break;
+			case 'androidmobile':
+				return $this-&gt;isAndroidMobile();
+				break;
+			case 'androidtablet':
+				return $this-&gt;isAndroidTablet();
+				break;
+			case 'blackberry':
+				return $this-&gt;isBlackberry();
+				break;
+			}
+	}
+
+	public function isIphone() {
+		return strstr($this-&gt;lowerHttpUserAgent, 'iphone') || strstr($this-&gt;lowerHttpUserAgent, 'ipod');
+	}
+
+	public function isIpad() {
+		return strstr($this-&gt;lowerHttpUserAgent, 'ipad');
+	}
+
+	public function isAndroidMobile() {
+		return (strstr($this-&gt;lowerHttpUserAgent, 'android')!==false) &amp;&amp; (strstr($this-&gt;lowerHttpUserAgent, 'mobile')===false);
+	}
+
+	public function isAndroidTablet() {
+		return (strstr($this-&gt;lowerHttpUserAgent, 'android')!==false) &amp;&amp; (strstr($this-&gt;lowerHttpUserAgent, 'mobile')===false);
+	}
+
+	public function isBlackberry() {
+		return strstr($this-&gt;lowerHttpUserAgent, 'blackberry');
+	}
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
