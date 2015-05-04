@@ -1,6 +1,6 @@
 In this tutorial, we assume that your web root is /var/www and that you can create files in this folder. 
 
-# Get nofuss on your server
+# Get NoFussFramework on your server
 
 	cd /var/www
 	git clone https://github.com/jarnix/nofuss.git

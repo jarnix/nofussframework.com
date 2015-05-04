@@ -6,6 +6,20 @@ In the default installation for a website, you will need apache2 and php5. Of co
 
 # PHP >= 5.3 
 
-* php5-memcache
 * php5-intl
+* php5-mcrypt
+
+The other extensions are optional and the framework won't crash (as in GTA 5).
+
+If you want to connect to a mysql database:
+
+* php5-mysqli
+
+If you want to use memcache (as session store or cache store), this extension will be necessary:
+
+* php5-memcache
+
+If you want to use the image functions:
+
+* php5-imagick
 
