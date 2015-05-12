@@ -5,8 +5,10 @@ pages:
     - [setup/try-it-now.md, 'Try it now']
     - [setup/requirements.md, 'Getting started', 'Requirements']
     - [setup/installation.md, 'Getting started', 'Installation']
-    - [setup/configuration.md, 'Getting started', 'Configuration']
-    - [search.md, 'Search the docs']
+    - [configuration/introduction.md, 'Configuration', 'Introduction']
+    - [configuration/config.ini.md, 'Configuration', 'config.ini']
+    - [configuration/url.ini.md, 'Configuration', 'url.ini']
+    - [configuration/routes.md, 'Configuration', 'routes']
 theme_dir: '/var/www/nofussframework/mkdocs/themes/readthedocs-custom'
 site_dir: '/var/www/nofussframework/html/docs'
 repo_url: 'https://github.com/jarnix/nofuss'

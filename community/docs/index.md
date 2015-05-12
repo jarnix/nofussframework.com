@@ -1,10 +1,10 @@
 Get involved in the future of NoFussFramework!
 
-# Join our google group:
+# Join our google group
 
 You want to suggest something? You have a question about the framework, any idea about an improvement, anything, then post on our google group:
 
-[https://groups.google.com/forum/#!forum/nofussframework/new](https://groups.google.com/forum/#!forum/nofussframework/new)
+[https://groups.google.com/forum/#!forum/nofussframework](https://groups.google.com/forum/#!forum/nofussframework)
 
 # You found a bug?
 
