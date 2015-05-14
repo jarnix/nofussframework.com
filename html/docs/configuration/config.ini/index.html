@@ -124,7 +124,10 @@
                             <li class="toctree-l3"><a href="#error-display">Error display</a></li>
                             
                         
-                            <li class="toctree-l3"><a href="#error-reporting-and-logging">Error reporting and logging</a></li>
+                            <li class="toctree-l3"><a href="#error-reporting">Error reporting</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#error-logging">Error logging</a></li>
                             
                         
                             <li class="toctree-l3"><a href="#forbidden-pages-logging-display">Forbidden pages / logging / display</a></li>
@@ -210,7 +213,14 @@
   <hr/>
 </div>
 					<div role="main">
-						<div class="section"><p>This is where you will setup your database connections, memcache, sessions, etc. It's a basic .ini file that can be read and written easily by any human. Definitely not a JSON or XML or even PHP which is worse of course.</p>
+						<div class="section"><p>This is where you will setup your application:</p>
+<ul>
+<li>database connections</li>
+<li>memcache</li>
+<li>session handler</li>
+<li>etc</li>
+</ul>
+<p>It's a basic .ini file that can be read and written easily by any human. Definitely not a JSON or XML or even PHP which is worse of course.</p>
 <h1 id="error-display">Error display</h1>
 <p>Note that the error level is of course set to E_ALL. </p>
 <table>
@@ -226,18 +236,18 @@
 <tr>
 <td>error.displayPHPErrors</td>
 <td>off<br>on</td>
-<td><none></td>
+<td>(none)</td>
 <td>Should the application display the basic php errors (in dev environment you should set it to "on", and in production to "off"). The main exceptions will be catched, we are talking about the basic php errors like typos etc</td>
 </tr>
 <tr>
 <td>error.displayMethod</td>
 <td>screen<br>forward</td>
-<td><none></td>
+<td>(none)</td>
 <td>Display the errors on "screen" or within another controller/method ("forward") for friendly error reporting.</td>
 </tr>
 </tbody>
 </table>
-<h1 id="error-reporting-and-logging">Error reporting and logging</h1>
+<h1 id="error-reporting">Error reporting</h1>
 <table>
 <thead>
 <tr>
@@ -251,24 +261,47 @@
 <tr>
 <td>error.forward.module</td>
 <td>home</td>
-<td><none></td>
+<td>(none)</td>
 <td>The module to use when you forward errors.</td>
 </tr>
 <tr>
 <td>error.forward.controller</td>
 <td>error</td>
-<td><none></td>
+<td>(none)</td>
 <td>The controller to use in the specified module.</td>
 </tr>
 <tr>
 <td>error.forward.action</td>
 <td>error</td>
-<td><none></td>
+<td>(none)</td>
 <td>The action to call in the specified controller.</td>
 </tr>
 </tbody>
 </table>
-<p>Note that you should use forward most of the time in a real application so you can display a friendly error message, hide all the code from your users, and most importantly: log the error in syslog/graylog/whatever.</p>
+<p>Note that you should use forward most of the time in a real application so you can display a friendly error message, hide all the code from your users.</p>
+<h1 id="error-logging">Error logging</h1>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>error.logger.class</td>
+<td>....</td>
+<td>Syslog/(none)</td>
+<td>The class to instantiate for error logging.</td>
+</tr>
+</tbody>
+</table>
+<p>NoFussFramework will by default (no error logger specified) report the error to syslog so you will find the error in your apache2 error log (depending on your virtual host configuration).</p>
+<p>If you want to customize error loggin, you can create a class in your "models" folder call, for example, "Logger", and specify in the config.ini:
+    error.logger.class=\App\Logger</p>
+<p>You will need to create a method called "log", follow the example in Nf\Error\Logger\Syslog.php.</p>
 <h1 id="forbidden-pages-logging-display">Forbidden pages / logging / display</h1>
 <table>
 <thead>
@@ -283,19 +316,19 @@
 <tr>
 <td>notfound.forward.module</td>
 <td>home</td>
-<td><none></td>
+<td>(none)</td>
 <td>The module to use when you forward from a forbidden access.</td>
 </tr>
 <tr>
 <td>notfound.forward.controller</td>
 <td>error</td>
-<td><none></td>
+<td>(none)</td>
 <td>The module to use.</td>
 </tr>
 <tr>
 <td>notfound.forward.module</td>
 <td>notfound</td>
-<td><none></td>
+<td>(none)</td>
 <td>The action to call.</td>
 </tr>
 </tbody>
@@ -319,8 +352,41 @@
 </tr>
 </tbody>
 </table>
-<p>Smarty was the obvious choice because of the benchmarks of the latest versions on large templates. Should you use Twig or Blade, you will have to fork the code, nothing too difficult here.</p>
+<p>Smarty was the obvious choice, along with php, because of the benchmarks of the latest versions on large templates.</p>
+<p>Should you use Twig or Blade, you will have to fork the view class. Note that we will soon add native support for these two template engines.</p>
 <h1 id="default-module-controller-action-aka-the-home-page">Default module, controller, action (aka "the home page")</h1>
+<p>This is where you setup the default controller.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>front.default.module</td>
+<td>...</td>
+<td>(none)</td>
+<td>You have to specify a default module, for example "home"</td>
+</tr>
+<tr>
+<td>front.default.controller</td>
+<td>...</td>
+<td>(none)</td>
+<td>You have to specify a default controller in the default module, for example "index"</td>
+</tr>
+<tr>
+<td>front.default.action</td>
+<td>...</td>
+<td>(none)</td>
+<td>You have to specify the default action, for example "index"</td>
+</tr>
+</tbody>
+</table>
+<p>If you specify another route in your routes / _root.php file, the framework will use the latest route and not this config.ini entry.</p>
 <h1 id="database-connection-parameters">Database connection parameters</h1>
 <h1 id="session-handler">Session handler</h1>
 <h1 id="enablingdisabling-cache">Enabling/disabling cache</h1>
@@ -379,7 +445,7 @@
 
 	<!--
 MkDocs version  : 0.12.1
-Docs Build Date : 2015-05-12 21:33:50.802550
+Docs Build Date : 2015-05-14 19:37:55.422178
 -->
 </body>
 </html>

@@ -2,12 +2,12 @@
  * Tweak the overal size to better match RTD.
  */
 body {
-    font-size: 90%;
+	font-size: 90%;
 }
 
 h3, h4, h5, h6 {
-    color: #2980b9;
-    font-weight: 300
+	color: #2980b9;
+	font-weight: 300
 }
 
 /*
@@ -17,16 +17,20 @@ h3, h4, h5, h6 {
  * https://github.com/mkdocs/mkdocs/issues/175
  */
 .wy-menu-vertical span {
-    line-height: 18px;
-    padding: 0.4045em 1.618em;
-    display: block;
-    position: relative;
-    font-size: 110%;
-    color: #838383;
+	line-height: 18px;
+	padding: 0.4045em 1.618em;
+	display: block;
+	position: relative;
+	font-size: 110%;
+	color: #838383;
 }
 
 .wy-menu-vertical .toctree-l2 a {
-    padding: 0.4045em 2.427em;
+	padding: 0.4045em 2.427em;
+}
+
+.wy-menu-vertical li.current .toctree-l3 a {
+	padding: 0.4045em 3.427em;
 }
 
 /*
@@ -36,8 +40,8 @@ h3, h4, h5, h6 {
  * https://github.com/mkdocs/mkdocs/pull/202
  */
 .wy-nav-side {
-    height: 100%;
-    overflow-y: auto;
+	height: 100%;
+	overflow-y: auto;
 }
 
 /*
@@ -47,7 +51,7 @@ h3, h4, h5, h6 {
  * https://github.com/mkdocs/mkdocs/issues/#348
  */
 .wy-menu-vertical ul {
-  margin-bottom: 2em;
+	margin-bottom: 2em;
 }
 
 /*
@@ -56,7 +60,7 @@ h3, h4, h5, h6 {
  * https://github.com/mkdocs/mkdocs/issues/233
  */
 code {
-    white-space: pre;
+	white-space: pre;
 }
 
 /*
@@ -66,7 +70,7 @@ code {
  * https://github.com/mkdocs/mkdocs/issues/313
  */
 p code {
-    word-wrap: break-word;
+	word-wrap: break-word;
 }
 
 /*
@@ -77,8 +81,8 @@ p code {
  * https://github.com/mkdocs/mkdocs/issues/411
  */
 code.cs, code.c {
-    font-weight: inherit;
-    font-style: inherit;
+	font-weight: inherit;
+	font-style: inherit;
 }
 
 /*
@@ -89,7 +93,11 @@ code.cs, code.c {
  * https://github.com/mkdocs/mkdocs/issues/319
  */
 .no-highlight {
-  display: block;
-  padding: 0.5em;
-  color: #333;
+	display: block;
+	padding: 0.5em;
+	color: #333;
+}
+
+th {
+	background-color: #CCC;
 }
