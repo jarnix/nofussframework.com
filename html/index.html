@@ -18,26 +18,7 @@
 <link rel="stylesheet" href="/docs/css/theme_extra.css" type="text/css" />
 <link rel="stylesheet" href="/docs/css/highlight.css">
 
-<script src="/docs/js/jquery-2.1.1.min.js"></script>
-<script src="/docs/js/modernizr-2.8.3.min.js"></script>
-<script type="text/javascript" src="/docs/js/highlight.pack.js"></script>
-<script src="/docs/js/theme.js"></script>
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
-			'ga');
 
-	ga('create', 'UA-30907299-4', 'auto');
-	ga('send', 'pageview');
-</script>
 
 </head>
 
@@ -65,7 +46,8 @@
 				<ul class="current">
 
 
-					<li class="toctree-l1 current"><a class="current" href=".">What the fuss?</a></li>
+					<li class="toctree-l1 current"><a class="current" href=".">What
+							the fuss?</a></li>
 					<li class="toctree-l1"><a class="current" href="/docs/">Documentation</a></li>
 					<li class="toctree-l1"><a class="current" href="/download/">Download</a></li>
 					<li class="toctree-l1"><a class="current" href="/community/">Community</a></li>
@@ -77,14 +59,14 @@
 		<section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
 			<nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-				<i data-toggle="wy-nav-top" class="fa fa-bars"></i> 
-				
+				<i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+
 				<ul id="nav-thin">
 					<li><a href="/docs/">Documentation</a></li>
 					<li><a href="/download/">Download</a></li>
 					<li><a href="/community/">Community</a></li>
 				</ul>
-				
+
 			</nav>
 
 			<div class="wy-nav-content">
@@ -94,8 +76,8 @@
 						<div class="section">
 
 							<h1>NoFussFramework</h1>
-							<img
-								src="/assets/img/logo5.png" alt="NoFussFramework" title="this logo is terrible">
+							<img src="/assets/img/logo5.png" alt="NoFussFramework"
+								title="this logo is terrible">
 
 							<h2>What the fuss?</h2>
 
@@ -122,11 +104,40 @@
 								<br>Using a complex framework, and extending it anyway you
 								can, will turn into a disaster ("citation needed").
 							</p>
-							
+
+							<h2>A little benchmark: NoFussFramework VS Laravel VS
+								Symfony</h2>
+
+							Preliminary notes:
+								<ul>
+									<li>The server is running mod_php and has apc/opcache
+										enabled</li>
+									<li>NoFuss is using Smarty in this example, with the
+										default setup</li>
+									<li>Laravel uses Blade with memcache as the session handler</li>
+									<li>Symfony is running in production mode and uses Twig.</li>
+								</ul>
+
+
+								<b>The graph
+									shows the mean milliseconds per request with 10 users for 2000
+									requests.
+									<br>
+									The benchmark is a simple hello world on a rather small server (ProLiant DL120 G5, LOL).
+									<br>
+									You will get faster results on a good server on every benchmark.
+								</b>
+
+								<div id="chart_div_10_users"></div>
+
+
+
+
+
 							<h2>Ready ?</h2>
 							<p>
-							<a href="/docs">Read the documentation and start coding :)</a>
-
+								<a href="/docs/">Read the documentation and start coding :)</a>
+							</p>
 						</div>
 					</div>
 					<footer>
@@ -152,6 +163,61 @@
 
 	</div>
 
+	<script src="/docs/js/jquery-2.1.1.min.js"></script>
+	<script src="/docs/js/modernizr-2.8.3.min.js"></script>
+	<script type="text/javascript" src="/docs/js/highlight.pack.js"></script>
+	<script src="/docs/js/theme.js"></script>
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-30907299-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+		// Load the Visualization API and the piechart package.
+		google.load('visualization', '1.0', {
+			'packages' : [ 'corechart' ]
+		});
+
+		// Set a callback to run when the Google Visualization API is loaded.
+		google.setOnLoadCallback(drawChart);
+
+		// Callback that creates and populates a data table,
+		// instantiates the pie chart, passes in the data and
+		// draws it.
+		function drawChart() {
+
+			// Create the data table.
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Framework');
+			data.addColumn('number', 'ms');
+			data.addRows([ [ 'NoFussFramework', 14 ], [ 'Laravel', 56 ],
+					[ 'Symfony', 30 ], [ 'PHP only', 1 ] ]);
+
+			// Set chart options
+			var options = {
+				'width' : 500,
+				'height' : 250
+			};
+
+			// Instantiate and draw our chart, passing in some options.
+			var chart = new google.visualization.BarChart(document
+					.getElementById('chart_div_10_users'));
+			chart.draw(data, options);
+		}
+	</script>
 
 
 	<!--
