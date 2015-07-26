@@ -55,7 +55,7 @@ You will need to create a method called "log", follow the example in Nf\Error\Lo
  
 Smarty was the obvious choice, along with php, because of the benchmarks of the latest versions on large templates.
 
-Should you use Twig or Blade, you will have to fork the view class. Note that we will soon add native support for these two template engines.
+Should you use Twig or Blade, you will have to fork the view class. Note that we may add native support for these two template engines soon, or not, but a merge request will make us happy :)
  
 #Default module, controller, action (aka "the home page")
 
@@ -70,6 +70,21 @@ This is where you setup the default controller.
 If you specify another route in your routes / _root.php file, the framework will use the latest route and not this config.ini entry.
 
 #Database connection parameters
+
+At this time, only mysql is supported.
+
+Just add these lines to the config.ini to define an adapter to a database. You can choose the name of the adapter to use it in your models.
+
+In this example, it's called "mydatabase".
+
+| Key   | Values   | Default  | Explanation |
+|---|---|---|---|
+| db.mydatabase.adapter=Mysqli  | Mysqli only | (none) | You have to specify an adapter |
+db.mydatabase.params.database | Name of the database | (none) | The database to use on the server |
+db.mydatabase.params.hostname | Hostname or IP of the server | (none) | The server to connect to |
+db.mydatabase.params.username | Username | (none) | The username to connect with |
+db.mydatabase.params.password | Password | (none) | The password to use for connecting |
+db.mydatabase.params.charset=utf8  | The name of the charset | (none) | You should use utf-8 anyway | 
 
 
  
