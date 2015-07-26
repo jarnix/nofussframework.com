@@ -19,28 +19,6 @@
 <link rel="stylesheet" href="../../css/theme_extra.css"
 	type="text/css" />
 <link rel="stylesheet" href="../../css/highlight.css">
-
-<script src="../../js/jquery-2.1.1.min.js"></script>
-<script src="../../js/modernizr-2.8.3.min.js"></script>
-<script type="text/javascript" src="../../js/highlight.pack.js"></script>
-<script src="../../js/theme.js"></script>  
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
-			'ga');
-
-	ga('create', 'UA-30907299-4', 'auto');
-	ga('send', 'pageview');
-</script>
-
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -63,7 +41,7 @@
 
 			
 
-	
+
 
 			<div class="wy-menu wy-menu-vertical" data-spy="affix"
 				role="navigation" aria-label="main navigation"><ul class="current">
@@ -133,7 +111,12 @@
                 </li>
             
                 <li class="toctree-l2 ">
-                    <a class="" href="../../configuration/config.ini/">config.ini</a>
+                    <a class="" href="../../configuration/config.ini/">config.ini - app settings</a>
+                    
+                </li>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../../configuration/config.ini-optional/">config.ini - optional settings</a>
                     
                 </li>
             
@@ -144,6 +127,17 @@
             
                 <li class="toctree-l2 ">
                     <a class="" href="../../configuration/routes/">routes</a>
+                    
+                </li>
+            
+        
+
+    
+        
+            <span>Reference</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../../reference/sessions-table/">sessions table structure</a>
                     
                 </li>
             
@@ -161,13 +155,13 @@
 			<nav class="wy-nav-top" role="navigation" aria-label="top navigation">
 				<i data-toggle="wy-nav-top" class="fa fa-bars"></i> <a
 					href="../.."></a>
-					
-					<ul id="nav-thin">
+
+				<ul id="nav-thin">
 					<li><a href="/docs/">Documentation</a></li>
 					<li><a href="/download/">Download</a></li>
 					<li><a href="/community/">Community</a></li>
 				</ul>
-					
+
 			</nav>
 
 			
@@ -281,9 +275,32 @@ mv libs /var/www/nofuss/library/php/classes/Smarty
 		</span>
 	</div>
 
+	<script src="../../js/jquery-2.1.1.min.js"></script>
+	<script src="../../js/modernizr-2.8.3.min.js"></script>
+	<script type="text/javascript"
+		src="../../js/highlight.pack.js"></script>
+	<script src="../../js/theme.js"></script>  
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-30907299-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+	
+
 	<!--
 MkDocs version  : 0.12.1
-Docs Build Date : 2015-05-14 19:37:55.399371
+Docs Build Date : 2015-07-26 23:58:42.543751
 -->
 </body>
 </html>

@@ -56,57 +56,7 @@ You will need to create a method called "log", follow the example in Nf\Error\Lo
 Smarty was the obvious choice, along with php, because of the benchmarks of the latest versions on large templates.
 
 Should you use Twig or Blade, you will have to fork the view class. Note that we may add native support for these two template engines soon, or not, but a merge request will make us happy :)
- 
-#Default module, controller, action (aka "the home page")
 
-This is where you setup the default controller.
+# All the other settings are optional
 
-| Key   | Values   | Default  | Explanation |
-|---|---|---|---|
-| front.default.module  | ... | (none) | You have to specify a default module, for example "home" | 
-| front.default.controller  | ... | (none) | You have to specify a default controller in the default module, for example "index" | 
-| front.default.action  | ... | (none) | You have to specify the default action, for example "index" | 
-
-If you specify another route in your routes / _root.php file, the framework will use the latest route and not this config.ini entry.
-
-#Database connection parameters
-
-At this time, only mysql is supported.
-
-Just add these lines to the config.ini to define an adapter to a database. You can choose the name of the adapter to use it in your models.
-
-In this example, it's called "mydatabase".
-
-| Key   | Values   | Default  | Explanation |
-|---|---|---|---|
-| db.mydatabase.adapter=Mysqli  | Mysqli only | (none) | You have to specify an adapter |
-db.mydatabase.params.database | Name of the database | (none) | The database to use on the server |
-db.mydatabase.params.hostname | Hostname or IP of the server | (none) | The server to connect to |
-db.mydatabase.params.username | Username | (none) | The username to connect with |
-db.mydatabase.params.password | Password | (none) | The password to use for connecting |
-db.mydatabase.params.charset=utf8  | The name of the charset | (none) | You should use utf-8 anyway | 
-
-
- 
-#Session handler
- 
-#Enabling/disabling cache
- 
-#Multiple cache handlers
-
-Well of course, you can use only one or none.
- 
-#Cache key prefix
- 
-#Security options
- 
- 
- 
- You can add there every other configuration you might need for your application like :
- 
- * your CSS/less files to include in the head
- * your js files to include in the bottom of your pages
- * an API key for using Google Cloud Services
- * the email recipient address for your contact form
- * the IP of your redis cluster servers
- * etc
+You can see the other configuration options in the next page!

@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>config.ini - NoFussFramework Documentation</title>  
+<title>config.ini - app settings - NoFussFramework Documentation</title>  
 <link rel="shortcut icon" href="../../img/favicon.ico">
  
 <link
@@ -19,28 +19,6 @@
 <link rel="stylesheet" href="../../css/theme_extra.css"
 	type="text/css" />
 <link rel="stylesheet" href="../../css/highlight.css">
-
-<script src="../../js/jquery-2.1.1.min.js"></script>
-<script src="../../js/modernizr-2.8.3.min.js"></script>
-<script type="text/javascript" src="../../js/highlight.pack.js"></script>
-<script src="../../js/theme.js"></script>  
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
-			'ga');
-
-	ga('create', 'UA-30907299-4', 'auto');
-	ga('send', 'pageview');
-</script>
-
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -63,7 +41,7 @@
 
 			
 
-	
+
 
 			<div class="wy-menu wy-menu-vertical" data-spy="affix"
 				role="navigation" aria-label="main navigation"><ul class="current">
@@ -117,7 +95,7 @@
                 </li>
             
                 <li class="toctree-l2 current">
-                    <a class="current" href="./">config.ini</a>
+                    <a class="current" href="./">config.ini - app settings</a>
                     
                         <ul>
                         
@@ -136,28 +114,15 @@
                             <li class="toctree-l3"><a href="#view-engines">View engines</a></li>
                             
                         
-                            <li class="toctree-l3"><a href="#default-module-controller-action-aka-the-home-page">Default module, controller, action (aka "the home page")</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#database-connection-parameters">Database connection parameters</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#session-handler">Session handler</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#enablingdisabling-cache">Enabling/disabling cache</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#multiple-cache-handlers">Multiple cache handlers</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#cache-key-prefix">Cache key prefix</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#security-options">Security options</a></li>
+                            <li class="toctree-l3"><a href="#all-the-other-settings-are-optional">All the other settings are optional</a></li>
                             
                         
                         </ul>
+                    
+                </li>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../config.ini-optional/">config.ini - optional settings</a>
                     
                 </li>
             
@@ -168,6 +133,17 @@
             
                 <li class="toctree-l2 ">
                     <a class="" href="../routes/">routes</a>
+                    
+                </li>
+            
+        
+
+    
+        
+            <span>Reference</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../../reference/sessions-table/">sessions table structure</a>
                     
                 </li>
             
@@ -185,13 +161,13 @@
 			<nav class="wy-nav-top" role="navigation" aria-label="top navigation">
 				<i data-toggle="wy-nav-top" class="fa fa-bars"></i> <a
 					href="../.."></a>
-					
-					<ul id="nav-thin">
+
+				<ul id="nav-thin">
 					<li><a href="/docs/">Documentation</a></li>
 					<li><a href="/download/">Download</a></li>
 					<li><a href="/community/">Community</a></li>
 				</ul>
-					
+
 			</nav>
 
 			
@@ -205,7 +181,7 @@
         <li>Configuration &raquo;</li>
       
     
-    <li>config.ini</li>
+    <li>config.ini - app settings</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -353,61 +329,14 @@
 </tbody>
 </table>
 <p>Smarty was the obvious choice, along with php, because of the benchmarks of the latest versions on large templates.</p>
-<p>Should you use Twig or Blade, you will have to fork the view class. Note that we will soon add native support for these two template engines.</p>
-<h1 id="default-module-controller-action-aka-the-home-page">Default module, controller, action (aka "the home page")</h1>
-<p>This is where you setup the default controller.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Values</th>
-<th>Default</th>
-<th>Explanation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>front.default.module</td>
-<td>...</td>
-<td>(none)</td>
-<td>You have to specify a default module, for example "home"</td>
-</tr>
-<tr>
-<td>front.default.controller</td>
-<td>...</td>
-<td>(none)</td>
-<td>You have to specify a default controller in the default module, for example "index"</td>
-</tr>
-<tr>
-<td>front.default.action</td>
-<td>...</td>
-<td>(none)</td>
-<td>You have to specify the default action, for example "index"</td>
-</tr>
-</tbody>
-</table>
-<p>If you specify another route in your routes / _root.php file, the framework will use the latest route and not this config.ini entry.</p>
-<h1 id="database-connection-parameters">Database connection parameters</h1>
-<h1 id="session-handler">Session handler</h1>
-<h1 id="enablingdisabling-cache">Enabling/disabling cache</h1>
-<h1 id="multiple-cache-handlers">Multiple cache handlers</h1>
-<p>Well of course, you can use only one or none.</p>
-<h1 id="cache-key-prefix">Cache key prefix</h1>
-<h1 id="security-options">Security options</h1>
-<p>You can add there every other configuration you might need for your application like :</p>
-<ul>
-<li>your CSS/less files to include in the head</li>
-<li>your js files to include in the bottom of your pages</li>
-<li>an API key for using Google Cloud Services</li>
-<li>the email recipient address for your contact form</li>
-<li>the IP of your redis cluster servers</li>
-<li>etc</li>
-</ul></div>
+<p>Should you use Twig or Blade, you will have to fork the view class. Note that we may add native support for these two template engines soon, or not, but a merge request will make us happy :)</p>
+<h1 id="all-the-other-settings-are-optional">All the other settings are optional</h1>
+<p>You can see the other configuration options in the next page!</p></div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../url.ini/" class="btn btn-neutral float-right" title="url.ini"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../config.ini-optional/" class="btn btn-neutral float-right" title="config.ini - optional settings"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../introduction/" class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -439,13 +368,36 @@
 				Download on GitHub</a>  <span><a
 				href="../introduction/" style="color: #fcfcfc;">&laquo;
 					Previous</a></span> <span style="margin-left: 15px"><a
-				href="../url.ini/" style="color: #fcfcfc">Next &raquo;</a></span>
+				href="../config.ini-optional/" style="color: #fcfcfc">Next &raquo;</a></span>
 		</span>
 	</div>
 
+	<script src="../../js/jquery-2.1.1.min.js"></script>
+	<script src="../../js/modernizr-2.8.3.min.js"></script>
+	<script type="text/javascript"
+		src="../../js/highlight.pack.js"></script>
+	<script src="../../js/theme.js"></script>  
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-30907299-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+	
+
 	<!--
 MkDocs version  : 0.12.1
-Docs Build Date : 2015-05-14 19:37:55.422178
+Docs Build Date : 2015-07-26 23:58:42.588876
 -->
 </body>
 </html>
