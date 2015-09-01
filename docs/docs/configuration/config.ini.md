@@ -35,7 +35,9 @@ Note that you should use forward most of the time in a real application so you c
 NoFussFramework will by default (no error logger specified) report the error to syslog so you will find the error in your apache2 error log (depending on your virtual host configuration).
 
 If you want to customize error loggin, you can create a class in your "models" folder call, for example, "Logger", and specify in the config.ini:
-	error.logger.class=\App\Logger
+```
+error.logger.class=\App\Logger
+```
 
 You will need to create a method called "log", follow the example in Nf\Error\Logger\Syslog.php.
  

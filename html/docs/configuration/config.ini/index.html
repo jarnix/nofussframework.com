@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
 <title>config.ini - app settings - NoFussFramework Documentation</title>  
 <link rel="shortcut icon" href="../../img/favicon.ico">
  
@@ -18,140 +18,186 @@
 	type="text/css" />
 <link rel="stylesheet" href="../../css/theme_extra.css"
 	type="text/css" />
-<link rel="stylesheet" href="../../css/highlight.css">
+<link rel="stylesheet" href="../../css/highlight.css"> 
+<script>
+	// Current page data
+	var mkdocs_page_name = "config.ini - app settings";
+	var mkdocs_page_url = "/configuration/config.ini/";
+</script>
+
+<script src="../../js/jquery-2.1.1.min.js"></script>
+<script src="../../js/modernizr-2.8.3.min.js"></script>
+<script type="text/javascript" src="../../js/highlight.pack.js"></script>
+<script src="../../js/theme.js"></script>  
+<script>
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
+
+	ga('create', 'UA-30907299-4', 'auto');
+	ga('send', 'pageview');
+</script>
+
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
 	<header>
 		<a class="logo" href="/">NoFussFramework</a>
-		<div id="nav-wide">
-			<ul>
-				<li><a href="/docs/">Documentation</a></li>
-				<li><a href="/download/">Download</a></li>
-				<li><a href="/community/">Community</a></li>
-			</ul>
-		</div>
+		<ul>
+			<li><a href="/docs/">Documentation</a></li>
+			<li><a href="/download/">Download</a></li>
+			<li><a href="/community/">Community</a></li>
+		</ul>
 	</header>
-
 	<div class="wy-grid-for-nav">
 
 		
 		<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-
-			
-
-
+			<div class="wy-side-nav-search"><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+			</div>
 
 			<div class="wy-menu wy-menu-vertical" data-spy="affix"
-				role="navigation" aria-label="main navigation"><ul class="current">
-    
+				role="navigation" aria-label="main navigation">
+				<ul class="current">
+					
+					<li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Documentation Home</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../..">Documentation Home</a>
+    </li>
+
+					<li>
+					<li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../intro/introduction/">Introduction</a>
+        
+    </li>
+
+					<li>
+					<li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/try-it-now/">Try it now</a>
+        
+    </li>
+
+					<li>
+					<li>
+    <ul class="subnav">
+    <li><span>Getting started</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/requirements/">Requirements</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/installation/">Installation</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+					<li>
+    <ul class="subnav">
+    <li><span>Configuration</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../introduction/">Introduction</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">config.ini - app settings</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#error-display">Error display</a></li>
                 
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../../intro/introduction/">Introduction</a>
+            
+                <li class="toctree-l3"><a href="#error-reporting">Error reporting</a></li>
                 
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../../setup/try-it-now/">Try it now</a>
+            
+                <li class="toctree-l3"><a href="#error-logging">Error logging</a></li>
                 
-            </li>
+            
+                <li class="toctree-l3"><a href="#forbidden-pages-logging-display">Forbidden pages / logging / display</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#view-engines">View engines</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#all-the-other-settings-are-optional">All the other settings are optional</a></li>
+                
+            
+            </ul>
         
+    </li>
 
-    
         
-            <span>Getting started</span>
             
-                <li class="toctree-l2 ">
-                    <a class="" href="../../setup/requirements/">Requirements</a>
-                    
-                </li>
-            
-                <li class="toctree-l2 ">
-                    <a class="" href="../../setup/installation/">Installation</a>
-                    
-                </li>
-            
+    <li class="toctree-l1 ">
+        <a class="" href="../config.ini-optional/">config.ini - optional settings</a>
         
+    </li>
 
-    
         
-            <span>Configuration</span>
             
-                <li class="toctree-l2 ">
-                    <a class="" href="../introduction/">Introduction</a>
-                    
-                </li>
-            
-                <li class="toctree-l2 current">
-                    <a class="current" href="./">config.ini - app settings</a>
-                    
-                        <ul>
-                        
-                            <li class="toctree-l3"><a href="#error-display">Error display</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#error-reporting">Error reporting</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#error-logging">Error logging</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#forbidden-pages-logging-display">Forbidden pages / logging / display</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#view-engines">View engines</a></li>
-                            
-                        
-                            <li class="toctree-l3"><a href="#all-the-other-settings-are-optional">All the other settings are optional</a></li>
-                            
-                        
-                        </ul>
-                    
-                </li>
-            
-                <li class="toctree-l2 ">
-                    <a class="" href="../config.ini-optional/">config.ini - optional settings</a>
-                    
-                </li>
-            
-                <li class="toctree-l2 ">
-                    <a class="" href="../url.ini/">url.ini</a>
-                    
-                </li>
-            
-                <li class="toctree-l2 ">
-                    <a class="" href="../routes/">routes</a>
-                    
-                </li>
-            
+    <li class="toctree-l1 ">
+        <a class="" href="../url.ini/">url.ini</a>
         
+    </li>
 
-    
         
-            <span>Reference</span>
             
-                <li class="toctree-l2 ">
-                    <a class="" href="../../reference/sessions-table/">sessions table structure</a>
-                    
-                </li>
-            
+    <li class="toctree-l1 ">
+        <a class="" href="../routes/">routes</a>
         
+    </li>
 
-    
-</ul>
-</div>
+        
+    </ul>
+
+					<li>
+					<li>
+    <ul class="subnav">
+    <li><span>Reference</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../reference/sessions-table/">sessions table structure</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+				</ul>
+			</div>
 			&nbsp;
 		</nav>
 
@@ -160,14 +206,7 @@
 			
 			<nav class="wy-nav-top" role="navigation" aria-label="top navigation">
 				<i data-toggle="wy-nav-top" class="fa fa-bars"></i> <a
-					href="../.."></a>
-
-				<ul id="nav-thin">
-					<li><a href="/docs/">Documentation</a></li>
-					<li><a href="/download/">Download</a></li>
-					<li><a href="/community/">Community</a></li>
-				</ul>
-
+					href="../..">NoFussFramework Documentation</a>
 			</nav>
 
 			
@@ -178,18 +217,24 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
-        <li>Configuration &raquo;</li>
+        
+          <li>Configuration &raquo;</li>
+        
       
     
     <li>config.ini - app settings</li>
-      <li class="wy-breadcrumbs-aside">
+    <li class="wy-breadcrumbs-aside">
+      
         
-      </li>
+          <a href="https://github.com/jarnix/nofuss" class="icon icon-github"> Download on GitHub</a>
+        
+      
+    </li>
   </ul>
   <hr/>
 </div>
 					<div role="main">
-						<div class="section"><p>This is where you will setup your application:</p>
+						<div class="section"> <p>This is where you will setup your application:</p>
 <ul>
 <li>database connections</li>
 <li>memcache</li>
@@ -275,8 +320,10 @@
 </tbody>
 </table>
 <p>NoFussFramework will by default (no error logger specified) report the error to syslog so you will find the error in your apache2 error log (depending on your virtual host configuration).</p>
-<p>If you want to customize error loggin, you can create a class in your "models" folder call, for example, "Logger", and specify in the config.ini:
-    error.logger.class=\App\Logger</p>
+<p>If you want to customize error loggin, you can create a class in your "models" folder call, for example, "Logger", and specify in the config.ini:</p>
+<pre><code>error.logger.class=\App\Logger
+</code></pre>
+
 <p>You will need to create a method called "log", follow the example in Nf\Error\Logger\Syslog.php.</p>
 <h1 id="forbidden-pages-logging-display">Forbidden pages / logging / display</h1>
 <table>
@@ -331,7 +378,7 @@
 <p>Smarty was the obvious choice, along with php, because of the benchmarks of the latest versions on large templates.</p>
 <p>Should you use Twig or Blade, you will have to fork the view class. Note that we may add native support for these two template engines soon, or not, but a merge request will make us happy :)</p>
 <h1 id="all-the-other-settings-are-optional">All the other settings are optional</h1>
-<p>You can see the other configuration options in the next page!</p></div>
+<p>You can see the other configuration options in the next page!</p> </div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
@@ -347,12 +394,11 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>
     <!-- Copyright etc -->
-    </p>
+    
   </div>
 
-  Built with <a rel="nofollow" href="http://www.mkdocs.org">MkDocs</a> using a <a rel="nofollow" href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a rel="nofollow" href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a rel="nofollow" href="http://www.mkdocs.org">MkDocs</a> using a <a rel="nofollow" href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer> 
 				</div>
 			</div>
@@ -362,42 +408,18 @@
 	</div>
 
 	<div class="rst-versions" role="note" style="cursor: pointer">
-		<span class="rst-current-version" data-toggle="rst-current-version">
-			 <a href="https://github.com/jarnix/nofuss"
-			class="icon icon-github" style="float: left; color: #fcfcfc">
-				Download on GitHub</a>  <span><a
-				href="../introduction/" style="color: #fcfcfc;">&laquo;
-					Previous</a></span> <span style="margin-left: 15px"><a
-				href="../config.ini-optional/" style="color: #fcfcfc">Next &raquo;</a></span>
-		</span>
-	</div>
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/jarnix/nofuss" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../introduction/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../config.ini-optional/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
 
-	<script src="../../js/jquery-2.1.1.min.js"></script>
-	<script src="../../js/modernizr-2.8.3.min.js"></script>
-	<script type="text/javascript"
-		src="../../js/highlight.pack.js"></script>
-	<script src="../../js/theme.js"></script>  
-	<script>
-		(function(i, s, o, g, r, a, m) {
-			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
-				(i[r].q = i[r].q || []).push(arguments)
-			}, i[r].l = 1 * new Date();
-			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})(window, document, 'script',
-				'//www.google-analytics.com/analytics.js', 'ga');
-
-		ga('create', 'UA-30907299-4', 'auto');
-		ga('send', 'pageview');
-	</script>
-	
-
-	<!--
-MkDocs version  : 0.12.1
-Docs Build Date : 2015-07-26 23:58:42.588876
--->
 </body>
 </html>
