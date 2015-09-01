@@ -22,22 +22,10 @@ audio, canvas, video {
 	*zoom: 1
 }
 
-audio
-:not
- 
-(
-[
-controls
-]
- 
-){
-display
-:
- 
-none
-
-
+audio:not ([controls] ){
+	display: none
 }
+
 [hidden] {
 	display: none
 }
@@ -151,20 +139,10 @@ img {
 	max-width: 100%
 }
 
-svg
-:not
- 
-(
-:root
- 
-){
-overflow
-:
- 
-hidden
-
-
+svg:not (:root ){
+	overflow: hidden
 }
+
 figure {
 	margin: 0
 }
@@ -506,11 +484,7 @@ big, small {
 
 100%{
 -moz-transform
-
-
 :rotate(359deg)
-
-
 }
 }
 @
@@ -520,11 +494,7 @@ big, small {
 
 100%{
 -webkit-transform
-
-
 :rotate(359deg)
-
-
 }
 }
 @
@@ -534,11 +504,7 @@ big, small {
 
 100%{
 -o-transform
-
-
 :rotate(359deg)
-
-
 }
 }
 @
@@ -549,18 +515,9 @@ keyframes spin { 0%{
 
 100%{
 -webkit-transform
-
-
 :rotate(359deg)
-
-
-;
-transform
-
-
+;transform
 :rotate(359deg)
-
-
 }
 }
 .fa-rotate-90 {
@@ -3734,7 +3691,7 @@ select[disabled], textarea[disabled], input[readonly], select[readonly],
 }
 
 .wy-table-odd td, .wy-table-striped tr:nth-child(2n-1) td, .rst-content table.docutils:not
-	 (.field-list ) tr:nth-child(2n-1) td {
+	(.field-list ) tr:nth-child(2n-1) td {
 	background-color: #f3f6f6
 }
 
@@ -3805,7 +3762,7 @@ a:hover {
 }
 
 a:visited {
-	
+	color: #9B59B6
 }
 
 html {
@@ -3942,6 +3899,7 @@ code, .rst-content tt {
 	max-width: 100%;
 	background: #fff;
 	border: solid 1px #e1e4e5;
+	font-size: 75%;
 	padding: 0 5px;
 	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
 		"Lucida Sans Typewriter", "DejaVu Sans Mono",
@@ -4561,6 +4519,7 @@ div[class^='highlight'] pre {
 
 .wy-side-nav-search {
 	z-index: 200;
+	background-color: #2980B9;
 	text-align: center;
 	padding: 0.809em;
 	display: block;
@@ -4647,7 +4606,7 @@ div[class^='highlight'] pre {
 }
 
 .wy-grid-for-nav {
-	position: absolute;
+	/*position: absolute;*/
 	width: 100%;
 	height: 100%
 }
@@ -4669,7 +4628,7 @@ div[class^='highlight'] pre {
 	color: #fff;
 	padding: 0.4045em 0.809em;
 	position: relative;
-	line-height: 20px;
+	line-height: 50px;
 	text-align: center;
 	font-size: 100%;
 	*zoom: 1
@@ -4730,11 +4689,6 @@ div[class^='highlight'] pre {
 	display: block
 }
 
-#nav-thin li {
-	display:inline-block;
-	padding-right:0.5em;
-}
-
 footer {
 	color: #999
 }
@@ -4779,12 +4733,6 @@ footer p {
 }
 
 @media screen and (max-width: 768px) {
-	#nav-wide {
-		display:none;
-	}
-	#nav-thin {
-		display:block;
-	}
 	.wy-body-for-nav {
 		background: #fcfcfc
 	}
@@ -4808,7 +4756,7 @@ footer p {
 		position: fixed;
 		min-width: 100%;
 		left: 85%;
-		top: 50;
+		top: 0;
 		height: 100%;
 		overflow: hidden
 	}
@@ -4834,11 +4782,8 @@ footer p {
 }
 
 nav.stickynav {
-	/*
 	position: fixed;
 	top: 0
-	*/
-	
 }
 
 .rst-versions {
@@ -5240,23 +5185,10 @@ nav.stickynav {
 	margin: 0 0 12px 24px
 }
 
-.rst-content
- 
-dl
-:not
- 
-(
-.docutils
- 
-){
-margin-bottom
-:
- 
-24
-px
-
-
+.rst-content dl:not (.docutils ){
+	margin-bottom: 24px
 }
+
 .rst-content dl:not (.docutils ) dt {
 	display: inline-block;
 	margin: 6px 0;
@@ -5300,7 +5232,7 @@ px
 }
 
 .rst-content dl:not (.docutils ) tt.descname, .rst-content dl:not (.docutils
-	 ) tt.descclassname {
+	) tt.descclassname {
 	background-color: transparent;
 	border: none;
 	padding: 0;
@@ -5354,32 +5286,34 @@ span[id*='MathJax-Span'] {
 	text-align: center
 }
 
+nav.stickynav {
+	top: 50px;
+}
+
 header {
+	display: block;
 	clear: both;
-	height: 3.5em;
+	min-height: 3.5em;
 	background-color: #343131;
 	color: white;
 	padding-left: 1em;
 	padding-top: 1em;
 }
 
-header>a.logo {
+header a.logo {
 	float: left;
 	width: 300px;
-	font-size:125%;
-	font-weight:bold;
+	font-size: 125%;
+	font-weight: bold;
 }
 
-header>div {
-	float: left;
-	width: 300px;
-}
-
-header h2 {
-	display: inline-block;
-	float: left;
-	margin: 0px;
-	line-height: 1;
+@media screen and (max-width: 768px) {
+	header {
+		height: 80px;
+	}
+	header ul {
+		font-size:13px;
+	}
 }
 
 header ul li a {

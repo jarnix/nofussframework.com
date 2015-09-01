@@ -1,8 +1,8 @@
 site_name: NoFussFramework Community
 pages:
-    - [index.md, 'Community']
-theme_dir: '/var/www/nofussframework/mkdocs/themes/readthedocs-custom'
-site_dir: '/var/www/nofussframework/html/community'
+- 'Community': index.md
+theme_dir: '../mkdocs/themes/readthedocs'
+site_dir: '../html/community'
 repo_url: 'https://github.com/jarnix/nofuss'
 google_analytics: ['UA-30907299-4', 'auto']
 dev_addr: 0.0.0.0:81

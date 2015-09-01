@@ -1,0 +1,24 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Get involved in the future of NoFussFramework!\n\n\nJoin our google group\n\n\nYou want to suggest something? You have a question about the framework, any idea about an improvement, anything, then post on our google group:\n\n\nhttps://groups.google.com/forum/#!forum/nofussframework\n\n\nYou found a bug?\n\n\nWell, we can't believe you :) Anyway, you should open a ticket here:\n\n\nhttps://github.com/jarnix/nofuss/issues\n\n\nYou're feeling lonely?\n\n\nSeems like you're not alone at being alone. Go out in a bar and drink a pint with a friend ;)", 
+            "title": "Community"
+        }, 
+        {
+            "location": "/#join-our-google-group", 
+            "text": "You want to suggest something? You have a question about the framework, any idea about an improvement, anything, then post on our google group:  https://groups.google.com/forum/#!forum/nofussframework", 
+            "title": "Join our google group"
+        }, 
+        {
+            "location": "/#you-found-a-bug", 
+            "text": "Well, we can't believe you :) Anyway, you should open a ticket here:  https://github.com/jarnix/nofuss/issues", 
+            "title": "You found a bug?"
+        }, 
+        {
+            "location": "/#youre-feeling-lonely", 
+            "text": "Seems like you're not alone at being alone. Go out in a bar and drink a pint with a friend ;)", 
+            "title": "You're feeling lonely?"
+        }
+    ]
+}
