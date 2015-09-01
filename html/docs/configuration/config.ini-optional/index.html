@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>config.ini - optional settings - NoFussFramework Documentation</title>  
+<link rel="shortcut icon" href="../../img/favicon.ico">
+ 
+<link
+	href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700'
+	rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="../../css/theme.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../css/theme_extra.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../css/highlight.css">
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+	<header>
+		<a class="logo" href="/">NoFussFramework</a>
+		<div id="nav-wide">
+			<ul>
+				<li><a href="/docs/">Documentation</a></li>
+				<li><a href="/download/">Download</a></li>
+				<li><a href="/community/">Community</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<div class="wy-grid-for-nav">
+
+		
+		<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+
+			
+
+
+
+			<div class="wy-menu wy-menu-vertical" data-spy="affix"
+				role="navigation" aria-label="main navigation"><ul class="current">
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../..">Documentation Home</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../../intro/introduction/">Introduction</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../../setup/try-it-now/">Try it now</a>
+                
+            </li>
+        
+
+    
+        
+            <span>Getting started</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../../setup/requirements/">Requirements</a>
+                    
+                </li>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../../setup/installation/">Installation</a>
+                    
+                </li>
+            
+        
+
+    
+        
+            <span>Configuration</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../introduction/">Introduction</a>
+                    
+                </li>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../config.ini/">config.ini - app settings</a>
+                    
+                </li>
+            
+                <li class="toctree-l2 current">
+                    <a class="current" href="./">config.ini - optional settings</a>
+                    
+                        <ul>
+                        
+                            <li class="toctree-l3"><a href="#default-module-controller-action-aka-the-home-page">Default module, controller, action (aka "the home page")</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#database-connection-parameters">Database connection parameters</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#session-handler">Session handler</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#enablingdisabling-cache">Enabling/disabling cache</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#multiple-cache-handlers">Multiple cache handlers</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#cache-keys">Cache keys</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#cache-key-prefix">Cache key prefix</a></li>
+                            
+                        
+                            <li class="toctree-l3"><a href="#security-options">Security options</a></li>
+                            
+                        
+                        </ul>
+                    
+                </li>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../url.ini/">url.ini</a>
+                    
+                </li>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../routes/">routes</a>
+                    
+                </li>
+            
+        
+
+    
+        
+            <span>Reference</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../../reference/sessions-table/">sessions table structure</a>
+                    
+                </li>
+            
+        
+
+    
+</ul>
+</div>
+			&nbsp;
+		</nav>
+
+		<section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+			
+			<nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+				<i data-toggle="wy-nav-top" class="fa fa-bars"></i> <a
+					href="../.."></a>
+
+				<ul id="nav-thin">
+					<li><a href="/docs/">Documentation</a></li>
+					<li><a href="/download/">Download</a></li>
+					<li><a href="/community/">Community</a></li>
+				</ul>
+
+			</nav>
+
+			
+			<div class="wy-nav-content">
+				<div class="rst-content">
+					<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        <li>Configuration &raquo;</li>
+      
+    
+    <li>config.ini - optional settings</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+					<div role="main">
+						<div class="section"><p>All of these settings are optional, but useful still ;)</p>
+<h2 id="default-module-controller-action-aka-the-home-page">Default module, controller, action (aka "the home page")</h2>
+<p>This is where you setup the default controller.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>front.default.module</td>
+<td>...</td>
+<td>(none)</td>
+<td>You have to specify a default module, for example "home"</td>
+</tr>
+<tr>
+<td>front.default.controller</td>
+<td>...</td>
+<td>(none)</td>
+<td>You have to specify a default controller in the default module, for example "index"</td>
+</tr>
+<tr>
+<td>front.default.action</td>
+<td>...</td>
+<td>(none)</td>
+<td>You have to specify the default action, for example "index"</td>
+</tr>
+</tbody>
+</table>
+<p>If you specify another route in your routes / _root.php file, the framework will use the latest route and not this config.ini entry.</p>
+<h2 id="database-connection-parameters">Database connection parameters</h2>
+<p>At this time, only mysql is supported. Just add these lines to the config.ini to define an adapter to a database. </p>
+<p>In this example, it's called <em>mydatabase</em>. Replace with the name you want to use.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>db.mydatabase.adapter</td>
+<td>"Mysqli" only</td>
+<td>(none)</td>
+<td>You have to specify an adapter</td>
+</tr>
+<tr>
+<td>db.mydatabase.params.database</td>
+<td>Name of the database</td>
+<td>(none)</td>
+<td>The database to use on the server</td>
+</tr>
+<tr>
+<td>db.mydatabase.params.hostname</td>
+<td>Hostname or IP of the server</td>
+<td>(none)</td>
+<td>The server to connect to</td>
+</tr>
+<tr>
+<td>db.mydatabase.params.username</td>
+<td>Username</td>
+<td>(none)</td>
+<td>The username to connect with</td>
+</tr>
+<tr>
+<td>db.mydatabase.params.password</td>
+<td>Password</td>
+<td>(none)</td>
+<td>The password to use for connecting</td>
+</tr>
+<tr>
+<td>db.mydatabase.params.charset=utf8</td>
+<td>The name of the charset</td>
+<td>(none)</td>
+<td>You should use utf-8 anyway :-)</td>
+</tr>
+</tbody>
+</table>
+<p>In your code, you will get an instance of the db adapter by using :</p>
+<pre><code>$db = \Nf\Db::getConnection('mydatabase');
+</code></pre>
+
+<h2 id="session-handler">Session handler</h2>
+<p>You can set the session handler to :
+- nothing (just don't set the value or set an empty adapter)
+- mysqli (to store sessions in a table in a database adapter already defined in the config.ini)
+- memcache (to store sessions in memcache)</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>session.handler</td>
+<td>mysqli<br>memcache</td>
+<td>(none)</td>
+<td>Where do you want to store the sesions data</td>
+</tr>
+<tr>
+<td>session.lifetime</td>
+<td>(seconds)</td>
+<td>(none)</td>
+<td>The session lifetime in seconds</td>
+</tr>
+<tr>
+<td>session.cookie.name</td>
+<td>(string)</td>
+<td>(none)</td>
+<td>Name of the session cookie</td>
+</tr>
+<tr>
+<td>session.cookie.domain</td>
+<td>(string</td>
+<td>blank)</td>
+<td>request's http domain</td>
+</tr>
+<tr>
+<td>session.cookie.path=</td>
+<td>(string</td>
+<td>/)</td>
+<td>(none)</td>
+</tr>
+<tr>
+<td>session.params.db_adapter</td>
+<td>name of the db adapter</td>
+<td>(none)</td>
+<td>If you use a db store, set to the name of the db adapter to use<br>It's the same name of the adapter that you defined earlier in the config</td>
+</tr>
+<tr>
+<td>session.params.db_table</td>
+<td>(string)</td>
+<td>(none)</td>
+<td>The name of the table to store sessions (see the reference for the table's structure</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enablingdisabling-cache">Enabling/disabling cache</h2>
+<p>This configuration parameter allows you to globally disable the cache handlers that you can use in your app. The default value is to cache.</p>
+<p>If you set this to true, the framework will bypass the cache and return false on a "get" query, and returns true on a "set" query.  </p>
+<p>You should disable the cache in a dev environment, but you can force it here.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cache.enabled</td>
+<td>false<br>true</td>
+<td>true</td>
+<td>Enable (true) or disable (false) the cache globally</td>
+</tr>
+</tbody>
+</table>
+<h2 id="multiple-cache-handlers">Multiple cache handlers</h2>
+<p>Well of course, you can use only one or none. Just give the cache handler a name (for using it later in your models) and set the parameters for instanciating it.</p>
+<p>In this example, we have one global cache, that is shared between the web servers, and another one that is exclusive to every server. The names "global" and "local" could be whatever you want.</p>
+<pre><code>cache.global.handler=memcached
+cache.global.params.hosts=localhost
+cache.global.params.port=11211
+cache.global.lifetime=3600
+
+cache.local.handler=apc
+</code></pre>
+
+<p>The available settings ar described here, with the name <em>mycache</em> that can be whatever you want.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cache.mycache.handler</td>
+<td>Apc<br>Memcached</td>
+<td>(n/a)</td>
+<td>Choose a cache adapter</td>
+</tr>
+<tr>
+<td>cache.global.lifetime</td>
+<td>(int)</td>
+<td>600</td>
+<td>Enter the default cache lifetime for any object</td>
+</tr>
+</tbody>
+</table>
+<p>For Memcache:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cache.global.params.hosts</td>
+<td>ip/hostname</td>
+<td>(n/a)</td>
+<td>For Memcache and multiple servers, separate the values with a comma (,)</td>
+</tr>
+<tr>
+<td>cache.global.params.port</td>
+<td>11211<br>whatever</td>
+<td>(none)</td>
+<td>For Memcache, enter the port of the servers</td>
+</tr>
+</tbody>
+</table>
+<p>For APC, you don't have anything to do.</p>
+<h2 id="cache-keys">Cache keys</h2>
+<p>Usually in small apps, you store the name of the cache key for your models in constants of the classes. When you update your application, you don't want to get a conflict of data structure between what your new application expects and what the cache returns.</p>
+<p>That's why every key in the datastore uses a pointer to the keys defined in the config.ini. For example:</p>
+<pre><code>/* in your model, get the cache storage instance */
+$globalCache = \Nf\Cache::getStorage('global'); 
+/* set the value if not already in cache: */
+$data = $globalCache-&gt;load('temperature', array('country' =&gt; 'france', 'city' =&gt; 'paris'));
+</code></pre>
+
+<p>The name of the cache key is dynamic and should be set in the config:</p>
+<pre><code>cachekeys.temperature_citycode=temperature_[country]_[city]
+</code></pre>
+
+<p>The cache handler will remplace [country] and [city] by the actual values and will use the internal key "temperature_france_paris" for setting and getting the value from the cache store.</p>
+<p>For a shorter code, you can also use a basic array or even just a string, like in these two examples. </p>
+<p>If you have a small number of parameters and you are lazy, just send an array :</p>
+<pre><code>$data = $globalCache-&gt;load('temperature', array('france', 'paris'));
+</code></pre>
+
+<p>If you have only one parameter in the key, like: temperature_[city]</p>
+<pre><code>$data = $globalCache-&gt;load('temperature', 'paris');
+</code></pre>
+
+<h2 id="cache-key-prefix">Cache key prefix</h2>
+<p>You can prefix every key in your cache store(s), for example if you change a lot of structure in a new version of your application. </p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cache.keyPrefix=</td>
+<td>(string)</td>
+<td>(empty string)</td>
+<td>Just remember to make it compatible with your cache store. You can use v1, v2 or the name of your app if you share a memcache server with other applications.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="security-options">Security options</h2>
+<p>You can add there every other configuration you might need for your application like :</p>
+<ul>
+<li>your CSS/less files to include in the head</li>
+<li>your js files to include in the bottom of your pages</li>
+<li>an API key for using Google Cloud Services</li>
+<li>the email recipient address for your contact form</li>
+<li>the IP of your redis cluster servers</li>
+<li>etc</li>
+</ul></div>
+					</div> <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../url.ini/" class="btn btn-neutral float-right" title="url.ini"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../config.ini/" class="btn btn-neutral" title="config.ini - app settings"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a rel="nofollow" href="http://www.mkdocs.org">MkDocs</a> using a <a rel="nofollow" href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a rel="nofollow" href="https://readthedocs.org">Read the Docs</a>.
+</footer> 
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+
+	<div class="rst-versions" role="note" style="cursor: pointer">
+		<span class="rst-current-version" data-toggle="rst-current-version">
+			 <a href="https://github.com/jarnix/nofuss"
+			class="icon icon-github" style="float: left; color: #fcfcfc">
+				Download on GitHub</a>  <span><a
+				href="../config.ini/" style="color: #fcfcfc;">&laquo;
+					Previous</a></span> <span style="margin-left: 15px"><a
+				href="../url.ini/" style="color: #fcfcfc">Next &raquo;</a></span>
+		</span>
+	</div>
+
+	<script src="../../js/jquery-2.1.1.min.js"></script>
+	<script src="../../js/modernizr-2.8.3.min.js"></script>
+	<script type="text/javascript"
+		src="../../js/highlight.pack.js"></script>
+	<script src="../../js/theme.js"></script>  
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-30907299-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+	
+
+	<!--
+MkDocs version  : 0.12.1
+Docs Build Date : 2015-07-26 23:58:42.630170
+-->
+</body>
+</html>
