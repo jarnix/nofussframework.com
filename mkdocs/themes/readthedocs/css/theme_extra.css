@@ -146,3 +146,7 @@ header a.logo {
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
+
+header ul li a {
+    color:white;
+}
