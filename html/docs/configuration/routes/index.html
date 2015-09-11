@@ -155,6 +155,36 @@
         
             <ul>
             
+                <li class="toctree-l3"><a href="#example">Example</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#rest-handling">Rest handling</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#content-type">Content type</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#naming">Naming</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#regexp-matching-and-route-parameters">Regexp matching and route parameters</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#middlewares">Middlewares</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#route-inheritance">Route inheritance</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#more-on-the-route-inheritance">More on the route inheritance</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#all-variables">All variables</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#how-to-specify-a-route-for-a-non-prefixed-url-like-blahtml-for-example">How to specify a route for a non prefixed url (like /bla.html for example)</a></li>
+                
+            
             </ul>
         
     </li>
@@ -216,7 +246,190 @@
   <hr/>
 </div>
 					<div role="main">
-						<div class="section"> <p>wip</p> </div>
+						<div class="section"> <p>The routing functionality of NoFussFramework is rather easy as usual (lol).</p>
+<p>Let's start with an example:</p>
+<h2 id="example">Example</h2>
+<pre><code>&lt;?php
+return array(
+    array(
+        'type' =&gt; 'default',
+        'contentType' =&gt; 'html',
+        'name' =&gt; 'demo-test-id',
+        'regexp' =&gt; 'test/(name:[a-z\-]+)(id:\d+)',
+        'controller' =&gt; 'home/index/demo',
+        'cacheMinutes' =&gt; 5
+    ),
+    array(
+        'type' =&gt; 'rest',
+        'contentType' =&gt; 'json',
+        'name' =&gt; 'demo-test2-id',
+        'regexp' =&gt; 'test2/(name:[a-z\-]+)(id:\d+)',
+        'controller' =&gt; 'home/index/demo2',
+        'middlewares' =&gt; array(
+            'App\Colorize'
+        ),
+        'cacheMinutes' =&gt; 10
+    )
+); 
+</code></pre>
+
+<p>It's a php file returning an array of the routes for the URLs that begin with the name of the php file.</p>
+<h2 id="rest-handling">Rest handling</h2>
+<p>You can define a rest endpoint pointing to a controller, which means that you just have to write the methods in your contoller. Set the route type to "rest" and then in your controller, define the methods:</p>
+<ul>
+<li>getAction (for a GET request)</li>
+<li>postAction (for a POST request)</li>
+<li>putAction (for a PUT request)</li>
+<li>deleteAction (for a DELETE request)</li>
+<li>that's all for now</li>
+</ul>
+<p>If your API needs to be used by clients that cannot issue a PUT or DELETE request (dumb firewall/administrator issue), you can send, from the client, a POST request with one of the additional HTTP headers (HTTP_X_HTTP_METHOD, HTTP_X_HTTP_METHOD_OVERRIDE, HTTP_X_METHOD_OVERRIDE) specifying the method to use (that would be PUT or DELETE). </p>
+<h2 id="content-type">Content type</h2>
+<p>The various content types that NoFussFramework handles by default are these one :</p>
+<ul>
+<li>atom</li>
+<li>css</li>
+<li>gif</li>
+<li>jpg / jpeg</li>
+<li>png </li>
+<li>js / javascript</li>
+<li>json</li>
+<li>pdf</li>
+<li>rss</li>
+<li>text</li>
+<li>xml</li>
+<li>html</li>
+</ul>
+<p>Just set it in your route to return the correct content type.</p>
+<h2 id="naming">Naming</h2>
+<p>You can optionally name a route for using inheritance. Let's return to that a bit later.</p>
+<h2 id="regexp-matching-and-route-parameters">Regexp matching and route parameters</h2>
+<p>The framework only decides of the correct route with a regexp and the name of the route file (for example "demo.php") will be the first part of the regexp. Put everything beginning with /demo/ in demo.php.</p>
+<p>For matching the parameters in your routes, use a capturing group with the name of the variable in front of the regexp, for example:</p>
+<pre><code>test/(name:[a-z\-]+)(id:\d+)
+</code></pre>
+
+<p>will register a parameter named "name" matching all letters from a to z, and another one name "id" matching an integer at the end of the url.</p>
+<p>In your controller, get these parameters with:</p>
+<pre><code>$params = $this-&gt;request-&gt;getParams();
+</code></pre>
+
+<p>On in a model (not recommended anyway), get them this way:</p>
+<pre><code>$front = \Nf\Front::getInstance();
+$request = $front-&gt;getRequest();
+$params = $request-&gt;getParams();
+</code></pre>
+
+<p>For the url /test/bike45, you would have an array $params that contains:</p>
+<ul>
+<li>name: "bike"</li>
+<li>id: "45"  </li>
+</ul>
+<p><strong>Cache settings</strong></p>
+<p>You can easily tell the reverse proxy in front of your webservers and the client browser to set a cache timeout, in minutes.</p>
+<p>If you use 0, the page will not be cached (or at least you ask not to), and if you use, say, 5, the page will be 5 minutes in cache.</p>
+<h2 id="middlewares">Middlewares</h2>
+<p>You can use a middleware (that is just a "special" class) in your routes so you don't have to use them in your contollers.</p>
+<p>The trait that the middleware's class is using will define the behaviour of the middleware, which could be:</p>
+<ul>
+<li>"pre", called before running the controller's action</li>
+<li>"post", called after the action</li>
+</ul>
+<h2 id="route-inheritance">Route inheritance</h2>
+<p>If you have multiple languages and of course do not want to maintain multiple routes for the same actions, just give a name to the route, for example, we have the "demo-test-id" route. We want it to point to: home (module)/index (controller)/index (action). </p>
+<pre><code>&quot;name&quot; =&gt; &quot;demo-test-id&quot;
+&quot;regexp&quot; =&gt; 'test/(name:[a-z\-]+)(id:\d+)',
+&quot;controller&quot; =&gt; 'home/index/demo',
+</code></pre>
+
+<p>in the file /routes/demo.php.</p>
+<p>Then in /routes/web/en, you can re-use this route but use a different prefix in the URL (say "demoen", that will only be matched on the "en" version because you put it in /routes/web/en). You would create a file in: "/routes/web/en/demoen.php" containing this :</p>
+<pre><code>return array(
+    array(
+        'type' =&gt; 'inherit',
+        'from' =&gt; 'demo-test-id'
+    )
+);
+</code></pre>
+
+<p>The framework would then use the settings of the route defined before: same regexp, same controller, same everything but the first part of the url. It would not be "/demo/bike45" but "/demoen/bike45".   </p>
+<h2 id="more-on-the-route-inheritance">More on the route inheritance</h2>
+<p>The inheritance goes from the lowest folder to the deepest one:</p>
+<ul>
+<li>/routes/ is the base, used for all versions and locales</li>
+<li>/routes/<version> is the folder used for this <version> ("/web" in our example)</li>
+<li>/routes/<version>/<locale> is the folder used for this <version> and this <locale> ("/en")</li>
+</ul>
+<p>You can of course re-use a route from the base or from a version in a route that is specific to a locale.</p>
+<h2 id="all-variables">All variables</h2>
+<p>A route is an array:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>default / rest / inherit</td>
+<td>default</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>html / json / ... (all the types defined below)</td>
+<td>html</td>
+</tr>
+<tr>
+<td>name</td>
+<td>give it a name if you want to reuse it</td>
+<td></td>
+</tr>
+<tr>
+<td>regexp</td>
+<td>the regular expression for the remaining part of the route (after the name of the route/file (.php)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>controller</td>
+<td>the module/controller/action to use</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>cacheMinutes</td>
+<td>number of minutes to cache the response (proxy and/or client)</td>
+<td>0, by default the pages are NOT cached</td>
+</tr>
+<tr>
+<td>middlewares</td>
+<td>the middlewares to call, enter the names of the middlewares in an array</td>
+<td><none></td>
+</tr>
+<tr>
+<td>from</td>
+<td>if you set the type to "inherit", enter the name of the route to inherit from</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-to-specify-a-route-for-a-non-prefixed-url-like-blahtml-for-example">How to specify a route for a non prefixed url (like /bla.html for example)</h2>
+<p>Since this URL does not have a "prefix", we can not name a file with nothing so we add the routes in _root.php, for example:</p>
+<p><strong>/routes/_root.php</strong></p>
+<pre><code>&lt;?php
+return (array(
+    array(
+        'type' =&gt; 'default',
+        'name' =&gt; 'root-bla',
+        'regexp' =&gt; 'bla\.html',
+        'controller' =&gt; 'home/index/index'
+    )
+));
+</code></pre>
+
+<p>In the example above, we gave a name "root-bla" to the route but it's optional of course. </p>
+<p>You can obviously setup different "_root" routes in each version and locale, and inherit from them too.</p> </div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">

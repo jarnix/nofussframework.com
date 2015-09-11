@@ -216,7 +216,69 @@
   <hr/>
 </div>
 					<div role="main">
-						<div class="section"> <p>wip</p> </div>
+						<div class="section"> <p>Within a single application, you can have:</p>
+<ul>
+<li>multiple versions (for example, your website, your administration back-office, your rest api)</li>
+<li>multiple environments of course (dev, test, prod)</li>
+<li>multiple languages (English, French, German), with or without a unique URL for each one</li>
+</ul>
+<p>The "url.ini" is the file where you set up all these variables.</p>
+<p><strong> Example </strong></p>
+<pre><code>[i18n]
+defaultLocale=fr
+defaultVersion=web
+
+dev.localeSelectionOrder=cookie
+test.localeSelectionMode=browser
+prod.localeSelectionMode=url
+
+[environments]
+dev.regexp=&quot;/mydev\.local/&quot;
+
+[versions]
+web=&quot;www&quot;
+admin=admin
+api1=api
+
+[suffixes]
+fr=[version].homes.fr
+en=[version].homes.com
+
+[locales]
+fr=fr_FR,fr_BE
+en=en_US
+
+[redirections]
+iphone=
+ipad=tablet
+androidmobile=
+androidtablet=
+blackberry=
+
+</code></pre>
+
+<p>In the exampe above, which is a simple example, we define: </p>
+<ul>
+<li>a default locale: "fr" (the labels are in /labels/fr.ini)</li>
+<li>a default version: "web" (the modules are in /application/web/...)</li>
+</ul>
+<p>Then, we have the "localeSelectionOrder" that allows us to choose the requested locale automatically:</p>
+<ul>
+<li>dev.localeSelectionOrder = cookie means that we decide of the locale to use with a cookie (cookie name: "_nfLc")</li>
+<li>test and prod selection modes are set to browser or url, which means that the framework will decide of the correct locale with the browser's locale (meaning that we have to handle aliases, like en_US or en_GB) or the url (defined in the "suffixes" section, explained later)</li>
+</ul>
+<p>We then define the next variables:</p>
+<ul>
+<li>a dev environment with the regexp for checking "mydev.local"</li>
+<li>three versions: web, admin, and api. The urls will be matched againts the versions and the suffixes...</li>
+<li>two suffixes = two languages = two sets of labels (/labels/fr.ini and /labels/en.in)</li>
+</ul>
+<p><strong> A little explanation</strong></p>
+<p>We would have the French website hosted at www.homes.fr and the English version hosted at www.homes.com. We also have an API, hosted at api.homes.fr and api.homes.com (different labels, you can load them anyway using a single url, later in the code of your API).</p>
+<p>The version is called "api1", so the modules (controllers, specific models, and views) must be in /application/api1/.</p>
+<p>We also define two locales :
+ - fr and en
+ - we added aliases for the locales if we need to select the correct locale to use: fr is also fr_FR (French with cheese) and fr_BE (French with beers)</p> </div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
