@@ -1,11 +1,31 @@
- This is the nofussframework.com website.
+This is the nofussframework.com website.
  
- build with mkdocs
+# built with mkdocs
 
- pip install mkdocs
- 
- cd docs
- mkdocs build
- 
- cd download
- mkdocs build
+Install with:
+```
+pip install mkdocs
+```
+
+To develop:
+```
+cd docs
+mkdocs serve
+```
+
+To build:
+``` 
+cd docs
+mkdocs build
+```
+
+And the other "download page":
+```
+cd download
+mkdocs serve
+```
+
+```
+cd download
+mkdocs build
+```
