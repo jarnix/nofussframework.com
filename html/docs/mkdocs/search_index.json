@@ -82,7 +82,7 @@
         }, 
         {
             "location": "/setup/requirements/", 
-            "text": "In the default installation for a website, you will need apache2 and php5. Of course, you can also use another webserver like nginx and another php engine than apache's mod-php. \n\n\nApache2\n\n\n\n\nmod_rewrite  \n\n\n\n\nPHP \n= 5.3\n\n\n\n\nphp5-intl\n\n\nphp5-mcrypt\n\n\n\n\nThe other extensions are optional and the framework won't crash (as in GTA 5).\n\n\nIf you want to connect to a mysql database:\n\n\n\n\nphp5-mysqli\n\n\n\n\nIf you want to use memcache (as session store or cache store), this extension will be necessary:\n\n\n\n\nphp5-memcache\n\n\n\n\nIf you want to use the image functions:\n\n\n\n\nphp5-imagick", 
+            "text": "In the default installation for a website, you will need apache2 and php5. Of course, you can also use another webserver like nginx and another php engine than apache's mod-php. \n\n\nApache2\n\n\n\n\nmod_rewrite  \n\n\n\n\nPHP \n= 5.6\n\n\n\n\nphp5-intl\n\n\nphp5-mcrypt\n\n\n\n\nThe other extensions are optional and the framework won't crash (as in GTA 5).\n\n\nIf you want to connect to a mysql database:\n\n\n\n\nphp5-mysqli\n\n\n\n\nIf you want to use memcache (as session store or cache store), this extension will be necessary:\n\n\n\n\nphp5-memcache\n\n\n\n\nIf you want to use the image functions:\n\n\n\n\nphp5-imagick", 
             "title": "Requirements"
         }, 
         {
@@ -91,9 +91,9 @@
             "title": "Apache2"
         }, 
         {
-            "location": "/setup/requirements/#php-53", 
+            "location": "/setup/requirements/#php-56", 
             "text": "php5-intl  php5-mcrypt   The other extensions are optional and the framework won't crash (as in GTA 5).  If you want to connect to a mysql database:   php5-mysqli   If you want to use memcache (as session store or cache store), this extension will be necessary:   php5-memcache   If you want to use the image functions:   php5-imagick", 
-            "title": "PHP &gt;= 5.3"
+            "title": "PHP &gt;= 5.6"
         }, 
         {
             "location": "/setup/installation/", 

@@ -4,7 +4,7 @@ In the default installation for a website, you will need apache2 and php5. Of co
 
 * mod_rewrite  
 
-# PHP >= 5.3 
+# PHP >= 5.6
 
 * php5-intl
 * php5-mcrypt
