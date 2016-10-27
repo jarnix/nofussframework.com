@@ -4,6 +4,6 @@ To download NoFussFramework and start coding:
 	
 You can also download a zipball:
 
-	https://github.com/jarnix/nofuss/archive/master.zip
+	https://github.com/jarnix/nofussframework/archive/master.zip
 	
 Have fun :)
