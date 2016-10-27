@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "To download NoFussFramework and start coding:\n\n\ngit clone https://github.com/jarnix/nofuss.git\n\n\n\nYou can also download a zipball:\n\n\nhttps://github.com/jarnix/nofuss/archive/master.zip\n\n\n\nHave fun :)", 
+            "text": "To download NoFussFramework and start coding:\n\n\ngit clone https://github.com/jarnix/nofussframework.git\n\n\n\nYou can also download a zipball:\n\n\nhttps://github.com/jarnix/nofuss/archive/master.zip\n\n\n\nHave fun :)", 
             "title": "Download"
         }
     ]
