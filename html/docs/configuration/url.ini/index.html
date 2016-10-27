@@ -130,6 +130,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../overview/">Overview</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../config.ini/">config.ini - app settings</a>
         
     </li>
@@ -138,6 +145,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../config.ini-optional/">config.ini - optional settings</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../config.ini-more/">config.ini - going further</a>
         
     </li>
 
@@ -165,7 +179,99 @@
 					<li>
 					<li>
     <ul class="subnav">
+    <li><span>Development</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/bootstrap/">Bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/controllers/">Controllers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/models/">Models</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/views/">Views</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/helpers/">Helpers: Settings, Config, Env, Registry, etc</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/input-data/">Getting input</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/input-filtering/">Input filtering</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/cache/">Cache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/vendor/">External classes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/performance/">Performance</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/middlewares/">Middlewares</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+					<li>
+    <ul class="subnav">
     <li><span>Reference</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../reference/http-exceptions/">default http exceptions</a>
+        
+    </li>
 
         
             
@@ -208,7 +314,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="https://github.com/jarnix/nofuss" class="icon icon-github"> Download on GitHub</a>
+          <a href="https://github.com/jarnix/nofussframework" class="icon icon-github"> Download on GitHub</a>
         
       
     </li>
@@ -218,67 +324,53 @@
 					<div role="main">
 						<div class="section"> <p>Within a single application, you can have:</p>
 <ul>
-<li>multiple versions (for example, your website, your administration back-office, your rest api)</li>
+<li>multiple versions (for example, your website, your administration back-office, your REST api)</li>
 <li>multiple environments of course (dev, test, prod)</li>
 <li>multiple languages (English, French, German), with or without a unique URL for each one</li>
 </ul>
 <p>The "url.ini" is the file where you set up all these variables.</p>
 <p><strong> Example </strong></p>
-<pre><code>[i18n]
-defaultLocale=fr
-defaultVersion=web
+<pre><code>[defaults]
+locale=en_US
+version=web
+environment=dev
 
-dev.localeSelectionOrder=cookie
-test.localeSelectionMode=browser
-prod.localeSelectionMode=url
+[localeSelectionOrder]
+dev=domain
+test=cookie, browser
+prod=domain
 
-[environments]
-dev.regexp=&quot;/mydev\.local/&quot;
+[regexps]
+en_US-dev-web=&quot;/myapp\.dev\.example\.com/&quot;
+en_US-dev-api=&quot;/api\.myapp\.dev\.example\.com/&quot;
+fr_FR-dev-web=&quot;/fr\.myapp\.dev\.example\.com/&quot;
+fr_FR-dev-api=&quot;/fr\.api\.myapp\.dev\.example\.com/&quot;
 
-[versions]
-web=&quot;www&quot;
-admin=admin
-api1=api
+en_US-test-web=&quot;/myapp\.jenkins\.internal/&quot;
+en_US-test-api=&quot;/api\.myapp\.jenkins\.internal/&quot;
 
-[suffixes]
-fr=[version].homes.fr
-en=[version].homes.com
-
-[locales]
-fr=fr_FR,fr_BE
-en=en_US
-
-[redirections]
-iphone=
-ipad=tablet
-androidmobile=
-androidtablet=
-blackberry=
-
+en_US-prod-web=&quot;/www\.example\.com/&quot;
+fr_FR-prod-web=&quot;/fr\.example\.com/&quot;
+en_US-prod-web=&quot;/api\.example\.com/&quot;
+fr_FR-prod-web=&quot;/fr\.api\.example\.com/&quot;
 </code></pre>
 
 <p>In the exampe above, which is a simple example, we define: </p>
 <ul>
-<li>a default locale: "fr" (the labels are in /labels/fr.ini)</li>
+<li>a default locale: "en_US" (the labels are in /labels/en_US.ini)</li>
 <li>a default version: "web" (the modules are in /application/web/...)</li>
 </ul>
 <p>Then, we have the "localeSelectionOrder" that allows us to choose the requested locale automatically:</p>
 <ul>
-<li>dev.localeSelectionOrder = cookie means that we decide of the locale to use with a cookie (cookie name: "_nfLc")</li>
-<li>test and prod selection modes are set to browser or url, which means that the framework will decide of the correct locale with the browser's locale (meaning that we have to handle aliases, like en_US or en_GB) or the url (defined in the "suffixes" section, explained later)</li>
+<li>dev: domain means that we decide of the locale to use with the domain name</li>
+<li>test: we decide of the locale to use with a cookie (cookie name: "_nfLc"), or the browser locale. Ultimately, if we don't have a match, we will use the default language.</li>
+<li>prod: domain means that we decide of the locale to use with the domain name</li>
 </ul>
-<p>We then define the next variables:</p>
+<p>We then define the regexps for matching with the domain names:</p>
 <ul>
-<li>a dev environment with the regexp for checking "mydev.local"</li>
-<li>three versions: web, admin, and api. The urls will be matched againts the versions and the suffixes...</li>
-<li>two suffixes = two languages = two sets of labels (/labels/fr.ini and /labels/en.in)</li>
-</ul>
-<p><strong> A little explanation</strong></p>
-<p>We would have the French website hosted at www.homes.fr and the English version hosted at www.homes.com. We also have an API, hosted at api.homes.fr and api.homes.com (different labels, you can load them anyway using a single url, later in the code of your API).</p>
-<p>The version is called "api1", so the modules (controllers, specific models, and views) must be in /application/api1/.</p>
-<p>We also define two locales :
- - fr and en
- - we added aliases for the locales if we need to select the correct locale to use: fr is also fr_FR (French with cheese) and fr_BE (French with beers)</p> </div>
+<li>a dev environment with the regexp for checking "myapp.dev.example.com", and "fr..." for the French language of the dev environment in the web version.</li>
+<li>two versions are defined: web, and api. We define also the domain names for each version and language. </li>
+</ul> </div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
@@ -286,7 +378,7 @@ blackberry=
         <a href="../routes/" class="btn btn-neutral float-right" title="routes"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../config.ini-optional/" class="btn btn-neutral" title="config.ini - optional settings"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../config.ini-more/" class="btn btn-neutral" title="config.ini - going further"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -310,10 +402,10 @@ blackberry=
 	<div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/jarnix/nofuss" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/jarnix/nofussframework" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../config.ini-optional/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../config.ini-more/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../routes/" style="color: #fcfcfc">Next &raquo;</a></span>

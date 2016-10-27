@@ -12,6 +12,16 @@ This is where you setup the default controller.
 
 If you specify another route in your routes / _root.php file, the framework will use the latest route and not this config.ini entry.
 
+## Trailing slash optional removal
+
+Do we want a trailing slash (nofussframework will redirect if the url is incorrect)
+
+| Key   | Values   | Default  | Explanation |
+|---|---|---|---|
+trailingSlash.needed | false<br>true | false | Should the urls be terminated with a trailing / | 
+
+This option should be set to false if you don't want a trailing slash. Some people like them. I don't know why. WTF.
+
 ## Database connection parameters
 
 At this time, only mysql is supported. Just add these lines to the config.ini to define an adapter to a database. 
@@ -129,7 +139,7 @@ $data = $globalCache->load('temperature', 'paris');
 
 ## Cache key prefix
 
-You can prefix every key in your cache store(s), for example if you change a lot of structure in a new version of your application. 
+You can prefix every key in your cache store(s), for example if you change a lot of structure in a new version of your application. You should also prefix the keys when you are using the same cache store for multiple applications.
 
 | Key   | Values   | Default  | Explanation |
 |---|---|---|---|
@@ -137,13 +147,30 @@ cache.keyPrefix= | (string) | (empty string) | Just remember to make it compatib
 
  
 ## Security options
- 
-  
+
+Security should be implemented in your application, these options are just here to help.
+
+### Enable CORS 
+
+| Key   | Values   | Default  | Explanation |
+|---|---|---|---|
+security.cors.enable | true<br>false | false | Enables the integrated CORS handler |
+security.cors.allowed_origins | (string) | "*" | Set the allowed origins or let the code handle it ("*" also adds the referer for making it compatible with some browsers that expect it, like Chrome) | 
+security.cors.allowed_methods | (string http methods comma-separated) | "GET, POST, DELETE, PUT, PATCH, OPTIONS" | Usually you app will handle the allowed routes and operations, you can leave the default values |
+security.cors.allowed_credentials | true<br>false | true | Adds a header Access-Control-Allow-Credentials:true |
+security.cors.allowed_headers | (strings, comma-separated) | "authorization" | Usually you might need to set this value to "authorization, content-type" |
+security.cors.max_age | integer | 86400 | number of seconds to remember the allowed route |
+
+### 
  You can add there every other configuration you might need for your application like :
  
  * your CSS/less files to include in the head
- * your js files to include in the bottom of your pages
+ * your js files to include (in the bottom of your pages obviously)
  * an API key for using Google Cloud Services
  * the email recipient address for your contact form
  * the IP of your redis cluster servers
  * etc
+
+# Learn how to create a useful config.ini
+
+Let's go the next page!

@@ -130,6 +130,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../overview/">Overview</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../config.ini/">config.ini - app settings</a>
         
     </li>
@@ -142,6 +149,9 @@
             <ul>
             
                 <li class="toctree-l3"><a href="#default-module-controller-action-aka-the-home-page">Default module, controller, action (aka "the home page")</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#trailing-slash-optional-removal">Trailing slash optional removal</a></li>
                 
             
                 <li class="toctree-l3"><a href="#database-connection-parameters">Database connection parameters</a></li>
@@ -164,8 +174,20 @@
             
                 <li class="toctree-l3"><a href="#security-options">Security options</a></li>
                 
+                    <li><a class="toctree-l4" href="#enable-cors">Enable CORS</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#learn-how-to-create-a-useful-configini">Learn how to create a useful config.ini</a></li>
+                
             
             </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../config.ini-more/">config.ini - going further</a>
         
     </li>
 
@@ -189,7 +211,99 @@
 					<li>
 					<li>
     <ul class="subnav">
+    <li><span>Development</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/bootstrap/">Bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/controllers/">Controllers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/models/">Models</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/views/">Views</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/helpers/">Helpers: Settings, Config, Env, Registry, etc</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/input-data/">Getting input</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/input-filtering/">Input filtering</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/cache/">Cache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/vendor/">External classes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/performance/">Performance</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/middlewares/">Middlewares</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+					<li>
+    <ul class="subnav">
     <li><span>Reference</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../reference/http-exceptions/">default http exceptions</a>
+        
+    </li>
 
         
             
@@ -232,7 +346,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="https://github.com/jarnix/nofuss" class="icon icon-github"> Download on GitHub</a>
+          <a href="https://github.com/jarnix/nofussframework" class="icon icon-github"> Download on GitHub</a>
         
       
     </li>
@@ -274,6 +388,27 @@
 </tbody>
 </table>
 <p>If you specify another route in your routes / _root.php file, the framework will use the latest route and not this config.ini entry.</p>
+<h2 id="trailing-slash-optional-removal">Trailing slash optional removal</h2>
+<p>Do we want a trailing slash (nofussframework will redirect if the url is incorrect)</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trailingSlash.needed</td>
+<td>false<br>true</td>
+<td>false</td>
+<td>Should the urls be terminated with a trailing /</td>
+</tr>
+</tbody>
+</table>
+<p>This option should be set to false if you don't want a trailing slash. Some people like them. I don't know why. WTF.</p>
 <h2 id="database-connection-parameters">Database connection parameters</h2>
 <p>At this time, only mysql is supported. Just add these lines to the config.ini to define an adapter to a database. </p>
 <p>In this example, it's called <em>mydatabase</em>. Replace with the name you want to use.</p>
@@ -496,7 +631,7 @@ $data = $globalCache-&gt;load('temperature', array('country' =&gt; 'france', 'ci
 </code></pre>
 
 <h2 id="cache-key-prefix">Cache key prefix</h2>
-<p>You can prefix every key in your cache store(s), for example if you change a lot of structure in a new version of your application. </p>
+<p>You can prefix every key in your cache store(s), for example if you change a lot of structure in a new version of your application. You should also prefix the keys when you are using the same cache store for multiple applications.</p>
 <table>
 <thead>
 <tr>
@@ -516,20 +651,73 @@ $data = $globalCache-&gt;load('temperature', array('country' =&gt; 'france', 'ci
 </tbody>
 </table>
 <h2 id="security-options">Security options</h2>
+<p>Security should be implemented in your application, these options are just here to help.</p>
+<h3 id="enable-cors">Enable CORS</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Values</th>
+<th>Default</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>security.cors.enable</td>
+<td>true<br>false</td>
+<td>false</td>
+<td>Enables the integrated CORS handler</td>
+</tr>
+<tr>
+<td>security.cors.allowed_origins</td>
+<td>(string)</td>
+<td>"*"</td>
+<td>Set the allowed origins or let the code handle it ("*" also adds the referer for making it compatible with some browsers that expect it, like Chrome)</td>
+</tr>
+<tr>
+<td>security.cors.allowed_methods</td>
+<td>(string http methods comma-separated)</td>
+<td>"GET, POST, DELETE, PUT, PATCH, OPTIONS"</td>
+<td>Usually you app will handle the allowed routes and operations, you can leave the default values</td>
+</tr>
+<tr>
+<td>security.cors.allowed_credentials</td>
+<td>true<br>false</td>
+<td>true</td>
+<td>Adds a header Access-Control-Allow-Credentials:true</td>
+</tr>
+<tr>
+<td>security.cors.allowed_headers</td>
+<td>(strings, comma-separated)</td>
+<td>"authorization"</td>
+<td>Usually you might need to set this value to "authorization, content-type"</td>
+</tr>
+<tr>
+<td>security.cors.max_age</td>
+<td>integer</td>
+<td>86400</td>
+<td>number of seconds to remember the allowed route</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1"></h3>
 <p>You can add there every other configuration you might need for your application like :</p>
 <ul>
 <li>your CSS/less files to include in the head</li>
-<li>your js files to include in the bottom of your pages</li>
+<li>your js files to include (in the bottom of your pages obviously)</li>
 <li>an API key for using Google Cloud Services</li>
 <li>the email recipient address for your contact form</li>
 <li>the IP of your redis cluster servers</li>
 <li>etc</li>
-</ul> </div>
+</ul>
+<h1 id="learn-how-to-create-a-useful-configini">Learn how to create a useful config.ini</h1>
+<p>Let's go the next page!</p> </div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../url.ini/" class="btn btn-neutral float-right" title="url.ini"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../config.ini-more/" class="btn btn-neutral float-right" title="config.ini - going further"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../config.ini/" class="btn btn-neutral" title="config.ini - app settings"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -556,13 +744,13 @@ $data = $globalCache-&gt;load('temperature', array('country' =&gt; 'france', 'ci
 	<div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/jarnix/nofuss" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/jarnix/nofussframework" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../config.ini/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../url.ini/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../config.ini-more/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

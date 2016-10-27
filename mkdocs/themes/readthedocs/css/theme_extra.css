@@ -150,3 +150,7 @@ header a.logo {
 header ul li a {
     color:white;
 }
+
+section a {
+    text-decoration: underline;
+}

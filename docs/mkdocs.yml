@@ -8,15 +8,30 @@ pages:
   - 'Installation': setup/installation.md
 - 'Configuration': 
   - 'Introduction': configuration/introduction.md
+  - 'Overview': configuration/overview.md
   - 'config.ini - app settings': configuration/config.ini.md
   - 'config.ini - optional settings': configuration/config.ini-optional.md
+  - 'config.ini - going further': configuration/config.ini-more.md
   - 'url.ini': configuration/url.ini.md
   - 'routes': configuration/routes.md
+- 'Development':
+  - 'Bootstrap': development/bootstrap.md
+  - 'Controllers': development/controllers.md
+  - 'Models': development/models.md
+  - 'Views': development/views.md
+  - 'Helpers: Settings, Config, Env, Registry, etc': development/helpers.md
+  - 'Getting input': development/input-data.md
+  - 'Input filtering': development/input-filtering.md
+  - 'Cache': development/cache.md
+  - 'External classes': development/vendor.md
+  - 'Performance': development/performance.md
+  - 'Middlewares': development/middlewares.md
 - 'Reference':
+  - 'default http exceptions': reference/http-exceptions.md
   - 'sessions table structure': reference/sessions-table.md
 theme_dir: '../mkdocs/themes/readthedocs'
 site_dir: '../html/docs'
-repo_url: 'https://github.com/jarnix/nofuss'
+repo_url: 'https://github.com/jarnix/nofussframework'
 google_analytics: ['UA-30907299-4', 'auto']
 dev_addr: 0.0.0.0:81
 strict: true

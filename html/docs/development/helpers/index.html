@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+<title>Helpers: Settings, Config, Env, Registry, etc - NoFussFramework Documentation</title>  
+<link rel="shortcut icon" href="../../img/favicon.ico">
+ 
+<link
+	href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700'
+	rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="../../css/theme.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../css/theme_extra.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../css/highlight.css"> 
+<script>
+	// Current page data
+	var mkdocs_page_name = "Helpers: Settings, Config, Env, Registry, etc";
+	var mkdocs_page_url = "/development/helpers/";
+</script>
+
+<script src="../../js/jquery-2.1.1.min.js"></script>
+<script src="../../js/modernizr-2.8.3.min.js"></script>
+<script type="text/javascript" src="../../js/highlight.pack.js"></script>
+<script src="../../js/theme.js"></script>  
+<script>
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
+
+	ga('create', 'UA-30907299-4', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+	<header>
+		<a class="logo" href="/">NoFussFramework</a>
+		<ul>
+			<li><a href="/docs/">Documentation</a></li>
+			<li><a href="/download/">Download</a></li>
+			<li><a href="/community/">Community</a></li>
+		</ul>
+	</header>
+	<div class="wy-grid-for-nav">
+
+		
+		<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+			<div class="wy-side-nav-search"><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+			</div>
+
+			<div class="wy-menu wy-menu-vertical" data-spy="affix"
+				role="navigation" aria-label="main navigation">
+				<ul class="current">
+					
+					<li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Documentation Home</a>
+        
+    </li>
+
+					<li>
+					<li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../intro/introduction/">Introduction</a>
+        
+    </li>
+
+					<li>
+					<li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/try-it-now/">Try it now</a>
+        
+    </li>
+
+					<li>
+					<li>
+    <ul class="subnav">
+    <li><span>Getting started</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/requirements/">Requirements</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/installation/">Installation</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+					<li>
+    <ul class="subnav">
+    <li><span>Configuration</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../configuration/introduction/">Introduction</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../configuration/overview/">Overview</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../configuration/config.ini/">config.ini - app settings</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../configuration/config.ini-optional/">config.ini - optional settings</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../configuration/config.ini-more/">config.ini - going further</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../configuration/url.ini/">url.ini</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../configuration/routes/">routes</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+					<li>
+    <ul class="subnav">
+    <li><span>Development</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../bootstrap/">Bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../controllers/">Controllers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../models/">Models</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../views/">Views</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Helpers: Settings, Config, Env, Registry, etc</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#registry">Registry</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#settings">Settings</a></li>
+                
+                    <li><a class="toctree-l4" href="#config">Config</a></li>
+                
+                    <li><a class="toctree-l4" href="#env">Env</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#input">Input</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#db">Db</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#cache">Cache</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#file">File</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#image">Image</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#labelmanager">LabelManager</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#localization">Localization</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#make">Make</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#session">Session</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#task">Task</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#useragent">UserAgent</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#view">View</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../input-data/">Getting input</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../input-filtering/">Input filtering</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../cache/">Cache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../vendor/">External classes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../performance/">Performance</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../middlewares/">Middlewares</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+					<li>
+    <ul class="subnav">
+    <li><span>Reference</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../reference/http-exceptions/">default http exceptions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../reference/sessions-table/">sessions table structure</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+				</ul>
+			</div>
+			&nbsp;
+		</nav>
+
+		<section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+			
+			<nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+				<i data-toggle="wy-nav-top" class="fa fa-bars"></i> <a
+					href="../..">NoFussFramework Documentation</a>
+			</nav>
+
+			
+			<div class="wy-nav-content">
+				<div class="rst-content">
+					<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Development &raquo;</li>
+        
+      
+    
+    <li>Helpers: Settings, Config, Env, Registry, etc</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/jarnix/nofussframework" class="icon icon-github"> Download on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+					<div role="main">
+						<div class="section"> <p>This page will explain the useful helpers that are shipped with the framework</p>
+<h1 id="registry">Registry</h1>
+<p>TODO</p>
+<h1 id="settings">Settings</h1>
+<p>TODO</p>
+<h2 id="config">Config</h2>
+<p>TODO</p>
+<h2 id="env">Env</h2>
+<p>TODO</p>
+<h1 id="input">Input</h1>
+<p>TODO</p>
+<h1 id="db">Db</h1>
+<p>TODO</p>
+<h1 id="cache">Cache</h1>
+<p>TODO</p>
+<h1 id="file">File</h1>
+<p>TODO</p>
+<h1 id="image">Image</h1>
+<p>TODO</p>
+<h1 id="labelmanager">LabelManager</h1>
+<p>TODO</p>
+<h1 id="localization">Localization</h1>
+<p>TODO</p>
+<h1 id="make">Make</h1>
+<p>TODO</p>
+<h1 id="session">Session</h1>
+<p>TODO</p>
+<h1 id="task">Task</h1>
+<p>TODO</p>
+<h1 id="useragent">UserAgent</h1>
+<p>TODO</p>
+<h1 id="view">View</h1> </div>
+					</div> <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../input-data/" class="btn btn-neutral float-right" title="Getting input"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../views/" class="btn btn-neutral" title="Views"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a rel="nofollow" href="http://www.mkdocs.org">MkDocs</a> using a <a rel="nofollow" href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer> 
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+
+	<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/jarnix/nofussframework" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../views/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../input-data/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

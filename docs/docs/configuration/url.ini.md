@@ -1,6 +1,6 @@
 Within a single application, you can have:
 
- - multiple versions (for example, your website, your administration back-office, your rest api)
+ - multiple versions (for example, your website, your administration back-office, your REST api)
  - multiple environments of course (dev, test, prod)
  - multiple languages (English, French, German), with or without a unique URL for each one
  
@@ -9,62 +9,44 @@ The "url.ini" is the file where you set up all these variables.
 ** Example **
 
 ```
-[i18n]
-defaultLocale=fr
-defaultVersion=web
+[defaults]
+locale=en_US
+version=web
+environment=dev
 
-dev.localeSelectionOrder=cookie
-test.localeSelectionMode=browser
-prod.localeSelectionMode=url
+[localeSelectionOrder]
+dev=domain
+test=cookie, browser
+prod=domain
 
-[environments]
-dev.regexp="/mydev\.local/"
+[regexps]
+en_US-dev-web="/myapp\.dev\.example\.com/"
+en_US-dev-api="/api\.myapp\.dev\.example\.com/"
+fr_FR-dev-web="/fr\.myapp\.dev\.example\.com/"
+fr_FR-dev-api="/fr\.api\.myapp\.dev\.example\.com/"
 
-[versions]
-web="www"
-admin=admin
-api1=api
+en_US-test-web="/myapp\.jenkins\.internal/"
+en_US-test-api="/api\.myapp\.jenkins\.internal/"
 
-[suffixes]
-fr=[version].homes.fr
-en=[version].homes.com
-
-[locales]
-fr=fr_FR,fr_BE
-en=en_US
-
-[redirections]
-iphone=
-ipad=tablet
-androidmobile=
-androidtablet=
-blackberry=
-
+en_US-prod-web="/www\.example\.com/"
+fr_FR-prod-web="/fr\.example\.com/"
+en_US-prod-web="/api\.example\.com/"
+fr_FR-prod-web="/fr\.api\.example\.com/"
 ```
 
 In the exampe above, which is a simple example, we define: 
 
- - a default locale: "fr" (the labels are in /labels/fr.ini)
+ - a default locale: "en_US" (the labels are in /labels/en_US.ini)
  - a default version: "web" (the modules are in /application/web/...)
  
 Then, we have the "localeSelectionOrder" that allows us to choose the requested locale automatically:
  
- - dev.localeSelectionOrder = cookie means that we decide of the locale to use with a cookie (cookie name: "_nfLc")
- - test and prod selection modes are set to browser or url, which means that the framework will decide of the correct locale with the browser's locale (meaning that we have to handle aliases, like en_US or en_GB) or the url (defined in the "suffixes" section, explained later)
+ - dev: domain means that we decide of the locale to use with the domain name
+ - test: we decide of the locale to use with a cookie (cookie name: "_nfLc"), or the browser locale. Ultimately, if we don't have a match, we will use the default language.
+ - prod: domain means that we decide of the locale to use with the domain name
+  
+We then define the regexps for matching with the domain names:
  
-We then define the next variables:
- 
- - a dev environment with the regexp for checking "mydev.local"
- - three versions: web, admin, and api. The urls will be matched againts the versions and the suffixes...
- - two suffixes = two languages = two sets of labels (/labels/fr.ini and /labels/en.in)
-
-** A little explanation**
-
-We would have the French website hosted at www.homes.fr and the English version hosted at www.homes.com. We also have an API, hosted at api.homes.fr and api.homes.com (different labels, you can load them anyway using a single url, later in the code of your API).
-
-The version is called "api1", so the modules (controllers, specific models, and views) must be in /application/api1/.
-
-We also define two locales :
- - fr and en
- - we added aliases for the locales if we need to select the correct locale to use: fr is also fr_FR (French with cheese) and fr_BE (French with beers)
+ - a dev environment with the regexp for checking "myapp.dev.example.com", and "fr..." for the French language of the dev environment in the web version.
+ - two versions are defined: web, and api. We define also the domain names for each version and language. 
 

@@ -1,3 +1,5 @@
+Note: of course you should not use a mysql table in a high usage web application, it's intended for small applications. 
+
 The Mysqli session handler expects this structure for the sessions table :
 
 This example uses the name "sessions", but you can name how you want, just set it up in your config.ini.

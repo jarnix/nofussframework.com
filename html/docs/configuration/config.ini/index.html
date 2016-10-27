@@ -129,6 +129,13 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../overview/">Overview</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
         <a class="current" href="./">config.ini - app settings</a>
         
@@ -166,6 +173,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../config.ini-more/">config.ini - going further</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../url.ini/">url.ini</a>
         
     </li>
@@ -183,7 +197,99 @@
 					<li>
 					<li>
     <ul class="subnav">
+    <li><span>Development</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/bootstrap/">Bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/controllers/">Controllers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/models/">Models</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/views/">Views</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/helpers/">Helpers: Settings, Config, Env, Registry, etc</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/input-data/">Getting input</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/input-filtering/">Input filtering</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/cache/">Cache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/vendor/">External classes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/performance/">Performance</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/middlewares/">Middlewares</a>
+        
+    </li>
+
+        
+    </ul>
+
+					<li>
+					<li>
+    <ul class="subnav">
     <li><span>Reference</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../reference/http-exceptions/">default http exceptions</a>
+        
+    </li>
 
         
             
@@ -226,7 +332,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="https://github.com/jarnix/nofuss" class="icon icon-github"> Download on GitHub</a>
+          <a href="https://github.com/jarnix/nofussframework" class="icon icon-github"> Download on GitHub</a>
         
       
     </li>
@@ -266,6 +372,12 @@
 <td>(none)</td>
 <td>Display the errors on "screen" or within another controller/method ("forward") for friendly error reporting.</td>
 </tr>
+<tr>
+<td>error.clearResponse</td>
+<td>false<br>true</td>
+<td>false</td>
+<td>Should the application clean the response before displaying the error</td>
+</tr>
 </tbody>
 </table>
 <h1 id="error-reporting">Error reporting</h1>
@@ -299,7 +411,7 @@
 </tr>
 </tbody>
 </table>
-<p>Note that you should use forward most of the time in a real application so you can display a friendly error message, hide all the code from your users.</p>
+<p>Note that you should use forward most of the time in a real application so you can display a friendly error message, and hide all the debug trace from your users.</p>
 <h1 id="error-logging">Error logging</h1>
 <table>
 <thead>
@@ -356,6 +468,7 @@
 </tr>
 </tbody>
 </table>
+<p>You should also see the <a href="../../reference/http-exceptions/">integrated http statuses codes</a> that are integrated in the framework in the references.</p>
 <h1 id="view-engines">View engines</h1>
 <table>
 <thead>
@@ -386,7 +499,7 @@
         <a href="../config.ini-optional/" class="btn btn-neutral float-right" title="config.ini - optional settings"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../introduction/" class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../overview/" class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -410,10 +523,10 @@
 	<div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/jarnix/nofuss" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/jarnix/nofussframework" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../introduction/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../config.ini-optional/" style="color: #fcfcfc">Next &raquo;</a></span>
