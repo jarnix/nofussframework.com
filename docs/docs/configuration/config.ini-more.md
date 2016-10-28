@@ -43,6 +43,16 @@ In this example, we are just using the (default) en_US locale and three versions
 
 The three sections do not overwrite anything but just inherit from our "dev" section and will therefore share the same values for our database "db.app".
 
+## Naming the sections
+
+You have to name the sections with this syntax:
+
+- locale: (en_US in this example), the same as in the url.ini
+- environment: dev, prod, test, etc (also the same as in the url.ini)
+- version: the versions that you define in the url.ini (cli is auto defined, and then you can use the name that you want)
+
+## Extending
+
 Then we will publish our application on the production servers, so we need a "prod" section:
 
 ```

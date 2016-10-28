@@ -20,6 +20,7 @@ pages:
   - 'Models': development/models.md
   - 'Views': development/views.md
   - 'Helpers: Settings, Config, Env, Registry, etc': development/helpers.md
+  - 'Database queries': development/db.md
   - 'Getting input': development/input-data.md
   - 'Input filtering': development/input-filtering.md
   - 'Cache': development/cache.md
