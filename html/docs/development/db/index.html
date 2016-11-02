@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-<title>Installation - NoFussFramework Documentation</title>  
+<title>Database queries - NoFussFramework Documentation</title>  
 <link rel="shortcut icon" href="../../img/favicon.ico">
  
 <link
@@ -21,8 +21,8 @@
 <link rel="stylesheet" href="../../css/highlight.css"> 
 <script>
 	// Current page data
-	var mkdocs_page_name = "Installation";
-	var mkdocs_page_url = "/setup/installation/";
+	var mkdocs_page_name = "Database queries";
+	var mkdocs_page_url = "/development/db/";
 </script>
 
 <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -89,7 +89,7 @@
 					<li>
 					<li>
     <li class="toctree-l1 ">
-        <a class="" href="../try-it-now/">Try it now</a>
+        <a class="" href="../../setup/try-it-now/">Try it now</a>
         
     </li>
 
@@ -101,30 +101,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../requirements/">Requirements</a>
+        <a class="" href="../../setup/requirements/">Requirements</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Installation</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#get-nofussframework-on-your-server">Get NoFussFramework on your server</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#setup-an-apache-virtual-site">Setup an apache virtual site</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#optional-get-smarty">Optional: get Smarty</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#set-directory-permissions-for-smarty">Set directory permissions for Smarty</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/installation/">Installation</a>
         
     </li>
 
@@ -196,84 +180,97 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/bootstrap/">Bootstrap</a>
+        <a class="" href="../bootstrap/">Bootstrap</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/controllers/">Controllers</a>
+        <a class="" href="../controllers/">Controllers</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/models/">Models</a>
+        <a class="" href="../models/">Models</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/views/">Views</a>
+        <a class="" href="../views/">Views</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/helpers/">Helpers: Settings, Config, Env, Registry, etc</a>
+        <a class="" href="../helpers/">Helpers: Settings, Config, Env, Registry, etc</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Database queries</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#make-a-basic-query">Make a basic query</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#escape-the-values">Escape the values</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#update-insert-upsert-with-auto-escaping">Update, Insert, Upsert with auto escaping</a></li>
+                
+            
+            </ul>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/db/">Database queries</a>
+        <a class="" href="../input-data/">Getting input</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/input-data/">Getting input</a>
+        <a class="" href="../input-filtering/">Input filtering</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/input-filtering/">Input filtering</a>
+        <a class="" href="../cache/">Cache</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/cache/">Cache</a>
+        <a class="" href="../vendor/">External classes</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/vendor/">External classes</a>
+        <a class="" href="../performance/">Performance</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../development/performance/">Performance</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../development/middlewares/">Middlewares</a>
+        <a class="" href="../middlewares/">Middlewares</a>
         
     </li>
 
@@ -325,11 +322,11 @@
     
       
         
-          <li>Getting started &raquo;</li>
+          <li>Development &raquo;</li>
         
       
     
-    <li>Installation</li>
+    <li>Database queries</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -341,66 +338,34 @@
   <hr/>
 </div>
 					<div role="main">
-						<div class="section"> <p>In this tutorial, we assume that your web root is /var/www and that you can create files in this folder. </p>
-<h1 id="get-nofussframework-on-your-server">Get NoFussFramework on your server</h1>
-<pre><code>cd /var/www
-git clone https://github.com/jarnix/nofuss.git
-cd nofuss
-</code></pre>
-<p>You will see 3 directories:</p>
-<ul>
-<li>demosite, which is a "hello world" that you can modify freely</li>
-<li>emptysite, which should be your skeleton when building a new application with NoFussFramework</li>
-<li>library: the folder containing the framework and where you can put different classes used by your application(s)</li>
-</ul>
-<h1 id="setup-an-apache-virtual-site">Setup an apache virtual site</h1>
-<p>We will name our virtual site "nofuss1".</p>
-<p>Beware, this configuration is really small and not so secure ("AllowOverride All").</p>
-<pre><code>cd /etc/apache2/sites-available
-nano nofuss1
-</code></pre>
-<p>Copy these lines and adjust according to your server's configuration.</p>
-<pre><code>&lt;VirtualHost *:80&gt;
-    ServerAdmin webmaster@localhost
-
-    DocumentRoot /var/www/nofuss/demosite/html
-    &lt;Directory /&gt;
-            Options FollowSymLinks
-            AllowOverride All
-    &lt;/Directory&gt;
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-
-    LogLevel warn
-
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-&lt;/VirtualHost&gt;
+						<div class="section"> <p>Let's go back to our example from the "Helpers" page.</p>
+<p>The Db class gives you a database connection. Declare your database in the config.ini. For example:</p>
+<pre><code>db.app.adapter = Mysqli
+db.app.params.charset = &quot;utf8&quot;
+db.app.params.hostname = &quot;mydbserver&quot;
+db.app.params.username = &quot;dbuser&quot;
+db.app.params.password = &quot;dbpass&quot;
+db.app.params.database = &quot;dbname&quot;
 </code></pre>
 
-<p>Write and exit (ctrl+o, ctrl+x).</p>
-<p>Enable the website :</p>
-<pre><code>a2ensite nofuss1
+<p>In your code, get the db connection with:</p>
+<pre><code>$db = Db::getConnection('app');
 </code></pre>
-<h1 id="optional-get-smarty">Optional: get Smarty</h1>
-<p>if you want to use Smarty as the template engine for your application, you have to download the latest version:</p>
-<pre><code>cd /usr/local/src
-wget http://www.smarty.net/files/Smarty-3.1.21.tar.gz
-tar -xvzf Smarty-3.1.21.tar.gz
-cd Smarty-3.1.21
-mv libs /var/www/nofuss/library/php/classes/Smarty
-</code></pre>
-<h1 id="set-directory-permissions-for-smarty">Set directory permissions for Smarty</h1>
-<p>If you are going to use Smarty, you will need to allow the apache "www-data" user to write the compiled templates in his templates_c folder:</p>
-<pre><code>chown -R www-data.www-data /var/www/nofuss/demosite/cache/templates_c
-</code></pre>
-<p>And you're good to go.</p> </div>
+
+<h1 id="make-a-basic-query">Make a basic query</h1>
+<p>TODO</p>
+<h1 id="escape-the-values">Escape the values</h1>
+<p>TODO</p>
+<h1 id="update-insert-upsert-with-auto-escaping">Update, Insert, Upsert with auto escaping</h1>
+<p>TODO</p> </div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../configuration/introduction/" class="btn btn-neutral float-right" title="Introduction"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../input-data/" class="btn btn-neutral float-right" title="Getting input"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../requirements/" class="btn btn-neutral" title="Requirements"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../helpers/" class="btn btn-neutral" title="Helpers: Settings, Config, Env, Registry, etc"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -427,10 +392,10 @@ mv libs /var/www/nofuss/library/php/classes/Smarty
           <a href="https://github.com/jarnix/nofussframework" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../requirements/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../helpers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../configuration/introduction/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../input-data/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -215,6 +215,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../db/">Database queries</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../input-data/">Getting input</a>
         
     </li>
@@ -235,7 +242,16 @@
             
                 <li class="toctree-l3"><a href="#different-cache-systems">Different cache systems</a></li>
                 
-                    <li><a class="toctree-l4" href="#example-with-apc-local-and-memcache-global">example with apc (local) and memcache (global)</a></li>
+                    <li><a class="toctree-l4" href="#memcached">Memcached</a></li>
+                
+                    <li><a class="toctree-l4" href="#apcapcu">apc/apcu</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#common-parameters">Common parameters</a></li>
+                
+                    <li><a class="toctree-l4" href="#keys-prefix">Keys prefix</a></li>
+                
+                    <li><a class="toctree-l4" href="#cache-keys">Cache Keys</a></li>
                 
             
             </ul>
@@ -327,11 +343,108 @@
   <hr/>
 </div>
 					<div role="main">
-						<div class="section"> <p>Cache</p>
-<h1 id="different-cache-systems">Different cache systems</h1>
-<p>TODO</p>
-<h2 id="example-with-apc-local-and-memcache-global">example with apc (local) and memcache (global)</h2>
-<p>TODO</p> </div>
+						<div class="section"> <h1 id="different-cache-systems">Different cache systems</h1>
+<p>The framework allows you to use on or multiple cache systems. For example, you might want to use a "local" cache store for performance and another memcache store for all of your front servers that will share the data.</p>
+<p>You have to declare them in the config.ini. </p>
+<h2 id="memcached">Memcached</h2>
+<p>Let's add a memcache cache handler in our application. Let's call it "global". This will be the name of the instance. </p>
+<pre><code>cache.global.handler = memcached
+cache.global.lifetime = 3600
+cache.global.params.hosts = localhost
+cache.global.params.port = 11211
+</code></pre>
+
+<p>The parameters for memcache are the ones that are read by the Nf\Cache\Memcached.php class.</p>
+<p>Then in your code, you get this instance with a simple call:</p>
+<pre><code>// use \Nf\Cache;
+$globalCache = Cache::getStorage('global');
+</code></pre>
+
+<h2 id="apcapcu">apc/apcu</h2>
+<p>The new name for the APC user cache is called "apcu".</p>
+<p>If you want to use an instance of apcu, just add these lines in your config.ini:</p>
+<p>Let's call this one "local" since it's local to the server.</p>
+<pre><code>cache.local.handler = apc
+cache.local.lifetime = 3600
+</code></pre>
+
+<p>This class does not accept any other parameters.</p>
+<h1 id="common-parameters">Common parameters</h1>
+<h2 id="keys-prefix">Keys prefix</h2>
+<p>The Cache system allows you to add a prefix for all of your entries in the cache's storage. Just add this in the config.ini:</p>
+<pre><code>cache.keyPrefix = myapp_
+</code></pre>
+
+<p>This value is optional and defaults to empty string.</p>
+<h2 id="cache-keys">Cache Keys</h2>
+<p>The Cache class uses keys and patterns instead of directly using strings.</p>
+<p>The main advantage is that you will use the same keys everywhere in your application (preventing typos) and if you udpate your data model, you can easily clean the cache for the related keys by changing the pointer to the key's name and not the name directly. </p>
+<p>Let's try with a basic example where we store an article and use the id of the article in the key's name.</p>
+<pre><code>cachekeys.article = art[id]
+</code></pre>
+
+<p>Let's store something in this key:</p>
+<pre><code>// use \Nf\Cache;
+$globalCache = Cache::getStorage('global');
+$globalCache-&gt;save('article', 47, [ 'text' =&gt; 'hello this is an interesting article about something' ] //, 3600); 
+</code></pre>
+
+<p>The parameters are :</p>
+<ul>
+<li>the name of the key defined in the config.ini (cachekeys.article)</li>
+<li>the second parameter is replaced in the string defined in the config.ini, here we have only one parameter that is the id of the article so the framework replaces [id] with our id, here 47.</li>
+<li>the data to store (it will be serialized internally by the php extension for this cache system)</li>
+<li>an optional lifetime for this key (in seconds)</li>
+</ul>
+<p>Let's load this key from the store:</p>
+<pre><code>// use \Nf\Cache;
+$globalCache = Cache::getStorage('global');
+$articleData = $globalCache-&gt;load('article', 47); 
+</code></pre>
+
+<h3 id="lifetime">Lifetime</h3>
+<p>The lifetime can be set per key or per cache system. If you do not specify a lifetime, the framework will use the cache system's one, or the global value defined in the framework of 3600 seconds (one hour).</p>
+<h3 id="multiple-key-identifiers">Multiple key identifiers</h3>
+<p>You might have multiple identifiers for the key's name, like for storing pagination results for a matching tag. Your key will look like this in the config.ini:</p>
+<pre><code>cachekeys.articleList = list_[tag]_[page]
+</code></pre>
+
+<p>In your code, you will use:</p>
+<pre><code>$globalCache-&gt;save(
+    'articleList',
+    [ 'fashion', 2 ],
+    [ 0 =&gt; 'first article...', 1 =&gt; 'second article...' ]
+); 
+</code></pre>
+
+<p>The framework will replace the entries in the key's name in the order of the values, so:</p>
+<ul>
+<li>"fashion" will replace [tag]</li>
+<li>2 will replace [page]</li>
+</ul>
+<p>You can also specify the name like this:</p>
+<pre><code>$globalCache-&gt;save(
+    'articleList',
+    [ 'tag' =&gt; 'fashion', 'page' =&gt; 2 ],
+    [ 0 =&gt; 'first article...', 1 =&gt; 'second article...' ]
+); 
+</code></pre>
+
+<p>Or of course reorder them in the order you would like:</p>
+<pre><code>$globalCache-&gt;save(
+    'articleList',
+    [ 'page' =&gt; 2, 'tag' =&gt; 'fashion' ],
+    [ 0 =&gt; 'first article...', 1 =&gt; 'second article...' ]
+); 
+</code></pre>
+
+<p>And the similar function to load the values from the store:</p>
+<pre><code>$globalCache-&gt;load('articleList', [ 'page' =&gt; 2, 'tag' =&gt; 'fashion' ]); 
+</code></pre>
+
+<h3 id="deleting-values-from-the-store">Deleting values from the store</h3>
+<pre><code>$globalCache-&gt;delete('articleList', [ 'page' =&gt; 2, 'tag' =&gt; 'fashion' ]); 
+</code></pre> </div>
 					</div> <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">

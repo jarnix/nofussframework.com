@@ -214,12 +214,12 @@
             
                 <li class="toctree-l3"><a href="#registry">Registry</a></li>
                 
-            
-                <li class="toctree-l3"><a href="#settings">Settings</a></li>
-                
                     <li><a class="toctree-l4" href="#config">Config</a></li>
                 
                     <li><a class="toctree-l4" href="#env">Env</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#settings">Settings</a></li>
                 
             
                 <li class="toctree-l3"><a href="#input">Input</a></li>
@@ -259,6 +259,13 @@
                 
             
             </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../db/">Database queries</a>
         
     </li>
 
@@ -370,20 +377,78 @@
 					<div role="main">
 						<div class="section"> <p>This page will explain the useful helpers that are shipped with the framework</p>
 <h1 id="registry">Registry</h1>
-<p>TODO</p>
-<h1 id="settings">Settings</h1>
-<p>TODO</p>
+<p>The Registry is a basic store that allows you to save and load various information (or class instances) along the execution of the request.</p>
+<pre><code>// use \Nf\Registry;
+Registry::set('something', 'omg this is really something');
+</code></pre>
+
+<p>And get it with:</p>
+<pre><code>// use \Nf\Registry;
+Registry::get('something');
+</code></pre>
+
 <h2 id="config">Config</h2>
-<p>TODO</p>
+<p>The Config contains the parsed information from the config.ini file. It is stored in the Registry object.</p>
+<p>This is a read-only object.</p>
+<pre><code>$config = \Nf\Registry::get('config');
+echo $config-&gt;app-&gt;name; 
+</code></pre>
+
+<p>You can also get the Config instance with:</p>
+<pre><code>$config = \Nf\Config::getInstance();
+echo $config-&gt;app-&gt;name;
+</code></pre>
+
+<p>You can also use this syntax:</p>
+<pre><code>echo \Nf\Config::get()-&gt;app-&gt;name;
+</code></pre>
+
 <h2 id="env">Env</h2>
-<p>TODO</p>
+<p>The Env class has the same functionality as Config but it reads its values from the .env file that you can place at the root of your application.</p>
+<p>You can use it the same way as the config.ini file, using sections for each environment, version and language. </p>
+<h1 id="settings">Settings</h1>
+<p>The Settings class merges the Env information around the Config information.</p>
+<p>You should really use this object instead of Config or Env.</p>
+<pre><code>$settings = \Nf\Settings::get();
+</code></pre>
+
 <h1 id="input">Input</h1>
-<p>TODO</p>
+<p>The Input filtering allows you to check the data provided in the request. See <a href="../input-filtering/">Input filtering</a> for more information.</p>
 <h1 id="db">Db</h1>
-<p>TODO</p>
+<p>The Db class gives you a database connection. Declare your database in the config.ini. For example:</p>
+<pre><code>db.app.adapter = Mysqli
+db.app.params.charset = &quot;utf8&quot;
+db.app.params.hostname = &quot;mydbserver&quot;
+db.app.params.username = &quot;dbuser&quot;
+db.app.params.password = &quot;dbpass&quot;
+db.app.params.database = &quot;dbname&quot;
+</code></pre>
+
+<p>In your code, get the db connection with:</p>
+<pre><code>$db = Db::getConnection('app');
+</code></pre>
+
+<p>The full signature of this method is:</p>
+<pre><code>getConnection($configName, $alternateHostname = null, $alternateDatabase = null, $storeInInstance = true)
+</code></pre>
+
+<p>It means that you can dynamically:</p>
+<ul>
+<li>change the hostname (if you shard your data among multiple db hosts)</li>
+<li>change the database (same)</li>
+<li>and require another instance of the connection (that is <strong>required</strong> if you multi-thread your app)</li>
+</ul>
+<p>You should read the information in the <a href="../db/">database</a> page.</p>
 <h1 id="cache">Cache</h1>
-<p>TODO</p>
+<p>The Cache object is explained in the <a href="../cache/">cache</a> page.</p>
 <h1 id="file">File</h1>
+<p>The File object is a basic helper to:</p>
+<ul>
+<li>mkdir (create folder): mkdir($pathname, $mode = 0775, $recursive = false)</li>
+<li>rename (rename a file or folder): rename($old, $new, $mode = 0775)</li>
+<li>uncompress (unzip): uncompress($src, $dest, $unlinkSrc = false)</li>
+<li>generatePath (generates a directory hierarchy with) </li>
+</ul>
 <p>TODO</p>
 <h1 id="image">Image</h1>
 <p>TODO</p>
@@ -404,7 +469,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../input-data/" class="btn btn-neutral float-right" title="Getting input"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../db/" class="btn btn-neutral float-right" title="Database queries"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../views/" class="btn btn-neutral" title="Views"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -437,7 +502,7 @@
         <span><a href="../views/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../input-data/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../db/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

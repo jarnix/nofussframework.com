@@ -158,6 +158,12 @@
                 <li class="toctree-l3"><a href="#sections">Sections</a></li>
                 
             
+                <li class="toctree-l3"><a href="#naming-the-sections">Naming the sections</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#extending">Extending</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#other-settings">Other settings</a></li>
                 
             
@@ -219,6 +225,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../development/helpers/">Helpers: Settings, Config, Env, Registry, etc</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../development/db/">Database queries</a>
         
     </li>
 
@@ -361,6 +374,14 @@ db.app.params.database = &quot;app_dev&quot;
 </code></pre>
 
 <p>The three sections do not overwrite anything but just inherit from our "dev" section and will therefore share the same values for our database "db.app".</p>
+<h2 id="naming-the-sections">Naming the sections</h2>
+<p>You have to name the sections with this syntax:</p>
+<ul>
+<li>locale: (en_US in this example), the same as in the url.ini</li>
+<li>environment: dev, prod, test, etc (also the same as in the url.ini)</li>
+<li>version: the versions that you define in the url.ini (cli is auto defined, and then you can use the name that you want)</li>
+</ul>
+<h2 id="extending">Extending</h2>
 <p>Then we will publish our application on the production servers, so we need a "prod" section:</p>
 <pre><code>[prod:common]
 db.app.params.hostname = &quot;db-prod-1.internal&quot;

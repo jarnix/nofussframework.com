@@ -122,7 +122,7 @@
         }, 
         {
             "location": "/configuration/introduction/", 
-            "text": "The most important files that you will need to configure for your application are:\n\n\n\n\nconfigs/config.ini\n\n\nconfigs/url.ini\n\n\nroutes/web/en (can be another version/country)\n\n\n\n\nThat's all. It's not about writing configuration files but developing applications for the real world.\n\n\nAnd you won't need to run another application to make your application work.", 
+            "text": "The most important files that you will need to configure for your application are:\n\n\n\n\nconfigs/config.ini\n\n\nconfigs/url.ini\n\n\nroutes/web (can be another version/country)\n\n\n\n\nThat's all. It's not about writing configuration files but developing applications for the real world.\n\n\nAnd you won't need to run another application to make your application work.", 
             "title": "Introduction"
         }, 
         {
@@ -232,13 +232,23 @@
         }, 
         {
             "location": "/configuration/config.ini-more/", 
-            "text": "Getting more of the config.ini\n\n\nSections\n\n\nUsually you will need to use the sections in the config.ini. They are like an object in OOP with (single) inheritance.\n\n\nYou usually begin to write your config.ini with a \"common\" section that all of the versions and languages of your application will share.\n\n\n[common]\napp.name = \nMy first app\n\n\ndb.app.adapter = Mysqli\ndb.app.params.charset = \nutf8\n\n\n\n\n\nHere we set an adapter for our database server and a charset, that will be common obviously.\n\n\nThen in dev environment, you will set a host and database with user/password. We create the \"dev\" section. This will be shared by all languages and versions in our developement environment. \n\n\n[dev:common]\ndb.app.params.hostname = \nmysql-dev-server.internal\n\ndb.app.params.username = \ndevelopment-user\n\ndb.app.params.password = \ndevelopment-password\n\ndb.app.params.database = \napp_dev\n\n\n\n\n\nThen you will have to configure the other sections that the framework will read for bootstrapping the various languages and versions that you will develop.\n\n\nIn this example, we are just using the (default) en_US locale and three versions :\n - cli (our cron tasks will be here)\n - api (our REST api)\n - web (our front app)\n\n\n[en_US-dev-cli:dev]\n\n[en_US-dev-api:dev]\n\n[en_US-dev-web:dev]\n\n\n\n\nThe three sections do not overwrite anything but just inherit from our \"dev\" section and will therefore share the same values for our database \"db.app\".\n\n\nThen we will publish our application on the production servers, so we need a \"prod\" section:\n\n\n[prod:common]\ndb.app.params.hostname = \ndb-prod-1.internal\n\ndb.app.params.username = \napp_prod\n\ndb.app.params.password = \nproduction-password\n\ndb.app.params.database = \napp_prod\n\n\n\n\n\nWe overwrite with the production hostname, user, password, database's name.\n\n\nThis section (\"prod\") will be extended for our various languages and versions in production environment.\n\n\n[en_US-prod-cli:prod]\n\n[en_US-prod-api:prod]\n\n[en_US-prod-web:prod]\n\n\n\n\nWe are just inheriting from prod that contains already the right settings since our example app shares the same database server obviously.\n\n\nOther settings\n\n\nIn the previous page the parameter for disabling cache was explained. In production we will need the cache.\n\n\nSo in the prod section, enable it with:\n\n\n[prod]\ncache.enabled=true", 
+            "text": "Getting more of the config.ini\n\n\nSections\n\n\nUsually you will need to use the sections in the config.ini. They are like an object in OOP with (single) inheritance.\n\n\nYou usually begin to write your config.ini with a \"common\" section that all of the versions and languages of your application will share.\n\n\n[common]\napp.name = \nMy first app\n\n\ndb.app.adapter = Mysqli\ndb.app.params.charset = \nutf8\n\n\n\n\n\nHere we set an adapter for our database server and a charset, that will be common obviously.\n\n\nThen in dev environment, you will set a host and database with user/password. We create the \"dev\" section. This will be shared by all languages and versions in our developement environment. \n\n\n[dev:common]\ndb.app.params.hostname = \nmysql-dev-server.internal\n\ndb.app.params.username = \ndevelopment-user\n\ndb.app.params.password = \ndevelopment-password\n\ndb.app.params.database = \napp_dev\n\n\n\n\n\nThen you will have to configure the other sections that the framework will read for bootstrapping the various languages and versions that you will develop.\n\n\nIn this example, we are just using the (default) en_US locale and three versions :\n - cli (our cron tasks will be here)\n - api (our REST api)\n - web (our front app)\n\n\n[en_US-dev-cli:dev]\n\n[en_US-dev-api:dev]\n\n[en_US-dev-web:dev]\n\n\n\n\nThe three sections do not overwrite anything but just inherit from our \"dev\" section and will therefore share the same values for our database \"db.app\".\n\n\nNaming the sections\n\n\nYou have to name the sections with this syntax:\n\n\n\n\nlocale: (en_US in this example), the same as in the url.ini\n\n\nenvironment: dev, prod, test, etc (also the same as in the url.ini)\n\n\nversion: the versions that you define in the url.ini (cli is auto defined, and then you can use the name that you want)\n\n\n\n\nExtending\n\n\nThen we will publish our application on the production servers, so we need a \"prod\" section:\n\n\n[prod:common]\ndb.app.params.hostname = \ndb-prod-1.internal\n\ndb.app.params.username = \napp_prod\n\ndb.app.params.password = \nproduction-password\n\ndb.app.params.database = \napp_prod\n\n\n\n\n\nWe overwrite with the production hostname, user, password, database's name.\n\n\nThis section (\"prod\") will be extended for our various languages and versions in production environment.\n\n\n[en_US-prod-cli:prod]\n\n[en_US-prod-api:prod]\n\n[en_US-prod-web:prod]\n\n\n\n\nWe are just inheriting from prod that contains already the right settings since our example app shares the same database server obviously.\n\n\nOther settings\n\n\nIn the previous page the parameter for disabling cache was explained. In production we will need the cache.\n\n\nSo in the prod section, enable it with:\n\n\n[prod]\ncache.enabled=true", 
             "title": "config.ini - going further"
         }, 
         {
             "location": "/configuration/config.ini-more/#sections", 
-            "text": "Usually you will need to use the sections in the config.ini. They are like an object in OOP with (single) inheritance.  You usually begin to write your config.ini with a \"common\" section that all of the versions and languages of your application will share.  [common]\napp.name =  My first app \n\ndb.app.adapter = Mysqli\ndb.app.params.charset =  utf8   Here we set an adapter for our database server and a charset, that will be common obviously.  Then in dev environment, you will set a host and database with user/password. We create the \"dev\" section. This will be shared by all languages and versions in our developement environment.   [dev:common]\ndb.app.params.hostname =  mysql-dev-server.internal \ndb.app.params.username =  development-user \ndb.app.params.password =  development-password \ndb.app.params.database =  app_dev   Then you will have to configure the other sections that the framework will read for bootstrapping the various languages and versions that you will develop.  In this example, we are just using the (default) en_US locale and three versions :\n - cli (our cron tasks will be here)\n - api (our REST api)\n - web (our front app)  [en_US-dev-cli:dev]\n\n[en_US-dev-api:dev]\n\n[en_US-dev-web:dev]  The three sections do not overwrite anything but just inherit from our \"dev\" section and will therefore share the same values for our database \"db.app\".  Then we will publish our application on the production servers, so we need a \"prod\" section:  [prod:common]\ndb.app.params.hostname =  db-prod-1.internal \ndb.app.params.username =  app_prod \ndb.app.params.password =  production-password \ndb.app.params.database =  app_prod   We overwrite with the production hostname, user, password, database's name.  This section (\"prod\") will be extended for our various languages and versions in production environment.  [en_US-prod-cli:prod]\n\n[en_US-prod-api:prod]\n\n[en_US-prod-web:prod]  We are just inheriting from prod that contains already the right settings since our example app shares the same database server obviously.", 
+            "text": "Usually you will need to use the sections in the config.ini. They are like an object in OOP with (single) inheritance.  You usually begin to write your config.ini with a \"common\" section that all of the versions and languages of your application will share.  [common]\napp.name =  My first app \n\ndb.app.adapter = Mysqli\ndb.app.params.charset =  utf8   Here we set an adapter for our database server and a charset, that will be common obviously.  Then in dev environment, you will set a host and database with user/password. We create the \"dev\" section. This will be shared by all languages and versions in our developement environment.   [dev:common]\ndb.app.params.hostname =  mysql-dev-server.internal \ndb.app.params.username =  development-user \ndb.app.params.password =  development-password \ndb.app.params.database =  app_dev   Then you will have to configure the other sections that the framework will read for bootstrapping the various languages and versions that you will develop.  In this example, we are just using the (default) en_US locale and three versions :\n - cli (our cron tasks will be here)\n - api (our REST api)\n - web (our front app)  [en_US-dev-cli:dev]\n\n[en_US-dev-api:dev]\n\n[en_US-dev-web:dev]  The three sections do not overwrite anything but just inherit from our \"dev\" section and will therefore share the same values for our database \"db.app\".", 
             "title": "Sections"
+        }, 
+        {
+            "location": "/configuration/config.ini-more/#naming-the-sections", 
+            "text": "You have to name the sections with this syntax:   locale: (en_US in this example), the same as in the url.ini  environment: dev, prod, test, etc (also the same as in the url.ini)  version: the versions that you define in the url.ini (cli is auto defined, and then you can use the name that you want)", 
+            "title": "Naming the sections"
+        }, 
+        {
+            "location": "/configuration/config.ini-more/#extending", 
+            "text": "Then we will publish our application on the production servers, so we need a \"prod\" section:  [prod:common]\ndb.app.params.hostname =  db-prod-1.internal \ndb.app.params.username =  app_prod \ndb.app.params.password =  production-password \ndb.app.params.database =  app_prod   We overwrite with the production hostname, user, password, database's name.  This section (\"prod\") will be extended for our various languages and versions in production environment.  [en_US-prod-cli:prod]\n\n[en_US-prod-api:prod]\n\n[en_US-prod-web:prod]  We are just inheriting from prod that contains already the right settings since our example app shares the same database server obviously.", 
+            "title": "Extending"
         }, 
         {
             "location": "/configuration/config.ini-more/#other-settings", 
@@ -407,47 +417,47 @@
         }, 
         {
             "location": "/development/helpers/", 
-            "text": "This page will explain the useful helpers that are shipped with the framework\n\n\nRegistry\n\n\nTODO\n\n\nSettings\n\n\nTODO\n\n\nConfig\n\n\nTODO\n\n\nEnv\n\n\nTODO\n\n\nInput\n\n\nTODO\n\n\nDb\n\n\nTODO\n\n\nCache\n\n\nTODO\n\n\nFile\n\n\nTODO\n\n\nImage\n\n\nTODO\n\n\nLabelManager\n\n\nTODO\n\n\nLocalization\n\n\nTODO\n\n\nMake\n\n\nTODO\n\n\nSession\n\n\nTODO\n\n\nTask\n\n\nTODO\n\n\nUserAgent\n\n\nTODO\n\n\nView", 
+            "text": "This page will explain the useful helpers that are shipped with the framework\n\n\nRegistry\n\n\nThe Registry is a basic store that allows you to save and load various information (or class instances) along the execution of the request.\n\n\n// use \\Nf\\Registry;\nRegistry::set('something', 'omg this is really something');\n\n\n\n\nAnd get it with:\n\n\n// use \\Nf\\Registry;\nRegistry::get('something');\n\n\n\n\nConfig\n\n\nThe Config contains the parsed information from the config.ini file. It is stored in the Registry object.\n\n\nThis is a read-only object.\n\n\n$config = \\Nf\\Registry::get('config');\necho $config-\napp-\nname; \n\n\n\n\nYou can also get the Config instance with:\n\n\n$config = \\Nf\\Config::getInstance();\necho $config-\napp-\nname;\n\n\n\n\nYou can also use this syntax:\n\n\necho \\Nf\\Config::get()-\napp-\nname;\n\n\n\n\nEnv\n\n\nThe Env class has the same functionality as Config but it reads its values from the .env file that you can place at the root of your application.\n\n\nYou can use it the same way as the config.ini file, using sections for each environment, version and language. \n\n\nSettings\n\n\nThe Settings class merges the Env information around the Config information.\n\n\nYou should really use this object instead of Config or Env.\n\n\n$settings = \\Nf\\Settings::get();\n\n\n\n\nInput\n\n\nThe Input filtering allows you to check the data provided in the request. See \nInput filtering\n for more information.\n\n\nDb\n\n\nThe Db class gives you a database connection. Declare your database in the config.ini. For example:\n\n\ndb.app.adapter = Mysqli\ndb.app.params.charset = \nutf8\n\ndb.app.params.hostname = \nmydbserver\n\ndb.app.params.username = \ndbuser\n\ndb.app.params.password = \ndbpass\n\ndb.app.params.database = \ndbname\n\n\n\n\n\nIn your code, get the db connection with:\n\n\n$db = Db::getConnection('app');\n\n\n\n\nThe full signature of this method is:\n\n\ngetConnection($configName, $alternateHostname = null, $alternateDatabase = null, $storeInInstance = true)\n\n\n\n\nIt means that you can dynamically:\n\n\n\n\nchange the hostname (if you shard your data among multiple db hosts)\n\n\nchange the database (same)\n\n\nand require another instance of the connection (that is \nrequired\n if you multi-thread your app)\n\n\n\n\nYou should read the information in the \ndatabase\n page.\n\n\nCache\n\n\nThe Cache object is explained in the \ncache\n page.\n\n\nFile\n\n\nThe File object is a basic helper to:\n\n\n\n\nmkdir (create folder): mkdir($pathname, $mode = 0775, $recursive = false)\n\n\nrename (rename a file or folder): rename($old, $new, $mode = 0775)\n\n\nuncompress (unzip): uncompress($src, $dest, $unlinkSrc = false)\n\n\ngeneratePath (generates a directory hierarchy with) \n\n\n\n\nTODO\n\n\nImage\n\n\nTODO\n\n\nLabelManager\n\n\nTODO\n\n\nLocalization\n\n\nTODO\n\n\nMake\n\n\nTODO\n\n\nSession\n\n\nTODO\n\n\nTask\n\n\nTODO\n\n\nUserAgent\n\n\nTODO\n\n\nView", 
             "title": "Helpers: Settings, Config, Env, Registry, etc"
         }, 
         {
             "location": "/development/helpers/#registry", 
-            "text": "TODO", 
+            "text": "The Registry is a basic store that allows you to save and load various information (or class instances) along the execution of the request.  // use \\Nf\\Registry;\nRegistry::set('something', 'omg this is really something');  And get it with:  // use \\Nf\\Registry;\nRegistry::get('something');", 
             "title": "Registry"
         }, 
         {
-            "location": "/development/helpers/#settings", 
-            "text": "TODO", 
-            "title": "Settings"
-        }, 
-        {
             "location": "/development/helpers/#config", 
-            "text": "TODO", 
+            "text": "The Config contains the parsed information from the config.ini file. It is stored in the Registry object.  This is a read-only object.  $config = \\Nf\\Registry::get('config');\necho $config- app- name;   You can also get the Config instance with:  $config = \\Nf\\Config::getInstance();\necho $config- app- name;  You can also use this syntax:  echo \\Nf\\Config::get()- app- name;", 
             "title": "Config"
         }, 
         {
             "location": "/development/helpers/#env", 
-            "text": "TODO", 
+            "text": "The Env class has the same functionality as Config but it reads its values from the .env file that you can place at the root of your application.  You can use it the same way as the config.ini file, using sections for each environment, version and language.", 
             "title": "Env"
         }, 
         {
+            "location": "/development/helpers/#settings", 
+            "text": "The Settings class merges the Env information around the Config information.  You should really use this object instead of Config or Env.  $settings = \\Nf\\Settings::get();", 
+            "title": "Settings"
+        }, 
+        {
             "location": "/development/helpers/#input", 
-            "text": "TODO", 
+            "text": "The Input filtering allows you to check the data provided in the request. See  Input filtering  for more information.", 
             "title": "Input"
         }, 
         {
             "location": "/development/helpers/#db", 
-            "text": "TODO", 
+            "text": "The Db class gives you a database connection. Declare your database in the config.ini. For example:  db.app.adapter = Mysqli\ndb.app.params.charset =  utf8 \ndb.app.params.hostname =  mydbserver \ndb.app.params.username =  dbuser \ndb.app.params.password =  dbpass \ndb.app.params.database =  dbname   In your code, get the db connection with:  $db = Db::getConnection('app');  The full signature of this method is:  getConnection($configName, $alternateHostname = null, $alternateDatabase = null, $storeInInstance = true)  It means that you can dynamically:   change the hostname (if you shard your data among multiple db hosts)  change the database (same)  and require another instance of the connection (that is  required  if you multi-thread your app)   You should read the information in the  database  page.", 
             "title": "Db"
         }, 
         {
             "location": "/development/helpers/#cache", 
-            "text": "TODO", 
+            "text": "The Cache object is explained in the  cache  page.", 
             "title": "Cache"
         }, 
         {
             "location": "/development/helpers/#file", 
-            "text": "TODO", 
+            "text": "The File object is a basic helper to:   mkdir (create folder): mkdir($pathname, $mode = 0775, $recursive = false)  rename (rename a file or folder): rename($old, $new, $mode = 0775)  uncompress (unzip): uncompress($src, $dest, $unlinkSrc = false)  generatePath (generates a directory hierarchy with)    TODO", 
             "title": "File"
         }, 
         {
@@ -491,6 +501,26 @@
             "title": "View"
         }, 
         {
+            "location": "/development/db/", 
+            "text": "Let's go back to our example from the \"Helpers\" page.\n\n\nThe Db class gives you a database connection. Declare your database in the config.ini. For example:\n\n\ndb.app.adapter = Mysqli\ndb.app.params.charset = \nutf8\n\ndb.app.params.hostname = \nmydbserver\n\ndb.app.params.username = \ndbuser\n\ndb.app.params.password = \ndbpass\n\ndb.app.params.database = \ndbname\n\n\n\n\n\nIn your code, get the db connection with:\n\n\n$db = Db::getConnection('app');\n\n\n\n\nMake a basic query\n\n\nTODO\n\n\nEscape the values\n\n\nTODO\n\n\nUpdate, Insert, Upsert with auto escaping\n\n\nTODO", 
+            "title": "Database queries"
+        }, 
+        {
+            "location": "/development/db/#make-a-basic-query", 
+            "text": "TODO", 
+            "title": "Make a basic query"
+        }, 
+        {
+            "location": "/development/db/#escape-the-values", 
+            "text": "TODO", 
+            "title": "Escape the values"
+        }, 
+        {
+            "location": "/development/db/#update-insert-upsert-with-auto-escaping", 
+            "text": "TODO", 
+            "title": "Update, Insert, Upsert with auto escaping"
+        }, 
+        {
             "location": "/development/input-data/", 
             "text": "TODO", 
             "title": "Getting input"
@@ -502,18 +532,53 @@
         }, 
         {
             "location": "/development/cache/", 
-            "text": "Cache\n\n\nDifferent cache systems\n\n\nTODO\n\n\nexample with apc (local) and memcache (global)\n\n\nTODO", 
+            "text": "Different cache systems\n\n\nThe framework allows you to use on or multiple cache systems. For example, you might want to use a \"local\" cache store for performance and another memcache store for all of your front servers that will share the data.\n\n\nYou have to declare them in the config.ini. \n\n\nMemcached\n\n\nLet's add a memcache cache handler in our application. Let's call it \"global\". This will be the name of the instance. \n\n\ncache.global.handler = memcached\ncache.global.lifetime = 3600\ncache.global.params.hosts = localhost\ncache.global.params.port = 11211\n\n\n\n\nThe parameters for memcache are the ones that are read by the Nf\\Cache\\Memcached.php class.\n\n\nThen in your code, you get this instance with a simple call:\n\n\n// use \\Nf\\Cache;\n$globalCache = Cache::getStorage('global');\n\n\n\n\napc/apcu\n\n\nThe new name for the APC user cache is called \"apcu\".\n\n\nIf you want to use an instance of apcu, just add these lines in your config.ini:\n\n\nLet's call this one \"local\" since it's local to the server.\n\n\ncache.local.handler = apc\ncache.local.lifetime = 3600\n\n\n\n\nThis class does not accept any other parameters.\n\n\nCommon parameters\n\n\nKeys prefix\n\n\nThe Cache system allows you to add a prefix for all of your entries in the cache's storage. Just add this in the config.ini:\n\n\ncache.keyPrefix = myapp_\n\n\n\n\nThis value is optional and defaults to empty string.\n\n\nCache Keys\n\n\nThe Cache class uses keys and patterns instead of directly using strings.\n\n\nThe main advantage is that you will use the same keys everywhere in your application (preventing typos) and if you udpate your data model, you can easily clean the cache for the related keys by changing the pointer to the key's name and not the name directly. \n\n\nLet's try with a basic example where we store an article and use the id of the article in the key's name.\n\n\ncachekeys.article = art[id]\n\n\n\n\nLet's store something in this key:\n\n\n// use \\Nf\\Cache;\n$globalCache = Cache::getStorage('global');\n$globalCache-\nsave('article', 47, [ 'text' =\n 'hello this is an interesting article about something' ] //, 3600); \n\n\n\n\nThe parameters are :\n\n\n\n\nthe name of the key defined in the config.ini (cachekeys.article)\n\n\nthe second parameter is replaced in the string defined in the config.ini, here we have only one parameter that is the id of the article so the framework replaces [id] with our id, here 47.\n\n\nthe data to store (it will be serialized internally by the php extension for this cache system)\n\n\nan optional lifetime for this key (in seconds)\n\n\n\n\nLet's load this key from the store:\n\n\n// use \\Nf\\Cache;\n$globalCache = Cache::getStorage('global');\n$articleData = $globalCache-\nload('article', 47); \n\n\n\n\nLifetime\n\n\nThe lifetime can be set per key or per cache system. If you do not specify a lifetime, the framework will use the cache system's one, or the global value defined in the framework of 3600 seconds (one hour).\n\n\nMultiple key identifiers\n\n\nYou might have multiple identifiers for the key's name, like for storing pagination results for a matching tag. Your key will look like this in the config.ini:\n\n\ncachekeys.articleList = list_[tag]_[page]\n\n\n\n\nIn your code, you will use:\n\n\n$globalCache-\nsave(\n    'articleList',\n    [ 'fashion', 2 ],\n    [ 0 =\n 'first article...', 1 =\n 'second article...' ]\n); \n\n\n\n\nThe framework will replace the entries in the key's name in the order of the values, so:\n\n\n\n\n\"fashion\" will replace [tag]\n\n\n2 will replace [page]\n\n\n\n\nYou can also specify the name like this:\n\n\n$globalCache-\nsave(\n    'articleList',\n    [ 'tag' =\n 'fashion', 'page' =\n 2 ],\n    [ 0 =\n 'first article...', 1 =\n 'second article...' ]\n); \n\n\n\n\nOr of course reorder them in the order you would like:\n\n\n$globalCache-\nsave(\n    'articleList',\n    [ 'page' =\n 2, 'tag' =\n 'fashion' ],\n    [ 0 =\n 'first article...', 1 =\n 'second article...' ]\n); \n\n\n\n\nAnd the similar function to load the values from the store:\n\n\n$globalCache-\nload('articleList', [ 'page' =\n 2, 'tag' =\n 'fashion' ]); \n\n\n\n\nDeleting values from the store\n\n\n$globalCache-\ndelete('articleList', [ 'page' =\n 2, 'tag' =\n 'fashion' ]);", 
             "title": "Cache"
         }, 
         {
             "location": "/development/cache/#different-cache-systems", 
-            "text": "TODO", 
+            "text": "The framework allows you to use on or multiple cache systems. For example, you might want to use a \"local\" cache store for performance and another memcache store for all of your front servers that will share the data.  You have to declare them in the config.ini.", 
             "title": "Different cache systems"
         }, 
         {
-            "location": "/development/cache/#example-with-apc-local-and-memcache-global", 
-            "text": "TODO", 
-            "title": "example with apc (local) and memcache (global)"
+            "location": "/development/cache/#memcached", 
+            "text": "Let's add a memcache cache handler in our application. Let's call it \"global\". This will be the name of the instance.   cache.global.handler = memcached\ncache.global.lifetime = 3600\ncache.global.params.hosts = localhost\ncache.global.params.port = 11211  The parameters for memcache are the ones that are read by the Nf\\Cache\\Memcached.php class.  Then in your code, you get this instance with a simple call:  // use \\Nf\\Cache;\n$globalCache = Cache::getStorage('global');", 
+            "title": "Memcached"
+        }, 
+        {
+            "location": "/development/cache/#apcapcu", 
+            "text": "The new name for the APC user cache is called \"apcu\".  If you want to use an instance of apcu, just add these lines in your config.ini:  Let's call this one \"local\" since it's local to the server.  cache.local.handler = apc\ncache.local.lifetime = 3600  This class does not accept any other parameters.", 
+            "title": "apc/apcu"
+        }, 
+        {
+            "location": "/development/cache/#common-parameters", 
+            "text": "", 
+            "title": "Common parameters"
+        }, 
+        {
+            "location": "/development/cache/#keys-prefix", 
+            "text": "The Cache system allows you to add a prefix for all of your entries in the cache's storage. Just add this in the config.ini:  cache.keyPrefix = myapp_  This value is optional and defaults to empty string.", 
+            "title": "Keys prefix"
+        }, 
+        {
+            "location": "/development/cache/#cache-keys", 
+            "text": "The Cache class uses keys and patterns instead of directly using strings.  The main advantage is that you will use the same keys everywhere in your application (preventing typos) and if you udpate your data model, you can easily clean the cache for the related keys by changing the pointer to the key's name and not the name directly.   Let's try with a basic example where we store an article and use the id of the article in the key's name.  cachekeys.article = art[id]  Let's store something in this key:  // use \\Nf\\Cache;\n$globalCache = Cache::getStorage('global');\n$globalCache- save('article', 47, [ 'text' =  'hello this is an interesting article about something' ] //, 3600);   The parameters are :   the name of the key defined in the config.ini (cachekeys.article)  the second parameter is replaced in the string defined in the config.ini, here we have only one parameter that is the id of the article so the framework replaces [id] with our id, here 47.  the data to store (it will be serialized internally by the php extension for this cache system)  an optional lifetime for this key (in seconds)   Let's load this key from the store:  // use \\Nf\\Cache;\n$globalCache = Cache::getStorage('global');\n$articleData = $globalCache- load('article', 47);", 
+            "title": "Cache Keys"
+        }, 
+        {
+            "location": "/development/cache/#lifetime", 
+            "text": "The lifetime can be set per key or per cache system. If you do not specify a lifetime, the framework will use the cache system's one, or the global value defined in the framework of 3600 seconds (one hour).", 
+            "title": "Lifetime"
+        }, 
+        {
+            "location": "/development/cache/#multiple-key-identifiers", 
+            "text": "You might have multiple identifiers for the key's name, like for storing pagination results for a matching tag. Your key will look like this in the config.ini:  cachekeys.articleList = list_[tag]_[page]  In your code, you will use:  $globalCache- save(\n    'articleList',\n    [ 'fashion', 2 ],\n    [ 0 =  'first article...', 1 =  'second article...' ]\n);   The framework will replace the entries in the key's name in the order of the values, so:   \"fashion\" will replace [tag]  2 will replace [page]   You can also specify the name like this:  $globalCache- save(\n    'articleList',\n    [ 'tag' =  'fashion', 'page' =  2 ],\n    [ 0 =  'first article...', 1 =  'second article...' ]\n);   Or of course reorder them in the order you would like:  $globalCache- save(\n    'articleList',\n    [ 'page' =  2, 'tag' =  'fashion' ],\n    [ 0 =  'first article...', 1 =  'second article...' ]\n);   And the similar function to load the values from the store:  $globalCache- load('articleList', [ 'page' =  2, 'tag' =  'fashion' ]);", 
+            "title": "Multiple key identifiers"
+        }, 
+        {
+            "location": "/development/cache/#deleting-values-from-the-store", 
+            "text": "$globalCache- delete('articleList', [ 'page' =  2, 'tag' =  'fashion' ]);", 
+            "title": "Deleting values from the store"
         }, 
         {
             "location": "/development/vendor/", 
